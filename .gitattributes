@@ -1,0 +1,13 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Mark certain file types as binary
+*.jpg binary
+*.png binary
+
+# Merge strategy for lock files
+*.lock merge=union
+
+# Specify language for linguist
+*.py linguist-language=Python
+*.md linguist-language=Markdown
