@@ -29,7 +29,7 @@ class _DoctorsearchState extends State<Doctorsearch> {
             toolbarHeight: 0,
             bottom: TabBar(tabs: [
               Tab(
-                child: ListView(),
+                child: Text(' مردود عليه'),
               ),
               Tab(
                 child: Text('غير مردود عليه'),
@@ -37,48 +37,92 @@ class _DoctorsearchState extends State<Doctorsearch> {
             ]),
           ),
           body: Container(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [
-                Post(
-                    messege: 'messege',
-                    username: 'username',
-                    time: DateTime.now(),
-                    userImage: 'image/PI.jpeg'),
-                Container(
-                  alignment: Alignment.topRight,
-                  margin: EdgeInsets.all(10),
-                  child: status != true
-                      ? Icon(
-                          MyFlutterApp.comment_empty,
-                          color: deepPurple,
-                        )
-                      : Icon(
-                          MyFlutterApp.comment,
-                          color: deepPurple,
-                        ),
-                ),
-                status == true
-                    ? Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Icon(MyFlutterApp.reply),
-                            ),
-                            Post(
-                                messege: 'messege',
-                                username: 'username',
-                                time: DateTime.now(),
-                                userImage: 'image/PI.jpeg'),
-                          ],
-                        ),
-                      )
-                    : Container()
-              ],
+            child: TabBarView(
+              children: [replayDone(), notReplay()],
             ),
           ),
         ));
+  }
+}
+
+class replayDone extends StatelessWidget {
+  replayDone({
+    super.key,
+  });
+  bool status = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: [
+          Post(
+              messege: 'messege',
+              username: 'username',
+              time: DateTime.now(),
+              userImage: 'image/PI.jpeg'),
+          Container(
+            alignment: Alignment.topRight,
+            margin: EdgeInsets.all(10),
+            child: status != true
+                ? Icon(
+                    MyFlutterApp.comment_empty,
+                    color: deepPurple,
+                  )
+                : Icon(
+                    MyFlutterApp.comment,
+                    color: deepPurple,
+                  ),
+          ),
+          status == true
+              ? Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Icon(MyFlutterApp.reply),
+                      ),
+                      Post(
+                          messege: 'messege',
+                          username: 'username',
+                          time: DateTime.now(),
+                          userImage: 'image/PI.jpeg'),
+                    ],
+                  ),
+                )
+              : Container()
+        ],
+      ),
+    );
+  }
+}
+
+class notReplay extends StatelessWidget {
+  notReplay({super.key});
+  bool status = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: ListView(
+          children: [
+            Post(
+                messege: 'messege',
+                username: 'username',
+                time: DateTime.now(),
+                userImage: 'image/PI.jpeg'),
+            Container(
+                alignment: Alignment.topRight,
+                margin: EdgeInsets.all(10),
+                child: Icon(
+                  MyFlutterApp.comment_empty,
+                  color: deepPurple,
+                )),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -12,37 +12,52 @@ class _LoginasState extends State<Loginas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: deepPurple,
       body: Container(
-        color: deepPurple,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('doctorhome');
-                  },
-                  child: Text('SignUp As Doctor')),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              loginAsContainar(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('doctorhome');
+                },
+                title: 'SignUp As Doctor',
+              ),
+              loginAsContainar(
                   onPressed: () {
                     Navigator.of(context).pushNamed('home');
                   },
-                  child: Text('SignUp As Patient')),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
+                  title: 'SignUp As Patient'),
+              loginAsContainar(
                   onPressed: () {
                     Navigator.of(context).pushNamed('volunteerhome');
                   },
-                  child: Text('SignUp As volunteer')),
-            )
-          ],
+                  title: 'SignUp As volunteer'),
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class loginAsContainar extends StatelessWidget {
+  const loginAsContainar(
+      {super.key, required this.onPressed, required this.title});
+  final void Function() onPressed;
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 5),
+      width: 100,
+      alignment: Alignment.center,
+      child: TextButton(onPressed: onPressed, child: Text(title)),
+      decoration: BoxDecoration(
+          color: lightPink,
+          border: Border.all(color: deepPurple),
+          borderRadius: BorderRadius.circular(15)),
     );
   }
 }

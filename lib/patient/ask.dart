@@ -4,6 +4,7 @@ import 'package:supcar/constent/link.dart';
 import 'package:supcar/content/crud.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
+import 'package:supcar/model/conModel.dart';
 
 class Ask extends StatefulWidget {
   const Ask({super.key});
@@ -17,19 +18,24 @@ class _AskState extends State<Ask> with Crud {
 
   TextEditingController typeOfConsultation = TextEditingController();
   TextEditingController content = TextEditingController();
+  Consultation1 consultation1 = Consultation1();
   int id = 1;
   bool isloading = false;
-  addNotea() async {
+  addConsultation() async {
     isloading = true;
     setState(() {});
     if (formstate.currentState!.validate()) {
-      var response = await getRequest(
-        linkApi,
-      );
+      var response = await postRequest(linkApi, {
+        "patientId": consultation1.patientId.toString(),
+        "consultationText": content.text,
+        "updatedAt": DateTime.now().toIso8601String(),
+        "createdAt": DateTime.now().toIso8601String(),
+        "id": "id"
+      });
       isloading = false;
       setState(() {});
       if (response['status'] == 'success') {
-        Navigator.of(context).pushReplacementNamed('/Home');
+        Navigator.of(context).pushNamed('doctorask');
       } else {}
     }
   }
@@ -65,7 +71,7 @@ class _AskState extends State<Ask> with Crud {
               },
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: addConsultation(),
               child: Text('Send Consultation'),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(pink),

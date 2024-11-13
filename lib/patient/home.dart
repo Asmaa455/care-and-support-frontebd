@@ -17,8 +17,11 @@ class Home extends StatefulWidget {
 class _HomepatientState extends State<Home> {
   int selectedIndex = 0;
 
-  List<Widget> listwidget = [Homepatient(), Medicine(), Doctorsearch()];
+  List<Widget> listwidget = [Homepatient(), Medicine(), Doctorask()];
   List<String> nameWidget = ['Home Patient', 'Medicine', 'Ask Doctor '];
+  String userImage = 'image/PI.jpeg';
+  String username = 'username';
+  String email = 'username@gmail.com';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,29 +100,48 @@ class _HomepatientState extends State<Home> {
       drawer: Drawer(
         child: ListView(children: [
           DrawerHeader(
-            child: Text(' my account'),
-            decoration: BoxDecoration(
-              color: pink,
-            ),
-          ),
-          ListTile(
-            leading: Image.network(
-              'https://th.bing.com/th?id=OIP.GqGVPkLpUlSo5SmeDogUdwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2',
-              width: 50,
-              height: 50,
-              fit: BoxFit.cover,
+              decoration: BoxDecoration(color: Colors.white),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage(userImage),
+                    backgroundColor: Colors.grey,
+                  ),
+                  Expanded(
+                      child: ListTile(
+                    style: ListTileStyle.drawer,
+                    title: Text(
+                      username,
+                      style: TextStyle(fontSize: 20, color: deepPurple),
+                    ),
+                    subtitle: Text(
+                      email,
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ))
+                ],
+              )),
+          Expanded(
+              child: ListTile(
+            leading: Icon(
+              MyFlutterApp.noun_consultation_6696850,
+              weight: 2,
             ),
             title: Text(
-              'data',
-              style: TextStyle(
-                  fontSize: 20, color: const Color.fromARGB(255, 6, 82, 120)),
+              'My Consultiation',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            tileColor: const Color.fromARGB(255, 209, 192, 230),
-            subtitle: Text('email'),
-          ),
-          ListTile(
-              // leading: Icon(Icons.),
-              )
+          )),
+          Expanded(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet_outlined,
+                    weight: 2,
+                  ),
+                  title: Text(
+                    'My Paid',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ))),
         ]),
       ),
       body: Container(
