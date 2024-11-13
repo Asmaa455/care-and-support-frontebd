@@ -20,17 +20,19 @@ class _AskState extends State<Ask> with Crud {
   TextEditingController content = TextEditingController();
   Consultation1 consultation1 = Consultation1();
   int id = 1;
+  int patientId = 1;
+
   bool isloading = false;
   addConsultation() async {
     isloading = true;
     setState(() {});
     if (formstate.currentState!.validate()) {
       var response = await postRequest(linkApi, {
-        "patientId": consultation1.patientId.toString(),
+        "patientId": patientId.toString(),
         "consultationText": content.text,
         "updatedAt": DateTime.now().toIso8601String(),
         "createdAt": DateTime.now().toIso8601String(),
-        "id": "id"
+        "id": id.toString()
       });
       isloading = false;
       setState(() {});
