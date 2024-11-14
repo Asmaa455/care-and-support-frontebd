@@ -30,9 +30,9 @@ class _AskState extends State<Ask> with Crud {
       var response = await postRequest(linkApi, {
         "patientId": patientId.toString(),
         "consultationText": content.text,
-        "updatedAt": DateTime.now().toIso8601String(),
+        "updatedAt": null,
         "createdAt": DateTime.now().toIso8601String(),
-        "id": id.toString()
+        "id": null
       });
       isloading = false;
       setState(() {});
@@ -73,7 +73,9 @@ class _AskState extends State<Ask> with Crud {
               },
             ),
             TextButton(
-              onPressed: addConsultation(),
+              onPressed: () async {
+                await addConsultation();
+              },
               child: Text('Send Consultation'),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(pink),

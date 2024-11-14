@@ -1,96 +1,119 @@
 class consultatioModel {
-  String? _message;
-  Consultation1? _consultation1;
+  List<Consultations>? _consultations;
 
-  consultatioModel({String? message, Consultation1? consultation1}) {
-    if (message != null) {
-      this._message = message;
-    }
-    if (consultation1 != null) {
-      this._consultation1 = consultation1;
+  consultatioModel({List<Consultations>? consultations}) {
+    if (consultations != null) {
+      this._consultations = consultations;
     }
   }
 
-  String? get message => _message;
-  set message(String? message) => _message = message;
-  Consultation1? get consultation1 => _consultation1;
-  set consultation1(Consultation1? consultation1) =>
-      _consultation1 = consultation1;
+  List<Consultations>? get consultations => _consultations;
+  set consultations(List<Consultations>? consultations) =>
+      _consultations = consultations;
 
   consultatioModel.fromJson(Map<String, dynamic> json) {
-    _message = json['message'];
-    _consultation1 = json['consultation1'] != null
-        ? new Consultation1.fromJson(json['consultation1'])
-        : null;
+    if (json['consultations'] != null) {
+      _consultations = <Consultations>[];
+      json['consultations'].forEach((v) {
+        _consultations!.add(new Consultations.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this._message;
-    if (this._consultation1 != null) {
-      data['consultation1'] = this._consultation1!.toJson();
+    if (this._consultations != null) {
+      data['consultations'] =
+          this._consultations!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Consultation1 {
-  String? _patientId;
-  String? _consultation1Text;
-  String? _updatedAt;
+class Consultations {
+  int? _id;
+  int? _patientId;
+  int? _doctorId;
+  String? _consultationText;
+  int? _status;
+  String? _answerText;
   String? _createdAt;
-  String? _id;
+  String? _updatedAt;
 
-  Consultation1(
-      {String? patientId,
-      String? consultation1Text,
-      String? updatedAt,
+  Consultations(
+      {int? id,
+      int? patientId,
+      int? doctorId,
+      String? consultationText,
+      int? status,
+      String? answerText,
       String? createdAt,
-      String? id}) {
+      String? updatedAt}) {
+    if (id != null) {
+      this._id = id;
+    }
     if (patientId != null) {
       this._patientId = patientId;
     }
-    if (consultation1Text != null) {
-      this._consultation1Text = consultation1Text;
+    if (doctorId != null) {
+      this._doctorId = doctorId;
     }
-    if (updatedAt != null) {
-      this._updatedAt = updatedAt;
+    if (consultationText != null) {
+      this._consultationText = consultationText;
+    }
+    if (status != null) {
+      this._status = status;
+    }
+    if (answerText != null) {
+      this._answerText = answerText;
     }
     if (createdAt != null) {
       this._createdAt = createdAt;
     }
-    if (id != null) {
-      this._id = id;
+    if (updatedAt != null) {
+      this._updatedAt = updatedAt;
     }
   }
 
-  String? get patientId => _patientId;
-  set patientId(String? patientId) => _patientId = patientId;
-  String? get consultation1Text => _consultation1Text;
-  set consultation1Text(String? consultation1Text) =>
-      _consultation1Text = consultation1Text;
-  String? get updatedAt => _updatedAt;
-  set updatedAt(String? updatedAt) => _updatedAt = updatedAt;
+  int? get id => _id;
+  set id(int? id) => _id = id;
+  int? get patientId => _patientId;
+  set patientId(int? patientId) => _patientId = patientId;
+  int? get doctorId => _doctorId;
+  set doctorId(int? doctorId) => _doctorId = doctorId;
+  String? get consultationText => _consultationText;
+  set consultationText(String? consultationText) =>
+      _consultationText = consultationText;
+  int? get status => _status;
+  set status(int? status) => _status = status;
+  String? get answerText => _answerText;
+  set answerText(String? answerText) => _answerText = answerText;
   String? get createdAt => _createdAt;
   set createdAt(String? createdAt) => _createdAt = createdAt;
-  String? get id => _id;
-  set id(String? id) => _id = id;
+  String? get updatedAt => _updatedAt;
+  set updatedAt(String? updatedAt) => _updatedAt = updatedAt;
 
-  Consultation1.fromJson(Map<String, dynamic> json) {
-    _patientId = json['patient_id'];
-    _consultation1Text = json['consultation1_text'];
-    _updatedAt = json['updated_at'];
-    _createdAt = json['created_at'];
+  Consultations.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
+    _patientId = json['patient_id'];
+    _doctorId = json['doctor_id'];
+    _consultationText = json['consultation_text'];
+    _status = json['status'];
+    _answerText = json['answer_text'];
+    _createdAt = json['created_at'];
+    _updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['patient_id'] = this._patientId;
-    data['consultation1_text'] = this._consultation1Text;
-    data['updated_at'] = this._updatedAt;
-    data['created_at'] = this._createdAt;
     data['id'] = this._id;
+    data['patient_id'] = this._patientId;
+    data['doctor_id'] = this._doctorId;
+    data['consultation_text'] = this._consultationText;
+    data['status'] = this._status;
+    data['answer_text'] = this._answerText;
+    data['created_at'] = this._createdAt;
+    data['updated_at'] = this._updatedAt;
     return data;
   }
 }

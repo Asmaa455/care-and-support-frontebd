@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:supcar/constent/link.dart';
+
 mixin Crud {
   getRequest(String ur1) async {
     try {
@@ -28,5 +30,24 @@ mixin Crud {
     } catch (e) {
       print('ERROR CATCH $e');
     }
+  }
+}
+
+Future<void> getMedicalConsultation(String url, String id) async {
+  final String url1 = linkForGetWithId(url, id);
+
+  try {
+    var response = await http.get(Uri.parse(url1));
+
+    if (response.statusCode == 200) {
+      // If the server returns a 200 OK response, parse the JSON.
+      var responsebody = json.decode(response.body);
+      return responsebody; // Handle the data as needed
+    } else {
+      // If the server returns an error response.
+      print('Error: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Caught an error: $e');
   }
 }
