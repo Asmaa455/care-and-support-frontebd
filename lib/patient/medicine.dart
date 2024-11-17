@@ -14,7 +14,9 @@ class _MedicineState extends State<Medicine> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('addmedicine');
+        },
         child: Icon(Icons.add),
       ),
       body: GridView(

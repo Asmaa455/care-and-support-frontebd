@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/content/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/patient/addhelp.dart';
+import 'package:supcar/patient/addmedicine.dart';
 import 'package:supcar/patient/ask.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/doctor/addpost.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         'addhelp': (context) => Addhelp(),
         'onsultation': (context) => Consultation(),
         'loginas': (context) => Loginas(),
-        'doctorask': (context) => Doctorask()
+        'doctorask': (context) => Doctorask(),
+        'addmedicine': (context) => Addmedicine()
       },
     );
   }

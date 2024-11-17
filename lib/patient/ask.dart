@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/content/crud.dart';
@@ -18,7 +19,7 @@ class _AskState extends State<Ask> with Crud {
 
   TextEditingController typeOfConsultation = TextEditingController();
   TextEditingController content = TextEditingController();
-  Consultation1 consultation1 = Consultation1();
+  Consultations consultation1 = Consultations();
   int id = 1;
   int patientId = 1;
 
@@ -27,7 +28,10 @@ class _AskState extends State<Ask> with Crud {
     isloading = true;
     setState(() {});
     if (formstate.currentState!.validate()) {
-      var response = await postRequest(linkApi, {
+      const String createConsultationLink =
+          "Medical_Consultation/patient_consultation_store/";
+      String url = linkForGetWithId(createConsultationLink, id.toString());
+      var response = await postRequest(url, {
         "patientId": patientId.toString(),
         "consultationText": content.text,
         "updatedAt": null,
@@ -56,14 +60,6 @@ class _AskState extends State<Ask> with Crud {
       body: Container(
         child: ListView(
           children: [
-            Form1(
-              hint1: 'Title',
-              max: 1,
-              mycontroller: typeOfConsultation,
-              valid: (val) {
-                return vaidInput(val!, 5, 20);
-              },
-            ),
             Form1(
               max: 15,
               hint1: 'Write Your Consultation',

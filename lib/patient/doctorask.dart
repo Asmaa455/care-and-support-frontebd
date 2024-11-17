@@ -59,6 +59,7 @@ class replayDone extends StatelessWidget with Crud {
   String? id;
   getreplayDone() async {
     var response = await getRequest(answeredConsultationsLink);
+    
     return response;
   }
 
@@ -124,47 +125,6 @@ class replayDone extends StatelessWidget with Crud {
           },
         ),
       ),
-
-      // body: ListView(
-      //   children: [
-      //     Post(
-      //         messege: 'messege',
-      //         username: 'username',
-      //         time: DateTime.now(),
-      //         userImage: 'image/PI.jpeg'),
-      //     Container(
-      //       alignment: Alignment.topRight,
-      //       margin: EdgeInsets.all(10),
-      //       child: status != true
-      //           ? Icon(
-      //               MyFlutterApp.comment_empty,
-      //               color: deepPurple,
-      //             )
-      //           : Icon(
-      //               MyFlutterApp.comment,
-      //               color: deepPurple,
-      //             ),
-      //     ),
-      //     status == true
-      //         ? Container(
-      //             child: Column(
-      //               crossAxisAlignment: CrossAxisAlignment.end,
-      //               children: [
-      //                 Padding(
-      //                   padding: EdgeInsets.all(10),
-      //                   child: Icon(MyFlutterApp.reply),
-      //                 ),
-      //                 Post(
-      //                     messege: 'messege',
-      //                     username: 'username',
-      //                     time: DateTime.now(),
-      //                     userImage: 'image/PI.jpeg'),
-      //               ],
-      //             ),
-      //           )
-      //         : Container()
-      //   ],
-      // ),
     );
   }
 }
