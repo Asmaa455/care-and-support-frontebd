@@ -1,12 +1,12 @@
 // link servece
-const String serverLink = "http://192.168.1.16";
+const String serverLink = "https://d7f3-5-0-138-106.ngrok-free.app";
 const String createConsultationLink =
-    "Medical_Consultation/patient_consultation_store/";
+    "/Medical_Consultation/patient_consultation_store/";
 
 const unansweredConsultationsLink =
-    "/Medical_Consultation/Unanswered_Medical_Consultations/";
+    "$serverLink/Medical_Consultation/Unanswered_Medical_Consultations/";
 const answeredConsultationsLink =
-    "$serverLink/Medical_Consultation/Answered_Medical_Consultation";
+    "$serverLink/Medical_Consultation/patient_consultation/";
 
 linkForGetWithId(String url, String id) {
   return '$serverLink$url$id';

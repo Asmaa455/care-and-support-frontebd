@@ -36,7 +36,6 @@ class _AskState extends State<Ask> with Crud {
         "consultationText": content.text,
         "updatedAt": null,
         "createdAt": DateTime.now().toIso8601String(),
-        "id": null
       });
       isloading = false;
       setState(() {});

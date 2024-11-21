@@ -33,11 +33,10 @@ mixin Crud {
   }
 }
 
-Future<void> getMedicalConsultation(String url, String id) async {
-  final String url1 = linkForGetWithId(url, id);
-
+Future<void> getMedicalConsultation(String url, int id) async {
+  String myUrl = '$url$id';
   try {
-    var response = await http.get(Uri.parse(url1));
+    var response = await http.get(Uri.parse(myUrl));
 
     if (response.statusCode == 200) {
       // If the server returns a 200 OK response, parse the JSON.

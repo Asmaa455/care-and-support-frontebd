@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         'volunteerhome': (context) => Volunteerhome(),
         'replayhelp': (context) => Replayhelp(),
         'addhelp': (context) => Addhelp(),
-        'onsultation': (context) => Consultation(),
+        'consultation': (context) => Consultation(),
         'loginas': (context) => Loginas(),
         'doctorask': (context) => Doctorask(),
         'addmedicine': (context) => Addmedicine()

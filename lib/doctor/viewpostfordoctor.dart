@@ -21,6 +21,13 @@ class _ViewpostfordoctorState extends State<Viewpostfordoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: lightPink,
+        onPressed: () {
+          Navigator.of(context).pushNamed('addpost');
+        },
+        child: Icon(Icons.add),
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,

@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/consultation.dart';
 import 'package:supcar/content/post.dart';
+import 'package:supcar/doctor/viewpostfordoctor.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 import 'package:supcar/patient/patient.dart';
 
@@ -13,8 +14,11 @@ class Doctorhome extends StatefulWidget {
 }
 
 class _DoctorhomeState extends State<Doctorhome> {
+  String userImage = 'image/PI.jpeg';
+  String username = 'username';
+  String email = 'username@gmail.com';
   int selectedIndex = 0;
-  List<Widget> listWidget = [Homepatient(), Consultation()];
+  List<Widget> listWidget = [Viewpostfordoctor(), Consultation()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,44 +52,62 @@ class _DoctorhomeState extends State<Doctorhome> {
           ]),
       endDrawer: Drawer(
         child: ListView(children: [
-          ListTile(
-            leading: Image.network(
-              'https://th.bing.com/th?id=OIP.GqGVPkLpUlSo5SmeDogUdwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2',
-              width: 50,
-              height: 50,
-              fit: BoxFit.cover,
+          DrawerHeader(
+              decoration: BoxDecoration(color: Colors.white),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage(userImage),
+                    backgroundColor: Colors.grey,
+                  ),
+                  Expanded(
+                      child: ListTile(
+                    style: ListTileStyle.drawer,
+                    title: Text(
+                      username,
+                      style: TextStyle(fontSize: 20, color: deepPurple),
+                    ),
+                    subtitle: Text(
+                      email,
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ))
+                ],
+              )),
+          Expanded(
+              child: ListTile(
+            leading: Icon(
+              MyFlutterApp.noun_consultation_6696850,
+              weight: 2,
             ),
             title: Text(
-              'data',
-              style: TextStyle(
-                  fontSize: 20, color: const Color.fromARGB(255, 6, 82, 120)),
+              'My Consultiation',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            tileColor: const Color.fromARGB(255, 209, 192, 230),
-            subtitle: Text('email'),
-          ),
-          ListTile(
-              // leading: Icon(Icons.),
-              )
+          )),
+          Expanded(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet_outlined,
+                    weight: 2,
+                  ),
+                  title: Text(
+                    'My Paid',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ))),
+          Expanded(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.newspaper,
+                    weight: 2,
+                  ),
+                  title: Text(
+                    'My Posts',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ))),
         ]),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: lightPink,
-        onPressed: () {
-          Navigator.of(context).pushNamed('addpost');
-        },
-        child: Icon(Icons.add),
-      ),
-      body: Container(
-        child: ListView(
-          children: [
-            Post(
-                messege: 'messege',
-                username: 'username',
-                time: DateTime.now(),
-                userImage: 'image/PI.jpeg')
-          ],
-        ),
-      ),
+      body: Container(child: listWidget.elementAt(selectedIndex)),
     );
   }
 }

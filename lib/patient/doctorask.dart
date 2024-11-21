@@ -56,11 +56,20 @@ class replayDone extends StatelessWidget with Crud {
     super.key,
   });
   bool status = true;
-  String? id;
   getreplayDone() async {
-    var response = await getRequest(answeredConsultationsLink);
-    
-    return response;
+    String myUrl =
+        'https://d7f3-5-0-138-106.ngrok-free.app/Medical_Consultation/Answered_Medical_Consultation';
+    try {
+      var response = await http.post(Uri.parse(myUrl));
+      if (response.statusCode == 200) {
+        var responsebody = jsonDecode(response.body);
+        return responsebody;
+      } else {
+        print('ERROR ${response.statusCode}');
+      }
+    } catch (e) {
+      print('ERROR CATCH $e');
+    }
   }
 
   @override
@@ -81,11 +90,12 @@ class replayDone extends StatelessWidget with Crud {
                       children: [
                         Post(
                             messege: Consultations.fromJson(
-                                    snapshot.data['consultation_text'][index])
+                                    snapshot.data['consultations'][index]
+                                        ['consultation_text'])
                                 .toString(),
                             username: 'username',
-                            time: format.parse(Consultations.fromJson(
-                                    snapshot.data['created_at'][index])
+                            time: format.parse(Consultations.fromJson(snapshot
+                                    .data["consultations"][index]['created_at'])
                                 .toString()),
                             userImage: 'image/PI.jpeg'),
                         Container(
@@ -98,11 +108,13 @@ class replayDone extends StatelessWidget with Crud {
                               ),
                               Post(
                                   messege: Consultations.fromJson(
-                                          snapshot.data['answer_text'][index])
+                                          snapshot.data["consultations"][index]
+                                              ['answer_text'])
                                       .toString(),
                                   username: 'username',
                                   time: format.parse(Consultations.fromJson(
-                                          snapshot.data['updated_at'][index])
+                                          snapshot.data["consultations"][index]
+                                              ['updated_at'])
                                       .toString()),
                                   userImage: 'image/PI.jpeg'),
                             ],
@@ -137,15 +149,41 @@ class notReplay1 extends StatefulWidget {
 }
 
 class _notReplay1State extends State<notReplay1> with Crud {
-  String id = '1';
+  int id = 1;
+  getNotReplay(int id) async {
+    String myUrl =
+        'https://d7f3-5-0-138-106.ngrok-free.app/Medical_Consultation/Unanswered_Medical_Consultations/$id';
+    try {
+      var response = await http.get(Uri.parse(myUrl));
+      if (response.statusCode == 200) {
+        var responsebody = jsonDecode(response.body);
+        return responsebody;
+      } else {
+        print('ERROR ${response.statusCode}');
+      }
+    } catch (e) {
+      print('ERROR CATCH $e');
+    }
+  }
+// class _notReplay1State extends State<notReplay1> with Crud {
+//   getNotReplay() async {
+//     int id = 1;
 
+//     String myUrl =
+//         'https://d7f3-5-0-138-106.ngrok-free.app/Medical_Consultation/Unanswered_Medical_Consultations/$id';
+//     http.get(Uri.parse(myUrl)).then((response) {
+//       print('response status:${response.statusCode}');
+//       print('response body:${response.body}');
+//     });
+//     return ;
+//   }
   Consultations consultations = Consultations();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
           child: FutureBuilder(
-        future: getMedicalConsultation(unansweredConsultationsLink, id),
+        future: getNotReplay(id),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(

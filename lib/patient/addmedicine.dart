@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/constent/stringtodata.dart';
 import 'package:supcar/content/convert_time.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
@@ -24,6 +25,48 @@ class _AddmedicineState extends State<Addmedicine> {
       setState(() {
         _time = picked;
         _ckicked = true;
+      });
+    }
+
+    return picked;
+  }
+
+  DateTime _dateFirst = DateTime(2024, 1, 1);
+  DateTime _dateLast = DateTime(2024, 12, 1);
+  bool _clickedDate = false;
+
+  Future<DateTime?> _firstSelectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _dateFirst,
+      firstDate: _dateFirst,
+      lastDate: _dateLast,
+    );
+
+    if (picked != null && picked != _dateFirst) {
+      setState(() {
+        _dateFirst = picked;
+        _clickedDate = true;
+      });
+    }
+
+    return picked;
+  }
+
+  bool _lastClickedDate = false;
+
+  Future<DateTime?> _lastSelectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _dateFirst,
+      firstDate: _dateFirst,
+      lastDate: _dateLast,
+    );
+
+    if (picked != null && picked != _dateFirst) {
+      setState(() {
+        _dateLast = picked;
+        _lastClickedDate = true;
       });
     }
 
@@ -139,8 +182,66 @@ class _AddmedicineState extends State<Addmedicine> {
                       onPressed: () {
                         _selectedTime();
                       },
-                      child: Text(_ckicked
+                      child: Text(_clickedDate
                           ? '${convertTime(_time.hour.toString())}:${convertTime(_time.minute.toString())}'
+                          : 'Select Time')),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 20, top: 5),
+                  child: Text(
+                    'Starting Date',
+                    style: TextStyle(
+                        color: deepPurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(20)),
+                Container(
+                  decoration: BoxDecoration(
+                      color: pink,
+                      border: Border.all(color: deepPurple),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: TextButton(
+                      onPressed: () {
+                        _firstSelectDate(context);
+                      },
+                      child: Text(_ckicked
+                          ? '${_dateFirst.toString()}'
+                          : 'Select Time')),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 20, top: 5),
+                  child: Text(
+                    'Ending Date',
+                    style: TextStyle(
+                        color: deepPurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(20)),
+                Container(
+                  decoration: BoxDecoration(
+                      color: pink,
+                      border: Border.all(color: deepPurple),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: TextButton(
+                      onPressed: () {
+                        _lastSelectDate(context);
+                      },
+                      child: Text(_lastClickedDate
+                          ? '${_dateFirst.toString()}'
                           : 'Select Time')),
                 )
               ],
