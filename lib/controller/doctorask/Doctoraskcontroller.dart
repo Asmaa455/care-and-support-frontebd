@@ -2,38 +2,38 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:supcar/controller/apiserves/apiserves.dart';
+import 'package:supcar/model/conModel.dart';
+
 class DoctoraskController extends GetxController {
   var status = true.obs;
 }
 
 class ReplayDoneController extends GetxController {
-  var consultations = [].obs;
+  var consultations = <Consultations>[].obs;
+  var isLoading = true.obs; // Observable loading state
+
+  var id = 1;
 
   @override
   void onInit() {
     super.onInit();
-    fetchReplayDone();
+    fetchReplayDone(id);
   }
 
-  void fetchReplayDone() async {
-    String myUrl =
-        'https://d7f3-5-0-138-106.ngrok-free.app/Medical_Consultation/Answered_Medical_Consultation';
+  void fetchReplayDone(int id) async {
     try {
-      var response = await http.post(Uri.parse(myUrl));
-      if (response.statusCode == 200) {
-        var responsebody = jsonDecode(response.body);
-        consultations.assignAll(responsebody['consultations']);
-      } else {
-        print('ERROR ${response.statusCode}');
-      }
-    } catch (e) {
-      print('ERROR CATCH $e');
+      isLoading(true);
+      var fetchedUsers = await ApiService().fetchConsultation(id);
+      consultations.assignAll(fetchedUsers); // Update the observable list
+    } finally {
+      isLoading(false);
     }
   }
 }
 
 class NotReplayController extends GetxController {
-  var consultations = [].obs;
+  var consultations = <Consultations>[].obs;
   var id = 1;
 
   @override

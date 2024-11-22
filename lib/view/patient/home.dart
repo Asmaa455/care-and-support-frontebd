@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/controller/patienthomecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
-import 'package:supcar/patient/doctorask.dart';
-import 'package:supcar/patient/patient.dart';
-import 'package:supcar/patient/medicine.dart';
+import 'package:supcar/view/patient/doctorask.dart';
+import 'package:supcar/view/patient/patient.dart';
+import 'package:supcar/view/patient/medicine.dart';
 
 class Home extends StatelessWidget {
   @override

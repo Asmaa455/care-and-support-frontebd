@@ -6,7 +6,7 @@ import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/doctorhomecontroller.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
-import 'package:supcar/patient/patient.dart';
+import 'package:supcar/view/patient/patient.dart';
 
 class DoctorHome extends StatelessWidget {
   @override

@@ -3,16 +3,17 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/content/consultation.dart';
 import 'package:supcar/content/loginas.dart';
-import 'package:supcar/patient/addhelp.dart';
-import 'package:supcar/patient/addmedicine.dart';
-import 'package:supcar/patient/ask.dart';
+import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
+import 'package:supcar/view/patient/addhelp.dart';
+import 'package:supcar/view/patient/addmedicine.dart';
+import 'package:supcar/view/patient/ask.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/view/doctor/addpost.dart';
 import 'package:supcar/view/doctor/doctorhome.dart';
-import 'package:supcar/patient/doctorask.dart';
-import 'package:supcar/patient/help.dart';
-import 'package:supcar/patient/home.dart';
-import 'package:supcar/patient/patient.dart';
+import 'package:supcar/view/patient/doctorask.dart';
+import 'package:supcar/view/patient/help.dart';
+import 'package:supcar/view/patient/home.dart';
+import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/volunteer/replayhelp.dart';
 import 'package:supcar/volunteer/volunteerhome.dart';
 
@@ -41,7 +42,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addhelp', page: () => Addhelp()),
         GetPage(name: '/consultation', page: () => Consultation()),
         GetPage(name: '/loginas', page: () => Loginas()),
-        GetPage(name: '/doctorask', page: () => Doctorask()),
+        GetPage(
+            name: '/doctorask',
+            page: () => Doctorask(),
+            binding: Doctoraskbinding()),
         GetPage(name: '/addmedicine', page: () => Addmedicine())
       ],
     );

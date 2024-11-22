@@ -164,7 +164,15 @@ class notReplay1 extends StatefulWidget {
 class _notReplay1State extends State<notReplay1> with Crud {
   int patientId = 1;
 
-  Consultations consultations = Consultations();
+  Consultations consultations = Consultations(
+      id: 123,
+      patientId: 456,
+      doctorId: 789,
+      consultationText: 'Patient complains of headaches and dizziness.',
+      status: 1,
+      answerText: 'Doctor has not yet provided an answer.',
+      createdAt: DateTime(2024, 11, 22, 10, 30).toString(),
+      updatedAt: DateTime(2024, 11, 22, 10, 30).toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

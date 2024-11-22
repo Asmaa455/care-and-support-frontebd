@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:supcar/patient/doctorask.dart';
-import 'package:supcar/patient/medicine.dart';
-import 'package:supcar/patient/patient.dart';
+import 'package:supcar/view/patient/doctorask.dart';
+import 'package:supcar/view/patient/medicine.dart';
+import 'package:supcar/view/patient/patient.dart';
 
 class HomeController extends GetxController {
   var selectedIndex = 0.obs;

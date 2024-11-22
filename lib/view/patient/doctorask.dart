@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/post.dart';
-import 'package:supcar/controller/Doctoraskcontroller.dart';
+import 'package:supcar/controller/doctorask/Doctoraskcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/model/conModel.dart';
 
 class Doctorask extends StatelessWidget {
   @override
@@ -57,14 +58,16 @@ class ReplayDone extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  var consultation = controller.consultations[index];
+                  // var consultation = controller.consultations[index];
                   return Container(
                     child: Column(
                       children: [
                         Post(
-                            messege: consultation['consultation_text'],
+                            messege: controller
+                                .consultations[index].consultationText,
                             username: 'username',
-                            time: DateTime.parse(consultation['created_at']),
+                            time: DateTime.parse(
+                                controller.consultations[index].createdAt),
                             userImage: 'image/PI.jpeg'),
                         Container(
                           child: Column(
@@ -75,10 +78,11 @@ class ReplayDone extends StatelessWidget {
                                 child: Icon(MyFlutterApp.reply),
                               ),
                               Post(
-                                  messege: consultation['answer_text'],
+                                  messege: controller
+                                      .consultations[index].answerText,
                                   username: 'username',
-                                  time: DateTime.parse(
-                                      consultation['updated_at']),
+                                  time: DateTime.parse(controller
+                                      .consultations[index].updatedAt),
                                   userImage: 'image/PI.jpeg'),
                             ],
                           ),
@@ -115,14 +119,16 @@ class NotReplay1 extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  var consultation = controller.consultations[index];
+                  // var consultation = controller.consultations[index];
                   return Container(
                     child: Column(
                       children: [
                         Post(
-                            messege: consultation['consultationText'],
+                            messege: controller
+                                .consultations[index].consultationText,
                             username: 'username',
-                            time: DateTime.now(),
+                            time: DateTime.parse(
+                                controller.consultations[index].createdAt),
                             userImage: 'image/PI.jpeg'),
                         Container(
                             alignment: Alignment.topRight,
