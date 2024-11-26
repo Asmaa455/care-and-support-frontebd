@@ -12,9 +12,25 @@
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
 ///
+/// * Web Symbols, Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
+///         Author:    Just Be Nice studio
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://www.justbenicestudio.com/
+/// * Linecons, Copyright (C) 2013 by Designmodo
+///         Author:    Designmodo for Smashing Magazine
+///         License:   CC BY ()
+///         Homepage:  http://designmodo.com/linecons-free/
+/// * Modern Pictograms, Copyright (c) 2012 by John Caserta. All rights reserved.
+///         Author:    John Caserta
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://thedesignoffice.org/project/modern-pictograms/
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
+/// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
 import 'package:flutter/widgets.dart';
@@ -35,10 +51,16 @@ class MyFlutterApp {
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData noun_doctor_search_3862138 =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData reply_all_1 =
+      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData noun_volunteer_7187860 =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData noun_consultation_6696850 =
       IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData clock =
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pencil =
       IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData edit =
@@ -51,4 +73,10 @@ class MyFlutterApp {
       IconData(0xf112, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData reply_all =
       IconData(0xf122, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pills =
+      IconData(0xf484, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData syringe =
+      IconData(0xf48e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tablets =
+      IconData(0xf490, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

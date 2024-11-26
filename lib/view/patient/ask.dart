@@ -20,28 +20,35 @@ class Ask extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
+        padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Form1(
-              max: 15,
-              hint1: 'Write Your Consultation',
-              mycontroller: controller.content,
-              valid: (val) {
-                return vaidInput(val!, 40, 1000);
-              },
-            ),
-            Obx(
-              () => TextButton(
-                onPressed: controller.isLoading.value
-                    ? null
-                    : controller.addConsultation,
-                child: controller.isLoading.value
-                    ? CircularProgressIndicator()
-                    : Text('Send Consultation'),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(pink),
+            Column(
+              children: [
+                Form1(
+                  key: controller.formKey.value,
+                  max: 15,
+                  hint1: 'Write Your Consultation',
+                  mycontroller: controller.content,
+                  valid: (val) {
+                    return vaidInput(val!, 40, 1000);
+                  },
                 ),
-              ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    if (controller.formKey.value.currentState!.validate()) {
+                      controller.addConsultation(controller.patientId);
+                    } else {
+                      print('Form validation failed');
+                    }
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(pink),
+                  ),
+                  child: Text('Send Consultation'),
+                ),
+              ],
             ),
           ],
         ),

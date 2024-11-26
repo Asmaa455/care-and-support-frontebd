@@ -29,7 +29,7 @@ class Medicine extends StatelessWidget {
             return InkWell(
               onTap: () {},
               child: Card(
-                color: lightPink,
+                color: pink,
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Column(
@@ -39,16 +39,18 @@ class Medicine extends StatelessWidget {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
+                          color: Colors.white,
                           border: Border.all(
-                            color: const Color.fromARGB(255, 247, 244, 245),
+                            color: deepPurple,
                           ),
                           borderRadius: BorderRadius.circular(100),
                         ),
                         margin: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.only(left: 20, right: 20),
                         child: Icon(
-                          MyFlutterApp.noun_medicine_7230298,
+                          MyFlutterApp.pills,
                           size: 50,
+                          color: deepPurple,
                         ),
                       ),
                       Expanded(

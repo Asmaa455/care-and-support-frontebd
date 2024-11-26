@@ -20,14 +20,14 @@ class Consultations {
 
   factory Consultations.fromJson(Map<String, dynamic> json) {
     return Consultations(
-      id: json['id'],
-      patientId: json['patient_id'],
-      doctorId: json['doctor_id'],
-      consultationText: json['consultation_text'],
-      status: json['status'],
-      answerText: json['answer_text'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
+      id: json['id'] ?? 0,
+      patientId: json['patient_id'] ?? 0,
+      doctorId: json['doctor_id'] ?? 0,
+      consultationText: json['consultation_text'] ?? '',
+      status: json['status'] ?? 0,
+      answerText: json['answer_text'] ?? '',
+      createdAt: json['created_at'] ?? '',
+      updatedAt: json['updated_at'] ?? '',
     );
   }
 

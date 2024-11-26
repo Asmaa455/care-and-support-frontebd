@@ -18,10 +18,10 @@ class ReplayDoneController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchReplayDone(id);
+    fetchReplayDone();
   }
 
-  void fetchReplayDone(int id) async {
+  void fetchReplayDone() async {
     try {
       isLoading(true);
       var fetchedUsers = await ApiService().fetchConsultation(id);

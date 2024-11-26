@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supcar/content/consultation.dart';
+import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
 import 'package:supcar/view/patient/addhelp.dart';
@@ -15,7 +15,7 @@ import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
 import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/volunteer/replayhelp.dart';
-import 'package:supcar/volunteer/volunteerhome.dart';
+import 'package:supcar/view/volunteer/volunteerhome.dart';
 
 late SharedPreferences sharedPref;
 void main() async {
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addpost', page: () => Addpost()),
         GetPage(name: '/doctorhome', page: () => DoctorHome()),
         GetPage(name: '/help', page: () => Help()),
-        GetPage(name: '/volunteerhome', page: () => Volunteerhome()),
+        GetPage(name: '/volunteerhome', page: () => VolunteerHome()),
         GetPage(name: '/replayhelp', page: () => Replayhelp()),
         GetPage(name: '/addhelp', page: () => Addhelp()),
         GetPage(name: '/consultation', page: () => Consultation()),

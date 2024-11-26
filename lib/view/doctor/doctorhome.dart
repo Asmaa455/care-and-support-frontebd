@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
-import 'package:supcar/content/consultation.dart';
+import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/doctorhomecontroller.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';

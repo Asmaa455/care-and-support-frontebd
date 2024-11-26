@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:supcar/content/consultation.dart';
+import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 
 class DoctorHomeController extends GetxController {

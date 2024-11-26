@@ -76,7 +76,7 @@ class Post extends StatelessWidget {
           padding: EdgeInsets.all(5),
           child: Text(
             messege,
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.right,
           ),
         ),
       ]);

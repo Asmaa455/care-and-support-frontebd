@@ -23,16 +23,15 @@ class Doctorask extends StatelessWidget {
             toolbarHeight: 0,
             bottom: TabBar(tabs: [
               Tab(
-                child: Text(' مردود عليه'),
+                child: Text('My Consultation'),
               ),
-              Tab(
-                child: Text('غير مردود عليه'),
-              )
             ]),
           ),
           body: Container(
             child: TabBarView(
-              children: [ReplayDone(), NotReplay1()],
+              children: [
+                ReplayDone(),
+              ],
             ),
           ),
         ));
@@ -54,6 +53,7 @@ class ReplayDone extends StatelessWidget {
               );
             } else {
               return ListView.builder(
+                scrollDirection: Axis.vertical,
                 itemCount: controller.consultations.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -65,9 +65,8 @@ class ReplayDone extends StatelessWidget {
                         Post(
                             messege: controller
                                 .consultations[index].consultationText,
-                            username: 'username',
-                            time: DateTime.parse(
-                                controller.consultations[index].createdAt),
+                            username: 'Patient',
+                            time: DateTime.now(),
                             userImage: 'image/PI.jpeg'),
                         Container(
                           child: Column(
@@ -80,9 +79,8 @@ class ReplayDone extends StatelessWidget {
                               Post(
                                   messege: controller
                                       .consultations[index].answerText,
-                                  username: 'username',
-                                  time: DateTime.parse(controller
-                                      .consultations[index].updatedAt),
+                                  username: 'Doctor',
+                                  time: DateTime.now(),
                                   userImage: 'image/PI.jpeg'),
                             ],
                           ),
@@ -100,52 +98,52 @@ class ReplayDone extends StatelessWidget {
   }
 }
 
-class NotReplay1 extends StatelessWidget {
-  final NotReplayController controller = Get.put(NotReplayController());
+// class NotReplay1 extends StatelessWidget {
+//   final NotReplayController controller = Get.put(NotReplayController());
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Obx(
-          () {
-            if (controller.consultations.isEmpty) {
-              return Center(
-                child: Text('loading'),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: controller.consultations.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  // var consultation = controller.consultations[index];
-                  return Container(
-                    child: Column(
-                      children: [
-                        Post(
-                            messege: controller
-                                .consultations[index].consultationText,
-                            username: 'username',
-                            time: DateTime.parse(
-                                controller.consultations[index].createdAt),
-                            userImage: 'image/PI.jpeg'),
-                        Container(
-                            alignment: Alignment.topRight,
-                            margin: EdgeInsets.all(10),
-                            child: Icon(
-                              MyFlutterApp.comment_empty,
-                              color: deepPurple,
-                            )),
-                      ],
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//         child: Obx(
+//           () {
+//             if (controller.consultations.isEmpty) {
+//               return Center(
+//                 child: Text('loading'),
+//               );
+//             } else {
+//               return ListView.builder(
+//                 itemCount: controller.consultations.length,
+//                 shrinkWrap: true,
+//                 physics: NeverScrollableScrollPhysics(),
+//                 itemBuilder: (context, index) {
+//                   // var consultation = controller.consultations[index];
+//                   return Container(
+//                     child: Column(
+//                       children: [
+//                         Post(
+//                             messege: controller
+//                                 .consultations[index].consultationText,
+//                             username: 'username',
+//                             time: DateTime.parse(
+//                                 controller.consultations[index].createdAt),
+//                             userImage: 'image/PI.jpeg'),
+//                         Container(
+//                             alignment: Alignment.topRight,
+//                             margin: EdgeInsets.all(10),
+//                             child: Icon(
+//                               MyFlutterApp.comment_empty,
+//                               color: deepPurple,
+//                             )),
+//                       ],
+//                     ),
+//                   );
+//                 },
+//               );
+//             }
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
+import 'package:supcar/controller/replayhelocontroller.dart';
 
-class Replayhelp extends StatefulWidget {
-  const Replayhelp({super.key});
+class Replayhelp extends StatelessWidget {
+  final ReplayhelpController controller = Get.put(ReplayhelpController());
 
-  @override
-  State<Replayhelp> createState() => _ReplayhelpState();
-}
-
-class _ReplayhelpState extends State<Replayhelp> {
-  TextEditingController help = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,31 +24,36 @@ class _ReplayhelpState extends State<Replayhelp> {
           children: [
             Column(
               children: [
-                Form1(
+                Form(
+                  key: controller.formKey.value,
+                  child: Form1(
                     hint1: 'Repaly To Help',
-                    mycontroller: help,
+                    mycontroller: controller.help.value,
                     valid: (val) {
                       return vaidInput(val!, 5, 1000);
                     },
-                    max: 15),
+                    max: 15,
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   decoration: BoxDecoration(
                       border: Border.all(color: deepPurple),
                       borderRadius: BorderRadius.circular(15)),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: controller.submitForm,
                     child: Text(
                       "Replay Help",
                       style: TextStyle(
                           color: deepPurple, fontWeight: FontWeight.bold),
                     ),
                     style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(pink)),
+                      backgroundColor: MaterialStateProperty.all(pink),
+                    ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

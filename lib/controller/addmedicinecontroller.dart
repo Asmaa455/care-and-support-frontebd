@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddMedicineController extends GetxController {
+  var formstate = GlobalKey().obs;
   TextEditingController medicineName = TextEditingController();
   TextEditingController dosageAmount = TextEditingController();
   var amount = Rx<String?>(null);
