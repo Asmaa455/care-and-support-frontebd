@@ -10,7 +10,7 @@ class Doctorask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 1,
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -56,17 +56,20 @@ class ReplayDone extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: controller.consultations.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: ScrollPhysics(),
                 itemBuilder: (context, index) {
                   // var consultation = controller.consultations[index];
                   return Container(
                     child: Column(
                       children: [
                         Post(
-                            messege: controller
-                                .consultations[index].consultationText,
+                            messege: Text(
+                              controller.consultations[index].consultationText,
+                              textAlign: TextAlign.justify,
+                            ),
                             username: 'Patient',
-                            time: DateTime.now(),
+                            time: DateTime.parse(
+                                controller.consultations[index].createdAt),
                             userImage: 'image/PI.jpeg'),
                         Container(
                           child: Column(
@@ -77,10 +80,13 @@ class ReplayDone extends StatelessWidget {
                                 child: Icon(MyFlutterApp.reply),
                               ),
                               Post(
-                                  messege: controller
-                                      .consultations[index].answerText,
+                                  messege: Text(
+                                    controller.consultations[index].answerText,
+                                    textAlign: TextAlign.justify,
+                                  ),
                                   username: 'Doctor',
-                                  time: DateTime.now(),
+                                  time: DateTime.parse(controller
+                                      .consultations[index].createdAt),
                                   userImage: 'image/PI.jpeg'),
                             ],
                           ),

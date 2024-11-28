@@ -38,7 +38,7 @@ class VolunteerHome extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(MyFlutterApp.noun_consultation_6696850),
+              leading: Icon(MyFlutterApp.nounConsultation),
               title: Text(
                 'My Consultiation',
                 style: TextStyle(fontWeight: FontWeight.bold),

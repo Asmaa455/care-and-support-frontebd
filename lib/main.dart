@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
+import 'package:supcar/view/patient/BloodPressure.dart';
 import 'package:supcar/view/patient/addhelp.dart';
 import 'package:supcar/view/patient/addmedicine.dart';
 import 'package:supcar/view/patient/ask.dart';
@@ -13,8 +14,9 @@ import 'package:supcar/view/doctor/doctorhome.dart';
 import 'package:supcar/view/patient/doctorask.dart';
 import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
+import 'package:supcar/view/patient/measure.dart';
 import 'package:supcar/view/patient/patient.dart';
-import 'package:supcar/volunteer/replayhelp.dart';
+import 'package:supcar/view/volunteer/replayhelp.dart';
 import 'package:supcar/view/volunteer/volunteerhome.dart';
 
 late SharedPreferences sharedPref;
@@ -46,7 +48,9 @@ class MyApp extends StatelessWidget {
             name: '/doctorask',
             page: () => Doctorask(),
             binding: Doctoraskbinding()),
-        GetPage(name: '/addmedicine', page: () => Addmedicine())
+        GetPage(name: '/addmedicine', page: () => Addmedicine()),
+        GetPage(name: '/measure', page: () => Measure()),
+        GetPage(name: '/bloodPressure', page: () => Bloodpressure()),
       ],
     );
   }

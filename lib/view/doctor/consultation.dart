@@ -33,10 +33,13 @@ class Consultation extends StatelessWidget {
                   child: Column(
                     children: [
                       Post(
-                          messege:
-                              controller.consultations[index].consultationText,
+                          messege: Text(
+                            controller.consultations[index].consultationText,
+                            textAlign: TextAlign.justify,
+                          ),
                           username: 'username',
-                          time: DateTime.now(),
+                          time: DateTime.parse(
+                              controller.consultations[index].createdAt),
                           userImage: 'image/PI.jpeg'),
                       Container(
                         alignment: Alignment.topRight,
@@ -51,12 +54,14 @@ class Consultation extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Icon(
-                                    MyFlutterApp.reply_all,
+                                    MyFlutterApp.replyAll,
                                     color: deepPurple,
                                   ),
                                   Post(
-                                      messege: controller
-                                          .consultations[index].answerText,
+                                      messege: Text(
+                                        controller
+                                            .consultations[index].answerText,
+                                      ),
                                       username: 'username',
                                       time: DateTime.now(),
                                       userImage: 'image/PI.jpeg'),

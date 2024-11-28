@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(
-              MyFlutterApp.noun_doctor_search_3862138,
+              MyFlutterApp.nounDoctorSearch,
               size: 50,
               weight: 100,
               color: pink,
@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                MyFlutterApp.noun_medicine_7230298,
+                MyFlutterApp.nounMedicine,
                 size: 35,
               ),
               label: 'Medicine',
@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                MyFlutterApp.noun_consultation_6696850,
+                MyFlutterApp.nounConsultation,
                 weight: 2,
               ),
               title: Text(

@@ -35,7 +35,7 @@ class DoctorHome extends StatelessWidget {
               label: 'home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(MyFlutterApp.noun_consultation_6696850),
+              icon: Icon(MyFlutterApp.nounConsultation),
               label: 'consultation',
             ),
           ],
@@ -70,7 +70,7 @@ class DoctorHome extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                MyFlutterApp.noun_consultation_6696850,
+                MyFlutterApp.nounConsultation,
                 weight: 2,
               ),
               title: Text(

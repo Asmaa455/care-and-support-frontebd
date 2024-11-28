@@ -23,32 +23,36 @@ class Ask extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Column(
-              children: [
-                Form1(
-                  key: controller.formKey.value,
-                  max: 15,
-                  hint1: 'Write Your Consultation',
-                  mycontroller: controller.content,
-                  valid: (val) {
-                    return vaidInput(val!, 40, 1000);
-                  },
-                ),
-                SizedBox(height: 20),
-                TextButton(
-                  onPressed: () {
-                    if (controller.formKey.value.currentState!.validate()) {
-                      controller.addConsultation(controller.patientId);
-                    } else {
-                      print('Form validation failed');
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(pink),
+            Form(
+              key: controller.formstate1,
+              child: Column(
+                children: [
+                  TextFormField(
+                    maxLines: 15,
+                    decoration:
+                        InputDecoration(hintText: 'Write Your Consultation'),
+                    controller: controller.content,
+                    validator: (val) {
+                      return vaidInput(val!, 5, 1000);
+                    },
                   ),
-                  child: Text('Send Consultation'),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () {
+                      if (controller.formstate1.currentState?.validate() ??
+                          false) {
+                        controller.addConsultation(controller.patientId);
+                      } else {
+                        print('Form validation failed');
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(pink),
+                    ),
+                    child: Text('Send Consultation'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

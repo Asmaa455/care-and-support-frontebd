@@ -10,7 +10,7 @@ class Post extends StatelessWidget {
       required this.time,
       required this.userImage,
       this.iddoctor});
-  final String messege;
+  final Widget messege;
   final String username;
   final DateTime time;
   final String userImage;
@@ -74,10 +74,7 @@ class Post extends StatelessWidget {
         Container(
           alignment: Alignment.topRight,
           padding: EdgeInsets.all(5),
-          child: Text(
-            messege,
-            textAlign: TextAlign.right,
-          ),
+          child: messege,
         ),
       ]);
     }

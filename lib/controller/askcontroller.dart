@@ -6,7 +6,7 @@ import 'package:supcar/controller/apiserves/apiserves.dart';
 
 class AskController extends GetxController with Crud {
   var isLoading = false.obs;
-  var formKey = GlobalKey<FormState>().obs;
+  GlobalKey<FormState> formstate1 = GlobalKey();
 
   TextEditingController typeOfConsultation = TextEditingController();
   TextEditingController content = TextEditingController();
@@ -22,10 +22,9 @@ class AskController extends GetxController with Crud {
   void addConsultation(int patientId) async {
     isLoading.value = true;
 
-    if (formKey.value.currentState != null &&
-        formKey.value.currentState!.validate()) {
+    if (formstate1.currentState != null &&
+        formstate1.currentState!.validate()) {
       String url = '$serverLink$createConsultationLink$patientId';
-      print(url);
 
       var response = await ApiService().postRequest1(url, {
         "consultationText": content.text,

@@ -5,3 +5,5 @@ const String createConsultationLink =
 const String consultationPatient = 'Medical_Consultation/patient_consultation/';
 const String consultationForDoctorLink =
     "Medical_Consultation/Answered_Medical_Consultation";
+const String patientAidLink = 'Patient_Aid/';
+const String medicShowLink = 'Medication_Time/show/';
