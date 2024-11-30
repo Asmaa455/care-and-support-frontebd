@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/controller/medicinecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/view/patient/medicineDetails.dart';
 
 class Medicine extends StatelessWidget {
   @override
@@ -47,7 +48,10 @@ class Medicine extends StatelessWidget {
                 itemCount: controller.getTasksForSelectedDate().length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed("medicinedetails",
+                          arguments: controller.medicines[index]);
+                    },
                     child: Card(
                       color: pink,
                       child: Container(

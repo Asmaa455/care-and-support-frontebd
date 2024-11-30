@@ -68,14 +68,17 @@ class DoctorHome extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
-              leading: Icon(
-                MyFlutterApp.nounConsultation,
-                weight: 2,
-              ),
-              title: Text(
-                'My Consultation',
-                style: TextStyle(fontWeight: FontWeight.bold),
+            InkWell(
+              onTap: () => Get.toNamed('myconsultation'),
+              child: ListTile(
+                leading: Icon(
+                  MyFlutterApp.nounConsultation,
+                  weight: 2,
+                ),
+                title: Text(
+                  'My Consultation',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             ListTile(
@@ -88,14 +91,17 @@ class DoctorHome extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.newspaper,
-                weight: 2,
-              ),
-              title: Text(
-                'My Posts',
-                style: TextStyle(fontWeight: FontWeight.bold),
+            InkWell(
+              onTap: () => Get.toNamed('mypost'),
+              child: ListTile(
+                leading: Icon(
+                  Icons.newspaper,
+                  weight: 2,
+                ),
+                title: Text(
+                  'My Posts',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],

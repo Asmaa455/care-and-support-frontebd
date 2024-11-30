@@ -19,12 +19,33 @@ class Homepatient extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return Container(
+                padding: EdgeInsets.only(bottom: 10, right: 10, left: 10),
                 margin: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(color: lightPink),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: controller.posts[index],
+                child: Post(
+                    messege: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          controller.posts[index].title,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          controller.posts[index].content,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    ),
+                    username: 'Patient',
+                    time: DateTime.parse(
+                        controller.posts[index].createdAt.toIso8601String()),
+                    userImage: 'image/PI.jpeg'),
               );
             },
           ),

@@ -5,6 +5,8 @@ class Consultations {
   final String consultationText;
   final int status;
   final String answerText;
+  final String paymentStatus;
+  final String paymentId;
   final String createdAt;
   final String updatedAt;
 
@@ -15,6 +17,8 @@ class Consultations {
       required this.consultationText,
       required this.status,
       required this.answerText,
+      required this.paymentStatus,
+      required this.paymentId,
       required this.createdAt,
       required this.updatedAt});
 
@@ -26,6 +30,8 @@ class Consultations {
       consultationText: json['consultation_text'] ?? '',
       status: json['status'] ?? 0,
       answerText: json['answer_text'] ?? '',
+      paymentStatus: json['payment_status'] ?? '',
+      paymentId: json['payment_id'] ?? '',
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
     );

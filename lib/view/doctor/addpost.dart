@@ -22,31 +22,55 @@ class Addpost extends StatelessWidget {
       body: Container(
         child: ListView(
           children: [
-            Column(
-              children: [
-                Form1(
-                  hint1: ' write post',
-                  mycontroller: controller.postController,
-                  valid: (val) {
-                    return vaidInput(val!, 10, 1000);
-                  },
-                  max: 15,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: deepPurple),
-                    borderRadius: BorderRadius.circular(15),
-                    color: pink,
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      controller.createPost();
+            Form(
+              key: controller.formstate1,
+              child: Column(
+                children: [
+                  Form1(
+                    hint1: ' Title',
+                    mycontroller: controller.titleController,
+                    valid: (val) {
+                      return vaidInput(val!, 0, 200);
                     },
-                    child: Text("create post"),
+                    max: 1,
                   ),
-                ),
-              ],
+                  Form1(
+                    hint1: ' Content',
+                    mycontroller: controller.contentController,
+                    valid: (val) {
+                      return vaidInput(val!, 10, 1000);
+                    },
+                    max: 10,
+                  ),
+                  Form1(
+                    hint1: 'category',
+                    mycontroller: controller.categoryController,
+                    valid: (val) {
+                      return vaidInput(val!, 0, 1000);
+                    },
+                    max: 1,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: deepPurple),
+                      borderRadius: BorderRadius.circular(15),
+                      color: pink,
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        if (controller.formstate1.currentState?.validate() ??
+                            false) {
+                          controller.createPost();
+                        } else {
+                          print('Form validation failed');
+                        }
+                      },
+                      child: Text("create post"),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

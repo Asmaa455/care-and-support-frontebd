@@ -4,6 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
+import 'package:supcar/view/doctor/myconsulation.dart';
+import 'package:supcar/view/doctor/mypost.dart';
+import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 import 'package:supcar/view/patient/BloodPressure.dart';
 import 'package:supcar/view/patient/addhelp.dart';
 import 'package:supcar/view/patient/addmedicine.dart';
@@ -15,6 +18,7 @@ import 'package:supcar/view/patient/doctorask.dart';
 import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
 import 'package:supcar/view/patient/measure.dart';
+import 'package:supcar/view/patient/medicineDetails.dart';
 import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/view/volunteer/replayhelp.dart';
 import 'package:supcar/view/volunteer/volunteerhome.dart';
@@ -51,6 +55,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addmedicine', page: () => Addmedicine()),
         GetPage(name: '/measure', page: () => Measure()),
         GetPage(name: '/bloodPressure', page: () => Bloodpressure()),
+        GetPage(name: '/medicinedetails', page: () => MedicineDetails()),
+        GetPage(name: '/myconsultation', page: () => Myconsulation()),
+        GetPage(name: '/mypost', page: () => Mypost()),
+        GetPage(name: '/viewpostfordoctor', page: () => Viewpostfordoctor()),
       ],
     );
   }

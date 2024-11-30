@@ -7,7 +7,7 @@ class Medicinemodel {
   final int dailyRepetition;
   final String startDate;
   final int durationOfTakingTheDrug;
-  final String status;
+  final int status;
   final String createdAt;
   final String updatedAt;
 
@@ -38,7 +38,7 @@ class Medicinemodel {
       dailyRepetition: json['daily_repetition'],
       startDate: json['start_date'] ?? '',
       durationOfTakingTheDrug: json['duration_of_taking_the_drug'] ?? '',
-      status: json['status'] ?? '',
+      status: json['status'] ?? 0,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
     );

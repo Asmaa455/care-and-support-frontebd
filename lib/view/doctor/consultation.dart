@@ -6,6 +6,119 @@ import 'package:supcar/controller/consultationcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 
 class Consultation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: lightPink,
+            toolbarHeight: 0,
+            bottom: TabBar(tabs: [
+              Tab(
+                child: Text('Answered'),
+              ),
+              Tab(
+                child: Text('Not yet answered'),
+              )
+            ]),
+          ),
+          body: TabBarView(children: [Answered(), NotReplay1()])),
+    );
+  }
+}
+
+class NotReplay1 extends StatelessWidget {
+  final NotReplayController controller = Get.put(NotReplayController());
+
+  void showDialogConsulation(int patientId) {
+    Get.dialog(
+      AlertDialog(
+        title: Text("Reply to the consultation"),
+        content: Form(
+          key: controller.formstate1,
+          child: TextFormField(
+            controller: controller.replay,
+            decoration: InputDecoration(hintText: "Write"),
+            maxLines: 10,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return 'Please enter a reply';
+              }
+              return null;
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => controller.addAnswered(patientId),
+            child: Text('Add Reply'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Obx(
+          () {
+            if (controller.consultations.isEmpty) {
+              return Center(
+                child: Text('loading'),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: controller.consultations.length,
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemBuilder: (context, index) {
+                  // var consultation = controller.consultations[index];
+                  return Container(
+                    child: Column(
+                      children: [
+                        Post(
+                            messege: Text(controller
+                                .consultations[index].consultationText),
+                            username: 'username',
+                            time: DateTime.parse(
+                                controller.consultations[index].createdAt),
+                            userImage: 'image/PI.jpeg'),
+                        Container(
+                          alignment: Alignment.topRight,
+                          margin: EdgeInsets.all(10),
+                          child: IconButton(
+                            icon: Icon(
+                              MyFlutterApp.commentEmpty,
+                              color: deepPurple,
+                            ),
+                            onPressed: () {
+                              return showDialogConsulation(
+                                  controller.consultations[index].id);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class Answered extends StatelessWidget {
+  Answered({super.key});
   final ConsultationController controller = Get.put(ConsultationController());
 
   @override
@@ -27,6 +140,7 @@ class Consultation extends StatelessWidget {
               itemCount: controller.consultations.length,
               itemBuilder: (context, index) {
                 return Container(
+                  margin: EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
                       border: Border.all(color: lightPink),
                       borderRadius: BorderRadius.circular(10)),
@@ -48,8 +162,7 @@ class Consultation extends StatelessWidget {
                             ? IconButton(
                                 icon: Icon(Icons.comment),
                                 color: Colors.deepPurple,
-                                onPressed: () => showDialogConsulation(
-                                    controller.consultations[index].patientId))
+                                onPressed: () {})
                             : Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
@@ -75,38 +188,6 @@ class Consultation extends StatelessWidget {
             );
           }
         }),
-      ),
-    );
-  }
-
-  void showDialogConsulation(int patientId) {
-    Get.dialog(
-      AlertDialog(
-        title: Text("Reply to the consultation"),
-        content: Form(
-          key: controller.formKey.value,
-          child: TextFormField(
-            controller: controller.replay,
-            decoration: InputDecoration(hintText: "Write"),
-            maxLines: 10,
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'Please enter a reply';
-              }
-              return null;
-            },
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: Text('Cancel'),
-          ),
-          // TextButton(
-          //   // onPressed: () => controller.replayConsultation(patientId),
-          //   child: Text('Add Reply'),
-          // ),
-        ],
       ),
     );
   }

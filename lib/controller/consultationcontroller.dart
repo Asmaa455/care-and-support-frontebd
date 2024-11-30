@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:supcar/constent/link.dart';
+import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/model/conModel.dart';
 
 class ConsultationController extends GetxController {
@@ -55,4 +56,54 @@ class ConsultationController extends GetxController {
   //   }
   //   isLoading.value = false;
   // }
+}
+
+class NotReplayController extends GetxController {
+  var replay = TextEditingController();
+  GlobalKey<FormState> formstate1 = GlobalKey();
+  var isLoading = false.obs;
+  var consultations = <Consultations>[].obs;
+  int id = 1;
+  int doctorId = 1;
+  @override
+  void onInit() {
+    super.onInit();
+    fetchNotReplay();
+  }
+
+  void fetchNotReplay() async {
+    String url = '$serverLink$unansweredMedicalConsultations';
+    try {
+      isLoading(true);
+      var fetchedUsers = await ApiService().fetchConsultation(url, id);
+      consultations.assignAll(fetchedUsers); // Update the observable list
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void addAnswered(int idConsul) async {
+    isLoading.value = true;
+
+    if (formstate1.currentState != null &&
+        formstate1.currentState!.validate()) {
+      String url = '$serverLink$createAnswered$doctorId/$idConsul';
+
+      var response = await ApiService().postRequest1(url, {
+        "doctor_id": doctorId.toString(),
+        "answer_text": replay.text.toString(),
+      });
+      isLoading.value = false;
+
+      if (response != null &&
+          response['message'] == 'Answer stored successfully') {
+        Get.toNamed('consultation');
+      } else {
+        print('Error: ${response['message']}');
+      }
+    } else {
+      isLoading.value = false;
+      print('Form validation failed');
+    }
+  }
 }

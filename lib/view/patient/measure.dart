@@ -9,6 +9,11 @@ class Measure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: pink,
+        child: Icon(Icons.add),
+      ),
       body: Column(
         // استخدام Column لتحتوي Expanded بشكل صحيح
         children: [
@@ -125,7 +130,7 @@ class Measure extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Blood ',
+                                'Mental Health ',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),

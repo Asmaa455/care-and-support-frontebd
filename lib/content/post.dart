@@ -9,12 +9,14 @@ class Post extends StatelessWidget {
       required this.username,
       required this.time,
       required this.userImage,
-      this.iddoctor});
+      this.iddoctor,
+      this.leading});
   final Widget messege;
   final String username;
   final DateTime time;
   final String userImage;
   int? iddoctor;
+  Widget? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +56,7 @@ class Post extends StatelessWidget {
                     ),
                   ],
                 ),
-                leading: PopupMenuButton(
-                    itemBuilder: (context) => [
-                          sharedPref.getString('id') == iddoctor.toString()
-                              ? PopupMenuItem(
-                                  child: TextButton(
-                                  child: Text('Edit'),
-                                  onPressed: () {},
-                                ))
-                              : PopupMenuItem(child: Container())
-                        ])),
+                leading: leading),
           ],
         ),
       );

@@ -8,7 +8,6 @@ class AskController extends GetxController with Crud {
   var isLoading = false.obs;
   GlobalKey<FormState> formstate1 = GlobalKey();
 
-  TextEditingController typeOfConsultation = TextEditingController();
   TextEditingController content = TextEditingController();
   int id = 1;
   int patientId = 1;
@@ -27,13 +26,13 @@ class AskController extends GetxController with Crud {
       String url = '$serverLink$createConsultationLink$patientId';
 
       var response = await ApiService().postRequest1(url, {
-        "consultationText": content.text,
+        "consultation_text": content.text.toString(),
       });
       isLoading.value = false;
-      print(response);
+      print(" ask: $response");
 
-      if (response != null && response['status'] == 'success') {
-        Get.toNamed('doctorask');
+      if (response != null && response['success'] == 'successfully') {
+        Get.offNamed('doctorask');
       } else {
         print('Error: ${response['message']}');
       }

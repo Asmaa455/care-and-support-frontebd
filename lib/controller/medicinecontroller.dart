@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:supcar/constent/stringtodata.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/model/medicineModel.dart';
 
@@ -7,7 +8,6 @@ class MedicineController extends GetxController {
   var isLoading = true.obs;
   int patientId = 1;
   var selectedDate = DateTime.now().obs;
-
   @override
   void onInit() {
     selectedDate;

@@ -60,6 +60,11 @@ class ReplayDone extends StatelessWidget {
                 itemBuilder: (context, index) {
                   // var consultation = controller.consultations[index];
                   return Container(
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: lightPink),
+                        borderRadius: BorderRadius.circular(15)),
                     child: Column(
                       children: [
                         Post(
@@ -68,29 +73,36 @@ class ReplayDone extends StatelessWidget {
                               textAlign: TextAlign.justify,
                             ),
                             username: 'Patient',
-                            time: DateTime.parse(
-                                controller.consultations[index].createdAt),
+                            time: DateTime.now(),
                             userImage: 'image/PI.jpeg'),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Icon(MyFlutterApp.reply),
-                              ),
-                              Post(
-                                  messege: Text(
-                                    controller.consultations[index].answerText,
-                                    textAlign: TextAlign.justify,
+                        controller.consultations[index].status == 1
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      MyFlutterApp.reply,
+                                      color: deepPurple,
+                                    ),
                                   ),
-                                  username: 'Doctor',
-                                  time: DateTime.parse(controller
-                                      .consultations[index].createdAt),
-                                  userImage: 'image/PI.jpeg'),
-                            ],
-                          ),
-                        )
+                                  Post(
+                                      messege: Text(
+                                        controller
+                                            .consultations[index].answerText,
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                      username: 'Doctor',
+                                      time: DateTime.now(),
+                                      userImage: 'image/PI.jpeg'),
+                                ],
+                              )
+                            : Container(
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                  MyFlutterApp.commentEmpty,
+                                  color: deepPurple,
+                                ))
                       ],
                     ),
                   );
@@ -103,53 +115,3 @@ class ReplayDone extends StatelessWidget {
     );
   }
 }
-
-// class NotReplay1 extends StatelessWidget {
-//   final NotReplayController controller = Get.put(NotReplayController());
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         child: Obx(
-//           () {
-//             if (controller.consultations.isEmpty) {
-//               return Center(
-//                 child: Text('loading'),
-//               );
-//             } else {
-//               return ListView.builder(
-//                 itemCount: controller.consultations.length,
-//                 shrinkWrap: true,
-//                 physics: NeverScrollableScrollPhysics(),
-//                 itemBuilder: (context, index) {
-//                   // var consultation = controller.consultations[index];
-//                   return Container(
-//                     child: Column(
-//                       children: [
-//                         Post(
-//                             messege: controller
-//                                 .consultations[index].consultationText,
-//                             username: 'username',
-//                             time: DateTime.parse(
-//                                 controller.consultations[index].createdAt),
-//                             userImage: 'image/PI.jpeg'),
-//                         Container(
-//                             alignment: Alignment.topRight,
-//                             margin: EdgeInsets.all(10),
-//                             child: Icon(
-//                               MyFlutterApp.comment_empty,
-//                               color: deepPurple,
-//                             )),
-//                       ],
-//                     ),
-//                   );
-//                 },
-//               );
-//             }
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
