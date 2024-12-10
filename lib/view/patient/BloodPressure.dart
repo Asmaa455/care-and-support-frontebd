@@ -39,6 +39,9 @@ class Bloodpressure extends StatelessWidget {
             selectableDayPredicate: (date) => date.day != 23,
             locale: 'en_ISO',
           ),
+          Container(
+            height: 20,
+          ),
           Card(
             color: Colors.red[200],
             child: Container(

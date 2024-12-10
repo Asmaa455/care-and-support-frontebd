@@ -1,22 +1,24 @@
 import 'package:get/get.dart';
+import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/model/helpModel.dart';
 
 class HelpController extends GetxController {
-  var status = true.obs;
   var help = <HelpModel>[].obs;
   var isLoading = true.obs; // Observable loading state
   int patientId = 1;
   @override
   void onInit() {
-    fetchHelp();
+    fetchHelpforPatient();
     super.onInit();
   }
 
-  fetchHelp() async {
+  fetchHelpforPatient() async {
+    String url = '$serverLink$patientAidLink';
     try {
       isLoading(true);
-      var helps = await ApiService().fetchhelpForPatient(patientId);
+      var helps = await ApiService().fetchHelp(url, patientId);
+      print(helps);
       help.assignAll(helps);
     } finally {
       isLoading(false);

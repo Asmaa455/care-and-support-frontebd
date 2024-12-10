@@ -22,7 +22,8 @@ class Addmedicine extends StatelessWidget {
         backgroundColor: deepPurple,
         centerTitle: true,
       ),
-      body: Container(
+      body: Form(
+        key: controller.formstate1,
         child: ListView(scrollDirection: Axis.vertical, children: [
           Container(
             padding: EdgeInsets.only(left: 20, top: 5),
@@ -55,7 +56,7 @@ class Addmedicine extends StatelessWidget {
               hint1: 'Dosage amount',
               mycontroller: controller.dosageAmount,
               valid: (val) {
-                return vaidInput(val!, 5, 20);
+                return vaidInput(val!, 0, 20);
               },
               max: 1),
           Container(
@@ -147,42 +148,41 @@ class Addmedicine extends StatelessWidget {
                     onPressed: () {
                       controller.firstSelectDate(context);
                     },
-                    child: Obx(() => Text(controller.clickedDateFirst.value
-                        ? '${controller.dateFirst.value.toString()}'
-                        : 'Select Date'))),
+                    child: Obx(() => Text(
+                        controller.clickedDateFirst.value == true
+                            ? '${controller.dateFirst.value.toString()}'
+                            : 'Select Date'))),
               ),
             ],
           ),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 20, top: 5),
-                child: Text(
-                  'Ending Date',
-                  style: TextStyle(
-                      color: deepPurple,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.start,
+          Obx(
+            () => Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 20, top: 5),
+                  child: Text(
+                    'Number of day',
+                    style: TextStyle(
+                        color: deepPurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-              ),
-              Padding(padding: EdgeInsets.all(20)),
-              Icon(MyFlutterApp.calendar),
-              Padding(padding: EdgeInsets.all(20)),
-              Container(
-                decoration: BoxDecoration(
-                    color: pink,
-                    border: Border.all(color: deepPurple),
-                    borderRadius: BorderRadius.circular(15)),
-                child: TextButton(
-                    onPressed: () {
-                      controller.lastSelectDate(context);
-                    },
-                    child: Obx(() => Text(controller.clickedDateLast.value
-                        ? '${controller.dateLast.value.toString()}'
-                        : 'Select Date'))),
-              ),
-            ],
+                DropdownButton<String>(
+                  items: controller.numbersDay
+                      .map((e) => DropdownMenuItem<String>(
+                            child: Text('$e'),
+                            value: e.toString(),
+                          ))
+                      .toList(),
+                  onChanged: (val) {
+                    controller.number.value = val;
+                  },
+                  value: controller.number.value,
+                ),
+              ],
+            ),
           ),
           Container(
             height: 20,
@@ -192,7 +192,13 @@ class Addmedicine extends StatelessWidget {
                 border: Border.all(color: deepPurple, width: 2),
                 borderRadius: BorderRadius.circular(15)),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                if (controller.formstate1.currentState?.validate() ?? false) {
+                  controller.addMedicine();
+                } else {
+                  print('Form validation failed');
+                }
+              },
               child: Text("Add"),
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(pink),

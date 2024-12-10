@@ -1,15 +1,17 @@
 class HelpModel {
+  final int id;
   final int patientId;
   final int volunteerId;
   final String aidType;
   final String sidDate;
   final String location;
   final String additionalDetails;
-  final String status;
+  final int status;
   final String createdAt;
   final String updatedAt;
 
   HelpModel({
+    required this.id,
     required this.patientId,
     required this.volunteerId,
     required this.aidType,
@@ -23,6 +25,9 @@ class HelpModel {
 
   factory HelpModel.fromJson(Map<String, dynamic> json) {
     return HelpModel(
+      id: json['id'] is int
+          ? json['id']
+          : int.tryParse(json['id'].toString()) ?? 0,
       patientId: json['patient_id'] is int
           ? json['patient_id']
           : int.tryParse(json['patient_id'].toString()) ?? 0,
@@ -33,7 +38,7 @@ class HelpModel {
       sidDate: json['sid_date'] ?? '',
       location: json['location'] ?? '',
       additionalDetails: json['additional_details'] ?? '',
-      status: json['status'] ?? '',
+      status: json['status'] ?? 0,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
     );
@@ -41,6 +46,7 @@ class HelpModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'patient_id': patientId,
       'volunteer_id': volunteerId,
       'aid_type': aidType,

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/link.dart';
@@ -28,13 +30,12 @@ class AddPostController extends GetxController {
         "content": contentController.text,
       });
       isLoading.value = false;
-      print(" ask: $response");
 
       if (response != null &&
           response['message'] == 'post created successfully') {
-        categoryController.text = '';
-        titleController.text = '';
-        contentController.text = '';
+        // categoryController.text = '';
+        // titleController.text = '';
+        // contentController.text = '';
 
         Get.offNamed('doctorhome');
       } else {

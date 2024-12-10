@@ -41,7 +41,7 @@ class DoctorHome extends StatelessWidget {
           ],
         ),
       ),
-      drawer: Drawer(
+      endDrawer: Drawer(
         child: ListView(
           children: [
             DrawerHeader(

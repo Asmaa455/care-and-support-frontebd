@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:supcar/content/crud.dart';
@@ -29,7 +31,6 @@ class AskController extends GetxController with Crud {
         "consultation_text": content.text.toString(),
       });
       isLoading.value = false;
-      print(" ask: $response");
 
       if (response != null && response['success'] == 'successfully') {
         Get.offNamed('doctorask');

@@ -14,14 +14,21 @@ class Consultation extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: lightPink,
             toolbarHeight: 0,
-            bottom: TabBar(tabs: [
-              Tab(
-                child: Text('Answered'),
-              ),
-              Tab(
-                child: Text('Not yet answered'),
-              )
-            ]),
+            bottom: TabBar(
+                labelStyle:
+                    TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: 10, fontWeight: FontWeight.normal),
+                indicatorColor: deepPurple,
+                unselectedLabelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    child: Text('Answered'),
+                  ),
+                  Tab(
+                    child: Text('Not yet answered'),
+                  )
+                ]),
           ),
           body: TabBarView(children: [Answered(), NotReplay1()])),
     );
@@ -81,6 +88,10 @@ class NotReplay1 extends StatelessWidget {
                 itemBuilder: (context, index) {
                   // var consultation = controller.consultations[index];
                   return Container(
+                    margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
                         Post(
@@ -125,11 +136,7 @@ class Answered extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        // decoration: BoxDecoration(
-        //     border: Border.all(color: Colors.deepPurple),
-        //     borderRadius: BorderRadius.circular(10)),
+        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
         child: Obx(() {
           if (controller.consultations.isEmpty) {
             return Center(
@@ -141,8 +148,9 @@ class Answered extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(bottom: 10),
+                  padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: lightPink),
+                      border: Border.all(color: deepPurple),
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [

@@ -18,3 +18,6 @@ const String postLink = 'api/post';
 const String doctorPostLink = 'api/post/Doctor_s_post/';
 const String deletePostLink = 'api/post/deleted_post/';
 const String createPostLink = 'api/post/store_post/';
+const String unacceptablePatientAid =
+    'api/Patient_Aid/Unacceptable_Patient_Aid/';
+const String addMedicineLink = 'api/Medication_Time/store/';

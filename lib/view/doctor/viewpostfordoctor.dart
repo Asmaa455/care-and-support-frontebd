@@ -34,34 +34,38 @@ class Viewpostfordoctor extends StatelessWidget {
               itemBuilder: (context, index) {
                 // var consultation = controller.consultations[index];
                 return Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: lightPink),
+                      border: Border.all(color: deepPurple),
                       borderRadius: BorderRadius.circular(15)),
-                  child: Column(
-                    children: [
-                      Post(
-                          messege: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                controller.posts[index].title,
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                              ),
-                              Text(
-                                controller.posts[index].content,
-                                textAlign: TextAlign.justify,
-                              ),
-                            ],
-                          ),
-                          username: 'Patient',
-                          time: DateTime.parse(controller.posts[index].createdAt
-                              .toIso8601String()),
-                          userImage: 'image/PI.jpeg'),
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    child: Column(
+                      children: [
+                        Post(
+                            messege: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  controller.posts[index].title,
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                Text(
+                                  controller.posts[index].content,
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ],
+                            ),
+                            username: 'Patient',
+                            time: DateTime.parse(controller
+                                .posts[index].createdAt
+                                .toIso8601String()),
+                            userImage: 'image/PI.jpeg'),
+                      ],
+                    ),
                   ),
                 );
               },

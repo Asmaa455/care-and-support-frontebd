@@ -63,6 +63,7 @@ class ApiService {
         headers: headers,
         body: json.encode(body),
       );
+      print('Response statusCode: ${response.statusCode}');
 
       print('Response: ${response}');
       if (response.statusCode == 200) {
@@ -79,15 +80,15 @@ class ApiService {
     }
   }
 
-  Future<List<HelpModel>> fetchhelpForPatient(int id) async {
+  Future<List<HelpModel>> fetchHelp(String url, int id) async {
     // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
-
-    final response = await http.get(Uri.parse('$serverLink$patientAidLink$id'),
-        headers: headers);
-
+    print(url);
+    final response = await http.get(Uri.parse('$url$id'), headers: headers);
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
       var data = responseBody['Patient_Aid'] as List;
@@ -125,6 +126,7 @@ class ApiService {
 
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
+      print(responseBody);
       var data = responseBody["Medication_Time"] as List;
       return data
           .map((medicine1) => Medicinemodel.fromJson(medicine1))

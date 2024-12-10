@@ -21,6 +21,7 @@ class MedicineController extends GetxController {
     try {
       isLoading(true);
       var fetchedMedicines = await ApiService().fetchMedicine(patientId);
+      print(fetchedMedicines);
       medicines.assignAll(fetchedMedicines);
     } finally {
       isLoading(false);

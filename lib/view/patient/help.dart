@@ -51,7 +51,8 @@ class Help extends StatelessWidget {
                           children: [
                             Post(
                                 messege: Card(
-                                  color: pink,
+                                  color:
+                                      const Color.fromARGB(255, 176, 211, 241),
                                   child: ListTile(
                                     leading:
                                         Icon(Icons.volunteer_activism_sharp),
@@ -67,15 +68,12 @@ class Help extends StatelessWidget {
                                 ),
                                 username: 'username',
                                 time: DateTime.now(),
-                                userImage: 'image/PI.jpeg')
+                                userImage: 'image/PI.jpeg'),
                           ],
                         ),
                         Container(
-                          height: 20,
-                        ),
-                        Container(
                           margin: EdgeInsets.all(10),
-                          child: controller.status.value != true
+                          child: controller.help[index].status != 1
                               ? Icon(
                                   MyFlutterApp.commentEmpty,
                                   color: deepPurple,
@@ -85,15 +83,17 @@ class Help extends StatelessWidget {
                                   color: deepPurple,
                                 ),
                         ),
-                        controller.status.value == true
+                        controller.help[index].status == 1
                             ? Container(
+                                margin: EdgeInsets.only(
+                                    right: 10, left: 10, bottom: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.all(10),
                                       child: Icon(
-                                        MyFlutterApp.reply,
+                                        MyFlutterApp.replyAll,
                                         color: lightPink,
                                       ),
                                     ),
