@@ -1,183 +1,152 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/content/customecard.dart';
+import 'package:supcar/content/grid.dart';
+import 'package:supcar/controller/Measurecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:animated_expandable_fab/animated_expandable_fab.dart';
 
 class Measure extends StatelessWidget {
-  const Measure({super.key});
+  Measure({super.key});
+  final Measurecontroller controller = Get.put(Measurecontroller());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: pink,
-        child: Icon(Icons.add),
+      floatingActionButton: ExpandableFab(
+        distance: 100,
+        openIcon: Icon(Icons.add),
+        closeIcon: Icon(Icons.close),
+        children: [
+          ActionButton(
+            color: Colors.white,
+            icon: Icon(
+              MyFlutterApp.nounBloodPressure,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              Get.toNamed('addbloodpre');
+            },
+          ),
+          ActionButton(
+            color: Colors.white,
+            icon: Icon(
+              MyFlutterApp.nounDiabetesTest,
+              color: Colors.blue,
+            ),
+            onPressed: () {
+              Get.toNamed('addsugar');
+            },
+          ),
+          ActionButton(
+            color: Colors.white,
+            icon: Icon(MyFlutterApp.nounWeight, color: Colors.yellow),
+            onPressed: () {
+              Get.toNamed('addweight');
+            },
+          ),
+          ActionButton(
+            color: Colors.white,
+            icon: Icon(MyFlutterApp.nounMentalHealth, color: Colors.green),
+            onPressed: () {
+              Get.toNamed('addmentalhealth');
+            },
+          ),
+        ],
       ),
-      body: Column(
+      body: ListView(
+        scrollDirection: Axis.vertical,
         // استخدام Column لتحتوي Expanded بشكل صحيح
         children: [
-          Expanded(
-            // تضمين Expanded داخل Column
-            child: Container(
-              margin: EdgeInsets.all(10),
-              child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 150,
+          Container(
+            margin: EdgeInsets.all(10),
+            child: Column(children: [
+              Row(
+                children: [
+                  CustomCard(
+                    onTap: () {
+                      Get.toNamed('bloodPressure');
+                    },
+                    cardColor: lightRed,
+                    borderColor: deepPurple,
+                    iconColor: Colors.red,
+                    icon: MyFlutterApp.nounBloodPressure,
+                    text: 'Blood Pressure',
                   ),
-                  physics: ScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed('bloodPressure');
-                      },
-                      child: Card(
-                        color: Colors.red[200],
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: deepPurple,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Icon(
-                                  MyFlutterApp.nounBloodPressure,
-                                  size: 50,
-                                  weight: 100,
-                                  color: Colors.red,
-                                ),
-                              ),
-                              Text(
-                                'Blood Pressure',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Card(
-                        color: Colors.blue[50],
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.black,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Icon(
-                                  MyFlutterApp.nounDiabetesTest,
-                                  size: 50,
-                                  weight: 100,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                              Text(
-                                'Blood Sugar',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Card(
-                        color: Colors.green[50],
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: deepPurple,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Icon(
-                                  MyFlutterApp.nounMentalHealth,
-                                  size: 50,
-                                  weight: 100,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              Text(
-                                'Mental Health ',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Card(
-                        color: Colors.yellow[50],
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: deepPurple,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Icon(
-                                  MyFlutterApp.nounWeight,
-                                  size: 50,
-                                  weight: 100,
-                                  color: Colors.yellow,
-                                ),
-                              ),
-                              Text(
-                                'Weight',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]),
-            ),
+                  CustomCard(
+                    onTap: () {
+                      Get.toNamed('sugar');
+                    },
+                    cardColor: lightBlue,
+                    borderColor: deepPurple,
+                    iconColor: Colors.blue,
+                    icon: MyFlutterApp.nounDiabetesTest,
+                    text: 'Blood Sugar',
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  CustomCard(
+                    onTap: () {
+                      Get.toNamed('mentalhealth');
+                    },
+                    cardColor: lightGreen,
+                    borderColor: deepPurple,
+                    iconColor: Colors.green,
+                    icon: MyFlutterApp.nounMentalHealth,
+                    text: 'Mental Health ',
+                  ),
+                  CustomCard(
+                    onTap: () {
+                      Get.toNamed('weight');
+                    },
+                    cardColor: lightYellow,
+                    borderColor: deepPurple,
+                    iconColor: Colors.yellow,
+                    icon: MyFlutterApp.nounWeight,
+                    text: 'Weight        ',
+                  ),
+                ],
+              ),
+              CalendarTimeline(
+                initialDate: controller.selectedDate.value,
+                firstDate: DateTime(2020, 1, 1),
+                lastDate: DateTime(9999, 12, 31),
+                onDateSelected: (date) {
+                  controller.selectedDate.value = date;
+                },
+                leftMargin: 20,
+                monthColor: Colors.blueGrey,
+                dayColor: deepPurple,
+                activeDayColor: Colors.white,
+                activeBackgroundDayColor: lightPink,
+                dotColor: Color(0xFF333A47),
+                selectableDayPredicate: (date) => date.day != 23,
+                locale: 'en_ISO',
+              ),
+            ]),
           ),
+          Obx(() => CustomGrid(
+                controller: controller,
+                color: lightRed,
+                borderColor: deepPurple,
+                iconColor: Colors.red,
+                itemCount: controller.filteredPressure.length,
+                icon: MyFlutterApp.nounBloodPressure,
+                pressure: controller.filteredPressure,
+              )),
+          Obx(() => CustomGrid(
+              controller: controller,
+              color: lightBlue,
+              borderColor: deepPurple,
+              iconColor: Colors.blue,
+              itemCount: controller.filteredSugar.length,
+              icon: MyFlutterApp.nounDiabetesTest,
+              pressure: controller.filteredSugar)),
         ],
       ),
     );

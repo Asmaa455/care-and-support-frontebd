@@ -5,6 +5,7 @@ import 'package:supcar/constent/link.dart';
 import 'package:supcar/model/conModel.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:cookie_jar/src/default_cookie_jar.dart';
+import 'package:supcar/model/healthyValueModel.dart';
 import 'package:supcar/model/helpModel.dart';
 import 'package:supcar/model/medicineModel.dart';
 import 'package:supcar/model/postModel.dart';
@@ -161,6 +162,22 @@ class ApiService {
       var responseBody = json.decode(response.body);
       var data = responseBody as List;
       return data.map((post) => Postmodel.fromJson(post)).toList();
+    } else {
+      throw Exception('Failed to load consultations');
+    }
+  }
+
+  Future<List<Healthyvaluemodel>> fetchHeathlyValue(
+      int id, int diseaseId) async {
+    String url = '$serverLink$healthyValueLink$id/$diseaseId';
+    print(url);
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body);
+
+      print(responseBody);
+      var data = responseBody as List;
+      return data.map((value) => Healthyvaluemodel.fromJson(value)).toList();
     } else {
       throw Exception('Failed to load consultations');
     }

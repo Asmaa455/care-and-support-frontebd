@@ -8,8 +8,12 @@ import 'package:supcar/view/doctor/myconsulation.dart';
 import 'package:supcar/view/doctor/mypost.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 import 'package:supcar/view/patient/BloodPressure.dart';
+import 'package:supcar/view/patient/addbloodpre.dart';
 import 'package:supcar/view/patient/addhelp.dart';
 import 'package:supcar/view/patient/addmedicine.dart';
+import 'package:supcar/view/patient/addmentalhealth.dart';
+import 'package:supcar/view/patient/addsugar.dart';
+import 'package:supcar/view/patient/addweight.dart';
 import 'package:supcar/view/patient/ask.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/view/doctor/addpost.dart';
@@ -19,7 +23,10 @@ import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
 import 'package:supcar/view/patient/measure.dart';
 import 'package:supcar/view/patient/medicineDetails.dart';
+import 'package:supcar/view/patient/mentalhealth.dart';
 import 'package:supcar/view/patient/patient.dart';
+import 'package:supcar/view/patient/sugar.dart';
+import 'package:supcar/view/patient/weight.dart';
 import 'package:supcar/view/volunteer/replayhelp.dart';
 import 'package:supcar/view/volunteer/volunteerhome.dart';
 
@@ -59,6 +66,14 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/myconsultation', page: () => Myconsulation()),
         GetPage(name: '/mypost', page: () => Mypost()),
         GetPage(name: '/viewpostfordoctor', page: () => Viewpostfordoctor()),
+        GetPage(name: '/addbloodpre', page: () => Addbloodpre()),
+        GetPage(name: '/bloodpressure', page: () => Bloodpressure()),
+        GetPage(name: '/sugar', page: () => Sugar()),
+        GetPage(name: '/weight', page: () => Weight()),
+        GetPage(name: '/mentalhealth', page: () => Mentalhealth()),
+        GetPage(name: '/addsugar', page: () => Addsugar()),
+        GetPage(name: '/addweight', page: () => Addweight()),
+        GetPage(name: '/addmentalhealth', page: () => AddMentalHealth()),
       ],
     );
   }

@@ -99,8 +99,9 @@ class Help extends StatelessWidget {
                                     ),
                                     Post(
                                         messege: Text(
-                                          controller
-                                              .help[index].additionalDetails,
+                                          controller.help[index].volunteer!
+                                              .nationalNumber
+                                              .toString(),
                                         ),
                                         username: 'volunteer',
                                         time: DateTime.now(),

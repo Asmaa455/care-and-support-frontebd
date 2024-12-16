@@ -1,3 +1,5 @@
+import 'package:supcar/model/volunteersModel.dart';
+
 class HelpModel {
   final int id;
   final int patientId;
@@ -9,6 +11,7 @@ class HelpModel {
   final int status;
   final String createdAt;
   final String updatedAt;
+  Volunteersmodel? volunteer;
 
   HelpModel({
     required this.id,
@@ -21,6 +24,7 @@ class HelpModel {
     required this.status,
     required this.createdAt,
     required this.updatedAt,
+    this.volunteer,
   });
 
   factory HelpModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +45,9 @@ class HelpModel {
       status: json['status'] ?? 0,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
+      volunteer: json['volunteer'] != null
+          ? Volunteersmodel.fromJson(json['volunteer'])
+          : null,
     );
   }
 
@@ -56,6 +63,7 @@ class HelpModel {
       'status': status,
       'created_at': createdAt,
       'updated_at': updatedAt,
+      'volunteer': volunteer?.toJson(),
     };
   }
 }
