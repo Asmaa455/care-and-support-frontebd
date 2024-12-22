@@ -8,12 +8,7 @@ import 'package:supcar/view/patient/patient.dart';
 class HomeController extends GetxController {
   var selectedIndex = 0.obs;
   List<Widget> listwidget = [Homepatient(), Medicine(), Doctorask(), Measure()];
-  List<String> nameWidget = [
-    'Home Patient',
-    'Medicine',
-    'Ask Doctor ',
-    'Health Data'
-  ];
+  List<String> nameWidget = ['Home Patient', '2'.tr, '3'.tr, '4'.tr];
 
   void updateIndex(int index) {
     selectedIndex.value = index;

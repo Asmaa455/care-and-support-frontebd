@@ -50,6 +50,8 @@ dependencies:
   timelines_plus: ^1.0.3
   syncfusion_flutter_gauges: ^27.2.5
   animated_expandable_fab: ^0.0.3
+  smooth_page_indicator: ^1.2.0+3
+
 
 
 dev_dependencies:

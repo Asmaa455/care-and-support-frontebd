@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/locale/locale.dart';
+import 'package:supcar/locale/localecontroller.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
@@ -42,8 +43,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    MyLocaleController controller = Get.put(MyLocaleController());
     return GetMaterialApp(
-      locale: Get.deviceLocale,
+      locale: controller.initialLang,
       translations: Mylocale(),
       debugShowCheckedModeBanner: false,
       home: Loginas(),

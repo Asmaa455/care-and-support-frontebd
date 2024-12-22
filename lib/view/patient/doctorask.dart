@@ -23,7 +23,7 @@ class Doctorask extends StatelessWidget {
             toolbarHeight: 0,
             bottom: TabBar(tabs: [
               Tab(
-                child: Text('My Consultation'),
+                child: Text('5'.tr),
               ),
             ]),
           ),
@@ -70,7 +70,7 @@ class ReplayDone extends StatelessWidget {
                         Post(
                             messege: Text(
                               controller.consultations[index].consultationText,
-                              textAlign: TextAlign.justify,
+                              textAlign: TextAlign.right,
                             ),
                             firstName: controller
                                 .consultations[index].patient.user.firstName,
@@ -80,7 +80,7 @@ class ReplayDone extends StatelessWidget {
                             userImage: 'image/PI.jpeg'),
                         controller.consultations[index].status == 1
                             ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(10),

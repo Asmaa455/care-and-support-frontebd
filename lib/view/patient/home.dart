@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/controller/patienthomecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/locale/localecontroller.dart';
 import 'package:supcar/view/patient/doctorask.dart';
 import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/view/patient/medicine.dart';
@@ -11,7 +12,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController controller = Get.put(HomeController());
-
+    final MyLocaleController controllerLan = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -39,13 +40,20 @@ class Home extends StatelessWidget {
         ],
         backgroundColor: deepPurple,
         title: Obx(
-          () => Text(
-            controller.nameWidget.elementAt(controller.selectedIndex.value),
-            style: TextStyle(
-              color: pink,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          () => controller.selectedIndex.value == 0
+              ? Icon(
+                  Icons.home,
+                  color: lightPink,
+                  size: 35,
+                )
+              : Text(
+                  controller.nameWidget
+                      .elementAt(controller.selectedIndex.value),
+                  style: TextStyle(
+                    color: pink,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         ),
         centerTitle: true,
       ),
@@ -56,37 +64,38 @@ class Home extends StatelessWidget {
           currentIndex: controller.selectedIndex.value,
           backgroundColor: deepPurple,
           unselectedItemColor: pink,
+          unselectedFontSize: 12,
           items: [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
                 size: 35,
               ),
-              label: 'home',
+              label: '1'.tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 MyFlutterApp.nounMedicine,
                 size: 35,
               ),
-              label: 'Medicine',
+              label: '2'.tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 MyFlutterApp.doc,
                 size: 35,
               ),
-              label: 'Ask Doctor',
+              label: '3'.tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.date_range_outlined,
                 size: 35,
               ),
-              label: 'measure',
+              label: '4'.tr,
             ),
           ],
-          selectedFontSize: 20,
+          selectedFontSize: 18,
           selectedItemColor: lightPink,
         ),
       ),
@@ -143,6 +152,21 @@ class Home extends StatelessWidget {
                 Get.toNamed('/mypaid');
               },
             ),
+            Row(
+              children: [
+                Icon(Icons.language),
+                TextButton(
+                    onPressed: () {
+                      controllerLan.changeLang('ar');
+                    },
+                    child: Text('arabic')),
+                TextButton(
+                    onPressed: () {
+                      controllerLan.changeLang('en');
+                    },
+                    child: Text('english'))
+              ],
+            )
           ],
         ),
       ),

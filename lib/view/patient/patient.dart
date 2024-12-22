@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/patientcontroller.dart';
+import 'package:supcar/main.dart';
 
 class Homepatient extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class Homepatient extends StatelessWidget {
                     messege: Container(
                       padding: EdgeInsets.all(10),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(

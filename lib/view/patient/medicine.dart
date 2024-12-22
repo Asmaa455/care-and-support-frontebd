@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/controller/medicinecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/main.dart';
 import 'package:supcar/view/patient/medicineDetails.dart';
 
 class Medicine extends StatelessWidget {
@@ -35,7 +36,7 @@ class Medicine extends StatelessWidget {
               activeBackgroundDayColor: lightPink,
               dotColor: Color(0xFF333A47),
               selectableDayPredicate: (date) => date.day != 23,
-              locale: 'en_ISO',
+              locale: sharedPref.getString('lang') == 'en' ? 'en_ISO' : 'ar',
             ),
             Expanded(
               child: GridView.builder(

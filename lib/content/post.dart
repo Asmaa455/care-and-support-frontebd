@@ -42,7 +42,9 @@ class Post extends StatelessWidget {
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.right,
+                    textAlign: sharedPref.getString('lang') == 'en'
+                        ? TextAlign.right
+                        : TextAlign.left,
                   ),
                 ),
                 subtitle: Row(
