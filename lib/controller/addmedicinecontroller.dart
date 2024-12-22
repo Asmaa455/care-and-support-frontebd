@@ -95,8 +95,9 @@ class AddMedicineController extends GetxController {
       });
       isLoading.value = false;
 
-      if (response != null && response['success'] == 'successfully') {
-        Get.offNamed('doctorask');
+      if (response != null &&
+          response['message'] == 'Medication Time stored successfully') {
+        Get.offNamed('medicine');
       } else {
         print('Error: ${response['message']}');
       }

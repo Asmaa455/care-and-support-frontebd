@@ -97,7 +97,8 @@ class NotReplay1 extends StatelessWidget {
                         Post(
                             messege: Text(controller
                                 .consultations[index].consultationText),
-                            username: 'username',
+                            firstName: 'username',
+                            lastName: '',
                             time: DateTime.parse(
                                 controller.consultations[index].createdAt),
                             userImage: 'image/PI.jpeg'),
@@ -159,7 +160,8 @@ class Answered extends StatelessWidget {
                             controller.consultations[index].consultationText,
                             textAlign: TextAlign.justify,
                           ),
-                          username: 'username',
+                          firstName: 'username',
+                          lastName: '',
                           time: DateTime.parse(
                               controller.consultations[index].createdAt),
                           userImage: 'image/PI.jpeg'),
@@ -183,7 +185,8 @@ class Answered extends StatelessWidget {
                                         controller
                                             .consultations[index].answerText,
                                       ),
-                                      username: 'username',
+                                      firstName: 'username',
+                                      lastName: '',
                                       time: DateTime.now(),
                                       userImage: 'image/PI.jpeg'),
                                 ],

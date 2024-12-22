@@ -6,13 +6,16 @@ class Post extends StatelessWidget {
   Post(
       {super.key,
       required this.messege,
-      required this.username,
+      required this.firstName,
       required this.time,
       required this.userImage,
       this.iddoctor,
-      this.leading});
+      this.leading,
+      required this.lastName});
   final Widget messege;
-  final String username;
+  final String firstName;
+  final String lastName;
+
   final DateTime time;
   final String userImage;
   int? iddoctor;
@@ -34,7 +37,7 @@ class Post extends StatelessWidget {
                 title: GestureDetector(
                   onTap: () {},
                   child: Text(
-                    username,
+                    '$firstName $lastName',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

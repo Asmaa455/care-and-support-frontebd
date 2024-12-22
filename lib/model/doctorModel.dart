@@ -1,35 +1,42 @@
 import 'package:supcar/model/userModel.dart';
 
-class Volunteersmodel {
+class Doctor {
   int id;
   int userId;
-  int nationalNumber;
+  String specialization;
+  String certificatePhoto;
   int contactInformation;
+  String clinicLocation;
   String profilePicture;
-  DateTime createdAt;
+  DateTime? createdAt;
   DateTime? updatedAt;
   User user;
 
-  Volunteersmodel({
+  Doctor({
     required this.id,
     required this.userId,
-    required this.nationalNumber,
+    required this.specialization,
+    required this.certificatePhoto,
     required this.contactInformation,
+    required this.clinicLocation,
     required this.profilePicture,
-    required this.createdAt,
+    this.createdAt,
     this.updatedAt,
     required this.user,
   });
 
-  factory Volunteersmodel.fromJson(Map<String, dynamic> json) {
-    return Volunteersmodel(
+  factory Doctor.fromJson(Map<String, dynamic> json) {
+    return Doctor(
       id: json['id'] ?? 0,
       userId: json['user_id'] ?? 0,
-      nationalNumber: json['national_number'] ?? 0,
+      specialization: json['specialization'] ?? '',
+      certificatePhoto: json['certificate photo'] ?? '',
       contactInformation: json['contact_information'] ?? 0,
+      clinicLocation: json['clinic_location'] ?? '',
       profilePicture: json['profile_picture'] ?? '',
-      createdAt: DateTime.parse(
-          json['created_at'] ?? DateTime.now().toIso8601String()),
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
       updatedAt: json['updated_at'] != null
           ? DateTime.parse(json['updated_at'])
           : null,
@@ -48,10 +55,12 @@ class Volunteersmodel {
     return {
       'id': id,
       'user_id': userId,
-      'national_number': nationalNumber,
+      'specialization': specialization,
+      'certificate photo': certificatePhoto,
       'contact_information': contactInformation,
+      'clinic_location': clinicLocation,
       'profile_picture': profilePicture,
-      'created_at': createdAt.toIso8601String(),
+      'created_at': createdAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
       'user': user.toJson(),
     };

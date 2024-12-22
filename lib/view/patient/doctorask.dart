@@ -72,7 +72,10 @@ class ReplayDone extends StatelessWidget {
                               controller.consultations[index].consultationText,
                               textAlign: TextAlign.justify,
                             ),
-                            username: 'Patient',
+                            firstName: controller
+                                .consultations[index].patient.user.firstName,
+                            lastName: controller
+                                .consultations[index].patient.user.secondName,
                             time: DateTime.now(),
                             userImage: 'image/PI.jpeg'),
                         controller.consultations[index].status == 1
@@ -92,7 +95,10 @@ class ReplayDone extends StatelessWidget {
                                             .consultations[index].answerText,
                                         textAlign: TextAlign.justify,
                                       ),
-                                      username: 'Doctor',
+                                      firstName: controller.consultations[index]
+                                          .doctor.user.firstName,
+                                      lastName: controller.consultations[index]
+                                          .doctor.user.secondName,
                                       time: DateTime.now(),
                                       userImage: 'image/PI.jpeg'),
                                 ],

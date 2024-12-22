@@ -8,6 +8,7 @@ class Measurecontroller extends GetxController {
   var pressure = <Healthyvaluemodel>[].obs;
   var sugar = <Healthyvaluemodel>[].obs;
   var weight = <Healthyvaluemodel>[].obs;
+  var mentalHealth = <Healthyvaluemodel>[].obs;
 
   int patientaid = 1;
   int diseaseId = 1;
@@ -19,6 +20,8 @@ class Measurecontroller extends GetxController {
     fetchValueForPressure();
     fetchValueForSugar();
     fetchValueForWeight();
+    fetchValueForMentalHealth();
+
     super.onInit();
   }
 
@@ -55,7 +58,21 @@ class Measurecontroller extends GetxController {
       var fetchedvalue =
           await ApiService().fetchHeathlyValue(patientaid, diseaseId);
       print(fetchedvalue);
+
       weight.assignAll(fetchedvalue);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  fetchValueForMentalHealth() async {
+    int diseaseId = 3;
+    try {
+      isLoading(true);
+      var fetchedvalue =
+          await ApiService().fetchHeathlyValue(patientaid, diseaseId);
+      print(fetchedvalue);
+      mentalHealth.assignAll(fetchedvalue);
     } finally {
       isLoading(false);
     }
@@ -71,6 +88,22 @@ class Measurecontroller extends GetxController {
 
   List<Healthyvaluemodel> get filteredSugar {
     return sugar.where((value) {
+      return value.createAt.day == selectedDate.value.day &&
+          value.createAt.month == selectedDate.value.month &&
+          value.createAt.year == selectedDate.value.year;
+    }).toList();
+  }
+
+  List<Healthyvaluemodel> get filteredWeight {
+    return weight.where((value) {
+      return value.createAt.day == selectedDate.value.day &&
+          value.createAt.month == selectedDate.value.month &&
+          value.createAt.year == selectedDate.value.year;
+    }).toList();
+  }
+
+  List<Healthyvaluemodel> get filteredMentalHealth {
+    return mentalHealth.where((value) {
       return value.createAt.day == selectedDate.value.day &&
           value.createAt.month == selectedDate.value.month &&
           value.createAt.year == selectedDate.value.year;

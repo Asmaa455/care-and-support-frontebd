@@ -59,7 +59,8 @@ class Viewpostfordoctor extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            username: 'Patient',
+                            firstName: 'Patient',
+                            lastName: '',
                             time: DateTime.parse(controller
                                 .posts[index].createdAt
                                 .toIso8601String()),

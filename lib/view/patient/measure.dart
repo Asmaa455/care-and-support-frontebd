@@ -147,6 +147,22 @@ class Measure extends StatelessWidget {
               itemCount: controller.filteredSugar.length,
               icon: MyFlutterApp.nounDiabetesTest,
               pressure: controller.filteredSugar)),
+          Obx(() => CustomGrid(
+              controller: controller,
+              color: lightYellow,
+              borderColor: deepPurple,
+              iconColor: Colors.yellow,
+              itemCount: controller.filteredWeight.length,
+              icon: MyFlutterApp.nounDiabetesTest,
+              pressure: controller.filteredWeight)),
+          Obx(() => CustomGrid(
+              controller: controller,
+              color: lightGreen,
+              borderColor: deepPurple,
+              iconColor: Colors.green,
+              itemCount: controller.filteredMentalHealth.length,
+              icon: MyFlutterApp.nounDiabetesTest,
+              pressure: controller.filteredMentalHealth)),
         ],
       ),
     );

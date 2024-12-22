@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
-import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
 import 'package:supcar/controller/askcontroller.dart';
 

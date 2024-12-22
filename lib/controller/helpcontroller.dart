@@ -15,6 +15,7 @@ class HelpController extends GetxController {
 
   fetchHelpforPatient() async {
     String url = '$serverLink$patientAidLink';
+    print(url);
     try {
       isLoading(true);
       var helps = await ApiService().fetchHelp(url, patientId);

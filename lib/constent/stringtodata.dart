@@ -8,5 +8,5 @@ DateTime dateTime = format.parse(dateString);
 String convertTimeOfDayToString(TimeOfDay time) {
   final hours = time.hour.toString().padLeft(2, '0');
   final minutes = time.minute.toString().padLeft(2, '0');
-  return '$hours:$minutes:00';
+  return '$hours:$minutes';
 }

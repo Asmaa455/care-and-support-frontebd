@@ -17,6 +17,7 @@ class HomePatientController extends GetxController {
 
   void postForDoctor() async {
     String url = '$serverLink$postLink';
+    print(url);
     try {
       isLoading(true);
       var fetchedUsers = await ApiService().fetchPost(url);

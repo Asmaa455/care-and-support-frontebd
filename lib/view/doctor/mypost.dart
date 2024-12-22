@@ -62,7 +62,8 @@ class Mypost extends StatelessWidget {
                               ],
                             ),
                           ),
-                          username: 'username',
+                          firstName: 'username',
+                          lastName: '',
                           time: DateTime.parse(controller.posts[index].createdAt
                               .toIso8601String()),
                           userImage: 'image/PI.jpeg',

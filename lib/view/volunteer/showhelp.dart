@@ -27,7 +27,8 @@ class Showhelp extends StatelessWidget {
                   Container(
                     child: Post(
                       messege: Text('messege'),
-                      username: 'username',
+                      firstName: 'username',
+                      lastName: '',
                       time: DateTime.now(),
                       userImage: 'image/PI.jpeg',
                     ),

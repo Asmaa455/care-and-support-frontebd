@@ -86,7 +86,7 @@ class ApiService {
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
-    print(url);
+    print('$url$id');
     final response = await http.get(Uri.parse('$url$id'), headers: headers);
     print(response.statusCode);
     print(response.body);

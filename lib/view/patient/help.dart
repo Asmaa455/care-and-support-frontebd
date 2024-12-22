@@ -66,7 +66,10 @@ class Help extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                username: 'username',
+                                firstName: controller
+                                    .help[index].patient.user.firstName,
+                                lastName: controller
+                                    .help[index].patient.user.secondName,
                                 time: DateTime.now(),
                                 userImage: 'image/PI.jpeg'),
                           ],
@@ -98,12 +101,24 @@ class Help extends StatelessWidget {
                                       ),
                                     ),
                                     Post(
-                                        messege: Text(
-                                          controller.help[index].volunteer!
-                                              .nationalNumber
-                                              .toString(),
+                                        messege: Card(
+                                          color: const Color.fromARGB(
+                                              255, 176, 211, 241),
+                                          child: ListTile(
+                                            leading: Icon(
+                                                Icons.volunteer_activism_sharp),
+                                            title: Text(
+                                                'national number:${controller.help[index].volunteer?.nationalNumber.toString()}'),
+                                            subtitle: Text(
+                                              '\n contact information: ${controller.help[index].volunteer?.contactInformation}',
+                                              textAlign: TextAlign.start,
+                                            ),
+                                          ),
                                         ),
-                                        username: 'volunteer',
+                                        firstName: controller.help[index]
+                                            .volunteer!.user.firstName,
+                                        lastName: controller.help[index]
+                                            .volunteer!.user.secondName,
                                         time: DateTime.now(),
                                         userImage: 'image/PI.jpeg'),
                                   ],
@@ -120,62 +135,3 @@ class Help extends StatelessWidget {
     );
   }
 }
-//  ListView(
-//             scrollDirection: Axis.vertical,
-//             children: [
-//               Container(
-//                 margin: EdgeInsets.all(10),
-//                 decoration: BoxDecoration(
-//                     border: Border.all(color: lightPink),
-//                     borderRadius: BorderRadius.circular(15)),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.end,
-//                   children: [
-//                     Container(
-//                       child: Post(
-//                           messege: 'messege',
-//                           username: 'username',
-//                           time: DateTime.now(),
-//                           userImage: 'image/PI.jpeg'),
-//                     ),
-//                     Container(
-//                       height: 20,
-//                     ),
-//                     Container(
-//                       margin: EdgeInsets.all(10),
-//                       child: controller.status.value != true
-//                           ? Icon(
-//                               MyFlutterApp.comment_empty,
-//                               color: deepPurple,
-//                             )
-//                           : Icon(
-//                               MyFlutterApp.comment,
-//                               color: deepPurple,
-//                             ),
-//                     ),
-//                     controller.status.value == true
-//                         ? Container(
-//                             child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.end,
-//                               children: [
-//                                 Padding(
-//                                   padding: EdgeInsets.all(10),
-//                                   child: Icon(
-//                                     MyFlutterApp.reply,
-//                                     color: lightPink,
-//                                   ),
-//                                 ),
-//                                 Post(
-//                                     messege: 'messege',
-//                                     username: 'username',
-//                                     time: DateTime.now(),
-//                                     userImage: 'image/PI.jpeg'),
-//                               ],
-//                             ),
-//                           )
-//                         : Container()
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),

@@ -44,7 +44,8 @@ class Homepatient extends StatelessWidget {
                         ],
                       ),
                     ),
-                    username: 'Doctor',
+                    firstName: 'Doctor',
+                    lastName: '',
                     time: DateTime.parse(
                         controller.posts[index].createdAt.toIso8601String()),
                     userImage: 'image/PI.jpeg'),

@@ -10,6 +10,7 @@ class Medicinemodel {
   final int status;
   final String createdAt;
   final String updatedAt;
+  // Map<String dynamic> timeMedicine{};
 
   Medicinemodel(
       {required this.id,

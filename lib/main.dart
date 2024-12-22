@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supcar/locale/locale.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
@@ -22,6 +23,7 @@ import 'package:supcar/view/patient/doctorask.dart';
 import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
 import 'package:supcar/view/patient/measure.dart';
+import 'package:supcar/view/patient/medicine.dart';
 import 'package:supcar/view/patient/medicineDetails.dart';
 import 'package:supcar/view/patient/mentalhealth.dart';
 import 'package:supcar/view/patient/patient.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: Get.deviceLocale,
+      translations: Mylocale(),
       debugShowCheckedModeBanner: false,
       home: Loginas(),
       initialRoute: '/loginas',
@@ -60,6 +64,7 @@ class MyApp extends StatelessWidget {
             page: () => Doctorask(),
             binding: Doctoraskbinding()),
         GetPage(name: '/addmedicine', page: () => Addmedicine()),
+        GetPage(name: '/medicine', page: () => Medicine()),
         GetPage(name: '/measure', page: () => Measure()),
         GetPage(name: '/bloodPressure', page: () => Bloodpressure()),
         GetPage(name: '/medicinedetails', page: () => MedicineDetails()),

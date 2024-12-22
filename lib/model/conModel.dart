@@ -1,3 +1,7 @@
+import 'package:supcar/model/doctorModel.dart';
+import 'package:supcar/model/patientModel.dart';
+import 'package:supcar/model/userModel.dart';
+
 class Consultations {
   final int id;
   final int patientId;
@@ -9,18 +13,23 @@ class Consultations {
   final String paymentId;
   final String createdAt;
   final String updatedAt;
+  final Doctor doctor;
+  final Patient patient;
 
-  Consultations(
-      {required this.id,
-      required this.patientId,
-      required this.doctorId,
-      required this.consultationText,
-      required this.status,
-      required this.answerText,
-      required this.paymentStatus,
-      required this.paymentId,
-      required this.createdAt,
-      required this.updatedAt});
+  Consultations({
+    required this.id,
+    required this.patientId,
+    required this.doctorId,
+    required this.consultationText,
+    required this.status,
+    required this.answerText,
+    required this.paymentStatus,
+    required this.paymentId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.doctor,
+    required this.patient,
+  });
 
   factory Consultations.fromJson(Map<String, dynamic> json) {
     return Consultations(
@@ -34,6 +43,40 @@ class Consultations {
       paymentId: json['payment_id'] ?? '',
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
+      doctor: json['doctor'] != null
+          ? Doctor.fromJson(json['doctor'])
+          : Doctor(
+              id: 0,
+              userId: 0,
+              specialization: '',
+              certificatePhoto: '',
+              contactInformation: 0,
+              clinicLocation: '',
+              profilePicture: '',
+              user: User(
+                  id: 0,
+                  firstName: '',
+                  secondName: '',
+                  email: '',
+                  createdAt: DateTime.now())),
+      patient: json['patient'] != null
+          ? Patient.fromJson(json['patient'])
+          : Patient(
+              id: 0,
+              userId: 0,
+              age: 0,
+              gender: '',
+              diseases: '',
+              paperToProveCancer: '',
+              profilePicture: '',
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+              user: User(
+                  id: 0,
+                  firstName: '',
+                  secondName: '',
+                  email: '',
+                  createdAt: DateTime.now())),
     );
   }
 
@@ -45,8 +88,12 @@ class Consultations {
       'consultation_text': consultationText,
       'status': status,
       'answer_text': answerText,
+      'payment_status': paymentStatus,
+      'payment_id': paymentId,
       'created_at': createdAt,
       'updated_at': updatedAt,
+      'doctor': doctor.toJson(),
+      'patient': patient.toJson(),
     };
   }
 }
