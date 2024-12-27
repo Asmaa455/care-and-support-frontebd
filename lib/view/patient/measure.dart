@@ -8,6 +8,7 @@ import 'package:supcar/content/grid.dart';
 import 'package:supcar/controller/Measurecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 import 'package:animated_expandable_fab/animated_expandable_fab.dart';
+import 'package:supcar/main.dart';
 
 class Measure extends StatelessWidget {
   Measure({super.key});
@@ -125,8 +126,8 @@ class Measure extends StatelessWidget {
                 activeDayColor: Colors.white,
                 activeBackgroundDayColor: lightPink,
                 dotColor: Color(0xFF333A47),
-                selectableDayPredicate: (date) => date.day != 23,
-                locale: 'en_ISO',
+                selectableDayPredicate: (date) => date.day != 0,
+                locale: sharedPref.getString('lang') == 'en' ? 'en' : 'ar',
               ),
             ]),
           ),

@@ -44,7 +44,7 @@ class Post extends StatelessWidget {
                     ),
                     textAlign: sharedPref.getString('lang') == 'en'
                         ? TextAlign.right
-                        : TextAlign.left,
+                        : TextAlign.right,
                   ),
                 ),
                 subtitle: Row(

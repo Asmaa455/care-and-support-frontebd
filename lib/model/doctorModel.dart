@@ -12,6 +12,9 @@ class Doctor {
   DateTime? updatedAt;
   User user;
 
+  // الصورة الافتراضية
+  static const String defaultProfilePicture = 'image/PI.jpeg';
+
   Doctor({
     required this.id,
     required this.userId,
@@ -23,7 +26,11 @@ class Doctor {
     this.createdAt,
     this.updatedAt,
     required this.user,
-  });
+  }) {
+    if (profilePicture.isEmpty) {
+      profilePicture = defaultProfilePicture;
+    }
+  }
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
@@ -33,7 +40,7 @@ class Doctor {
       certificatePhoto: json['certificate photo'] ?? '',
       contactInformation: json['contact_information'] ?? 0,
       clinicLocation: json['clinic_location'] ?? '',
-      profilePicture: json['profile_picture'] ?? '',
+      profilePicture: json['profile_picture'] ?? defaultProfilePicture,
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'])
           : null,
@@ -47,7 +54,8 @@ class Doctor {
               firstName: '',
               secondName: '',
               email: '',
-              createdAt: DateTime.now()),
+              createdAt: DateTime.now(),
+            ),
     );
   }
 
@@ -59,7 +67,8 @@ class Doctor {
       'certificate photo': certificatePhoto,
       'contact_information': contactInformation,
       'clinic_location': clinicLocation,
-      'profile_picture': profilePicture,
+      'profile_picture':
+          profilePicture.isEmpty ? defaultProfilePicture : profilePicture,
       'created_at': createdAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
       'user': user.toJson(),

@@ -47,9 +47,9 @@ class ReplayDone extends StatelessWidget {
       body: Container(
         child: Obx(
           () {
-            if (controller.consultations.isEmpty) {
+            if (controller.isLoading.value) {
               return Center(
-                child: Text('loading'),
+                child: CircularProgressIndicator(),
               );
             } else {
               return ListView.builder(

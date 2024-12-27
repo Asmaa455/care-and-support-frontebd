@@ -76,7 +76,7 @@ class Addmedicine extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(20)),
                 Obx(
                   () => DropdownButton<String>(
-                    items: ['1', '2', '3', '4']
+                    items: controller.daliyrepetion
                         .map((e) => DropdownMenuItem<String>(
                               child: Text('$e'),
                               value: e,

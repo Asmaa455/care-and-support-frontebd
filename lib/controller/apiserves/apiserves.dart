@@ -5,6 +5,7 @@ import 'package:supcar/constent/link.dart';
 import 'package:supcar/model/conModel.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:cookie_jar/src/default_cookie_jar.dart';
+import 'package:supcar/model/doctorModel.dart';
 import 'package:supcar/model/healthyValueModel.dart';
 import 'package:supcar/model/helpModel.dart';
 import 'package:supcar/model/medicineModel.dart';
@@ -178,6 +179,68 @@ class ApiService {
       print(responseBody);
       var data = responseBody as List;
       return data.map((value) => Healthyvaluemodel.fromJson(value)).toList();
+    } else {
+      throw Exception('Failed to load consultations');
+    }
+  }
+
+  Future<List<Doctor>> fetchDoctor() async {
+    String url = '$serverLink$doctorLink';
+    print(url);
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body);
+
+      print(responseBody);
+      var data = responseBody as List;
+      return data.map((value) => Doctor.fromJson(value)).toList();
+    } else {
+      throw Exception('Failed to load consultations');
+    }
+  }
+
+  Future<List<Doctor>> searchDoctor(
+      String? name, String? specialization, String? clinicoLcation) async {
+    String? url;
+    print(name);
+    print(specialization);
+    print(clinicoLcation);
+
+    if (name == '' && specialization == '' && clinicoLcation == '') {
+      url = '$serverLink$searchdoctorLink';
+    } else if (name != '' && specialization == '' && clinicoLcation == '') {
+      url = '$serverLink$searchdoctorLink?name=$name';
+    } else if (name == '' && specialization != '' && clinicoLcation == '') {
+      url = '$serverLink$searchdoctorLink?specialization=$specialization';
+    } else if (name == '' && specialization == '' && clinicoLcation != '') {
+      url = '$serverLink$searchdoctorLink?clinic_location=$clinicoLcation';
+    } else if (name != '' && specialization != '' && clinicoLcation == '') {
+      url =
+          '$serverLink$searchdoctorLink?name=$name&specialization=$specialization';
+    } else if (name != '' && specialization == '' && clinicoLcation != '') {
+      url =
+          '$serverLink$searchdoctorLink?name=$name&clinic_location=$clinicoLcation';
+    } else if (name == '' && specialization != '' && clinicoLcation != '') {
+      url =
+          '$serverLink$searchdoctorLink?specialization=$specialization&clinic_location=$clinicoLcation';
+    } else if (name != '' && specialization != '' && clinicoLcation != '') {
+      url =
+          '$serverLink$searchdoctorLink?name=$name&specialization=$specialization&clinic_location=$clinicoLcation';
+    } else {
+      url = '$serverLink$searchdoctorLink';
+    }
+
+    print(url);
+    print(name);
+    print(specialization);
+    print(clinicoLcation);
+    final response = await http.get(Uri.parse(url!), headers: headers);
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body);
+
+      print(responseBody);
+      var data = responseBody as List;
+      return data.map((value) => Doctor.fromJson(value)).toList();
     } else {
       throw Exception('Failed to load consultations');
     }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/locale/locale.dart';
 import 'package:supcar/locale/localecontroller.dart';
+import 'package:supcar/stripe_payment/stripe_keys.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
@@ -21,6 +23,7 @@ import 'package:supcar/content/form.dart';
 import 'package:supcar/view/doctor/addpost.dart';
 import 'package:supcar/view/doctor/doctorhome.dart';
 import 'package:supcar/view/patient/doctorask.dart';
+import 'package:supcar/view/patient/doctorsearch.dart';
 import 'package:supcar/view/patient/help.dart';
 import 'package:supcar/view/patient/home.dart';
 import 'package:supcar/view/patient/measure.dart';
@@ -32,11 +35,24 @@ import 'package:supcar/view/patient/sugar.dart';
 import 'package:supcar/view/patient/weight.dart';
 import 'package:supcar/view/volunteer/replayhelp.dart';
 import 'package:supcar/view/volunteer/volunteerhome.dart';
+import 'dart:io' if (dart.library.html) 'dart:html';
+import 'package:flutter/foundation.dart';
 
 late SharedPreferences sharedPref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref = await SharedPreferences.getInstance();
+  if (kIsWeb) {
+    // Some web specific code there
+  } else if (defaultTargetPlatform == TargetPlatform.iOS ||
+      defaultTargetPlatform == TargetPlatform.android) {
+    // Some android/ios specific code
+  } else if (defaultTargetPlatform == TargetPlatform.linux ||
+      defaultTargetPlatform == TargetPlatform.macOS ||
+      defaultTargetPlatform == TargetPlatform.windows ||
+      defaultTargetPlatform == TargetPlatform.fuchsia) {
+    // Some desktop specific code there
+  }
   runApp(MyApp());
 }
 
@@ -81,6 +97,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addsugar', page: () => Addsugar()),
         GetPage(name: '/addweight', page: () => Addweight()),
         GetPage(name: '/addmentalhealth', page: () => AddMentalHealth()),
+        GetPage(name: '/doctorsearch', page: () => Doctorsearch()),
       ],
     );
   }

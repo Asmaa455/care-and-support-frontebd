@@ -18,7 +18,9 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed('doctorsearch');
+            },
             icon: Icon(
               MyFlutterApp.nounDoctorSearch,
               size: 50,

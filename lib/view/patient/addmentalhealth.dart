@@ -129,10 +129,17 @@ class AddMentalHealth extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.lightGreen)),
                   onPressed: () {
-                    _controllerPage.nextPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.ease,
-                    );
+                    if (controller
+                            .selectedAnswers[_controllerPage.page!.round()] !=
+                        '') {
+                      _controllerPage.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.ease,
+                      );
+                    } else {
+                      Get.snackbar('Error',
+                          'Please answer the current question before proceeding.');
+                    }
                   },
                   child: Text(
                     '12'.tr,

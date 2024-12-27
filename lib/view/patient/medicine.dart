@@ -35,8 +35,8 @@ class Medicine extends StatelessWidget {
               activeDayColor: Colors.white,
               activeBackgroundDayColor: lightPink,
               dotColor: Color(0xFF333A47),
-              selectableDayPredicate: (date) => date.day != 23,
-              locale: sharedPref.getString('lang') == 'en' ? 'en_ISO' : 'ar',
+              selectableDayPredicate: (date) => date.day != 0,
+              locale: sharedPref.getString('lang') == 'en' ? 'en' : 'ar',
             ),
             Expanded(
               child: GridView.builder(

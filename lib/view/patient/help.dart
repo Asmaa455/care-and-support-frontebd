@@ -30,9 +30,9 @@ class Help extends StatelessWidget {
       ),
       body: Container(
         child: Obx(() {
-          if (controller.help.isEmpty) {
+          if (controller.isLoading.value) {
             return Center(
-              child: Text('loading'),
+              child: CircularProgressIndicator(),
             );
           } else {
             return ListView.builder(

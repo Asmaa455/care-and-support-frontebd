@@ -24,3 +24,5 @@ const String addMedicineLink = 'api/Medication_Time/store/';
 
 const String healthyValueLink = 'api/Healthy_Value/show_value/';
 const String addHealthyValueLink = 'api/Healthy_Value/store_value/';
+const String doctorLink = 'api/Doctors_Directory/index';
+const String searchdoctorLink = 'api/Doctors_Directory/search';
