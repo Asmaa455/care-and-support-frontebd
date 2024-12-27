@@ -13,8 +13,7 @@ class Customeappbar extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(MyFlutterApp.noun_doctor_search_3862138)),
+              onPressed: () {}, icon: Icon(MyFlutterApp.nounDoctorSearch)),
           Expanded(
               child: Text(
             "$title",

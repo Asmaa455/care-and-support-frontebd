@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:supcar/patient/medicine.dart';
+import 'package:supcar/view/patient/medicine.dart';
 
 class MedicineCard extends StatelessWidget {
   const MedicineCard({super.key});

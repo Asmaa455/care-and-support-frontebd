@@ -6,15 +6,20 @@ class Post extends StatelessWidget {
   Post(
       {super.key,
       required this.messege,
-      required this.username,
+      required this.firstName,
       required this.time,
       required this.userImage,
-      this.iddoctor});
-  final String messege;
-  final String username;
+      this.iddoctor,
+      this.leading,
+      required this.lastName});
+  final Widget messege;
+  final String firstName;
+  final String lastName;
+
   final DateTime time;
   final String userImage;
   int? iddoctor;
+  Widget? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +37,14 @@ class Post extends StatelessWidget {
                 title: GestureDetector(
                   onTap: () {},
                   child: Text(
-                    username,
+                    '$firstName $lastName',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.right,
+                    textAlign: sharedPref.getString('lang') == 'en'
+                        ? TextAlign.right
+                        : TextAlign.left,
                   ),
                 ),
                 subtitle: Row(
@@ -54,16 +61,7 @@ class Post extends StatelessWidget {
                     ),
                   ],
                 ),
-                leading: PopupMenuButton(
-                    itemBuilder: (context) => [
-                          sharedPref.getString('id') == iddoctor.toString()
-                              ? PopupMenuItem(
-                                  child: TextButton(
-                                  child: Text('Edit'),
-                                  onPressed: () {},
-                                ))
-                              : PopupMenuItem(child: Container())
-                        ])),
+                leading: leading),
           ],
         ),
       );
@@ -74,10 +72,7 @@ class Post extends StatelessWidget {
         Container(
           alignment: Alignment.topRight,
           padding: EdgeInsets.all(5),
-          child: Text(
-            messege,
-            textAlign: TextAlign.justify,
-          ),
+          child: messege,
         ),
       ]);
     }

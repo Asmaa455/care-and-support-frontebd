@@ -12,9 +12,25 @@
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
 ///
+/// * Web Symbols, Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
+///         Author:    Just Be Nice studio
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://www.justbenicestudio.com/
+/// * Linecons, Copyright (C) 2013 by Designmodo
+///         Author:    Designmodo for Smashing Magazine
+///         License:   CC BY ()
+///         Homepage:  http://designmodo.com/linecons-free/
+/// * Modern Pictograms, Copyright (c) 2012 by John Caserta. All rights reserved.
+///         Author:    John Caserta
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://thedesignoffice.org/project/modern-pictograms/
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
+/// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
 import 'package:flutter/widgets.dart';
@@ -27,28 +43,48 @@ class MyFlutterApp {
 
   static const IconData doc =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_medicine_7230298 =
+  static const IconData nounMedicine =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_weight_machine_7230305 =
+  static const IconData nounWeightMachine =
       IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_human_heart_7230278 =
+  static const IconData nounHumanHeart =
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_doctor_search_3862138 =
+  static const IconData nounDoctorSearch =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_volunteer_7187860 =
+  static const IconData replyAll =
+      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounVolunteer =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData noun_consultation_6696850 =
+  static const IconData calendar =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounConsultation =
       IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData clock =
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounMentalHealth =
+      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounDiabetesTest =
+      IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounBloodPressure =
+      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData nounWeight =
+      IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pencil =
       IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData edit =
       IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData comment =
       IconData(0xe83b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData comment_empty =
+  static const IconData commentEmpty =
       IconData(0xf0e5, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData reply =
       IconData(0xf112, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData reply_all =
+  static const IconData replyAll1 =
       IconData(0xf122, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pills =
+      IconData(0xf484, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData syringe =
+      IconData(0xf48e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tablets =
+      IconData(0xf490, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

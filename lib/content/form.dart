@@ -17,9 +17,7 @@ class Form1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: pink,
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(10)),
+          border: Border.all(), borderRadius: BorderRadius.circular(10)),
       margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
       child: TextFormField(
         maxLines: max,
