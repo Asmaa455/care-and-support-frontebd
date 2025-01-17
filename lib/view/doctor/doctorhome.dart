@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/locale/localecontroller.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/doctorhomecontroller.dart';
@@ -12,11 +13,13 @@ class DoctorHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DoctorHomeController controller = Get.put(DoctorHomeController());
+    final MyLocaleController controllerLan = Get.find();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: deepPurple,
         title: Text(
-          'Doctor',
+          '103'.tr,
           style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -32,11 +35,11 @@ class DoctorHome extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'home',
+              label: '1'.tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(MyFlutterApp.nounConsultation),
-              label: 'consultation',
+              label: '3'.tr,
             ),
           ],
         ),
@@ -76,7 +79,7 @@ class DoctorHome extends StatelessWidget {
                   weight: 2,
                 ),
                 title: Text(
-                  'My Consultation',
+                  '111'.tr,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -99,11 +102,26 @@ class DoctorHome extends StatelessWidget {
                   weight: 2,
                 ),
                 title: Text(
-                  'My Posts',
+                  '112'.tr,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+            Row(
+              children: [
+                Icon(Icons.language),
+                TextButton(
+                    onPressed: () {
+                      controllerLan.changeLang('ar');
+                    },
+                    child: Text('arabic')),
+                TextButton(
+                    onPressed: () {
+                      controllerLan.changeLang('en');
+                    },
+                    child: Text('english'))
+              ],
+            )
           ],
         ),
       ),

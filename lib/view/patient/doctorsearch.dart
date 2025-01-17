@@ -27,26 +27,47 @@ class Doctorsearch extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Container(
+            height: 10,
+          ),
           Row(
             children: [
-              IconButton(
-                  onPressed: () {
-                    controller.fetchSearchDoctor();
-                  },
-                  icon: Icon(Icons.search)),
-              Expanded(
-                child: Form1(
-                    hint1: 'doctor name',
-                    mycontroller: controller.name,
-                    valid: (p0) {
-                      return vaidInput(p0!, 3, 25);
+              Container(
+                width: 20,
+              ),
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(left: 5, right: 5),
+                width: 50,
+                child: IconButton(
+                    onPressed: () {
+                      controller.fetchSearchDoctor();
                     },
-                    max: 1),
-              )
+                    icon: Icon(Icons.search)),
+              ),
+              Expanded(
+                child: Container(
+                  // margin: EdgeInsets.all(20),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: '76'.tr,
+                          label: Text('75'.tr),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: deepPurple))),
+                      controller: controller.name,
+                      validator: (p0) {
+                        return Valid().vaidInput(p0!, 3, 25);
+                      },
+                      maxLines: 1),
+                ),
+              ),
+              Container(
+                width: 20,
+              ),
             ],
           ),
           Container(
-            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 10),
             child: InlineChoice<String>.single(
               clearable: true,
               value: controller.selectedValuelocation.value,
@@ -56,7 +77,14 @@ class Doctorsearch extends StatelessWidget {
                 return ChoiceChip(
                   selected: state.selected(controller.city[i]),
                   onSelected: state.onSelected(controller.city[i]),
-                  label: Text(controller.city[i]),
+                  label: Text(
+                    controller.city[i],
+                    style: TextStyle(
+                        color: deepPurple, fontWeight: FontWeight.bold),
+                  ),
+                  selectedColor: lightPink,
+                  backgroundColor: pink,
+                  side: BorderSide(color: deepPurple),
                 );
               },
             ),
@@ -78,7 +106,7 @@ class Doctorsearch extends StatelessWidget {
                             controller.medicalSpecialties,
                         decoratorProps: DropDownDecoratorProps(
                           decoration: InputDecoration(
-                            labelText: 'Specialty: ',
+                            labelText: '73'.tr + ':',
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -86,7 +114,7 @@ class Doctorsearch extends StatelessWidget {
                           showSearchBox: true,
                           searchFieldProps: TextFieldProps(
                             decoration: InputDecoration(
-                              labelText: "Search Specialties",
+                              labelText: "74".tr,
                             ),
                           ),
                           fit: FlexFit.loose,
@@ -100,6 +128,9 @@ class Doctorsearch extends StatelessWidget {
                         },
                         filterFn: (item, filter) =>
                             item.toLowerCase().startsWith(filter.toLowerCase()),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
                       )
                     ],
                   );

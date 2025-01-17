@@ -55,6 +55,9 @@ dependencies:
   url_launcher: ^6.3.1
   choice: ^2.3.2
   dropdown_search: ^6.0.1
+  image_picker: ^1.1.2
+  intl_phone_field: ^3.2.0
+  intl_phone_field2: ^3.3.4
 
 
 
@@ -83,6 +86,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - image/PI.jpeg
+    # - image/flags/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

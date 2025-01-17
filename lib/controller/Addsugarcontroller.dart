@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/Addbloodprecontroller.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
@@ -30,7 +31,8 @@ class Addsugarcontroller extends GetxController {
 
     if (response != null &&
         response['message'] == 'healthy value stored successfully') {
-      Get.offNamed('sugar');
+      Get.back();
+      Get.snackbar('90'.tr, '87'.tr, backgroundColor: pink);
     } else {
       print('Error: ${response['message']}');
     }

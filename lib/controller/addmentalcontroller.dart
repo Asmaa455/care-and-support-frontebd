@@ -1,6 +1,12 @@
 import 'package:get/get.dart';
+import 'package:supcar/constent/color.dart';
+import 'package:supcar/constent/link.dart';
+import 'package:supcar/controller/apiserves/apiserves.dart';
 
 class Addmentalcontroller extends GetxController {
+  int patientaid = 1;
+  int diseaseId = 3;
+  var isLoading = true.obs;
   List<String> values = [
     '1',
     '2',
@@ -72,5 +78,24 @@ class Addmentalcontroller extends GetxController {
       totalScore += score;
     }
     return totalScore;
+  }
+
+  void addValue() async {
+    isLoading.value = true;
+
+    String url = '$serverLink$addHealthyValueLink$patientaid/$diseaseId';
+    print(url);
+    var response = await ApiService().postRequest1(url, {'value': score.value});
+    isLoading.value = false;
+
+    if (response != null &&
+        response['message'] == 'healthy value stored successfully') {
+      Get.back();
+      Get.snackbar('89'.tr, '87'.tr, backgroundColor: pink);
+    } else {
+      print('Error: ${response['message']}');
+    }
+
+    isLoading.value = false;
   }
 }

@@ -1,15 +1,14 @@
-// ignore_for_file: avoid_print
-
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
-import 'package:supcar/main.dart';
 import 'package:supcar/model/doctorModel.dart';
 
 class Doctorsearchcontroller extends GetxController {
   TextEditingController name = TextEditingController();
   var alldoctor = <Doctor>[].obs;
+
+  // قائمة المدن بالإنجليزية والعربية
   var city = [
     '32'.tr,
     '33'.tr,
@@ -20,7 +19,8 @@ class Doctorsearchcontroller extends GetxController {
     '38'.tr,
     '39'.tr,
   ].obs;
-  var yEng = [
+
+  var cityEng = [
     'Damascus',
     'Aleppo',
     'Homs',
@@ -30,6 +30,8 @@ class Doctorsearchcontroller extends GetxController {
     'Latakia',
     'Tadmor',
   ].obs;
+
+  // قائمة التخصصات بالإنجليزية والعربية
   List<String> medicalSpecialties = [
     '40'.tr,
     '41'.tr,
@@ -61,6 +63,40 @@ class Doctorsearchcontroller extends GetxController {
     '67'.tr,
     '68'.tr,
   ];
+
+  List<String> medicalSpecialtiesEng = [
+    'Anesthesia',
+    'Emergency Medicine',
+    'Family Medicine',
+    'Internal Medicine',
+    'Medical Genetics',
+    'Neurology',
+    'Obstetrics and Gynecology',
+    'Ophthalmology',
+    'Orthopedic Surgery',
+    'Otolaryngology',
+    'Pediatrics',
+    'Psychiatry',
+    'Radiology',
+    'Surgery',
+    'Urology',
+    'Pathology',
+    'Rehabilitation Medicine',
+    'Preventive Medicine',
+    'Public Health',
+    'Allergy and Immunology',
+    'Cardiology',
+    'Endocrinology',
+    'Gastroenterology',
+    'Hematology',
+    'Infectious Disease',
+    'Nephrology',
+    'Oncology',
+    'Pulmonary Medicine',
+    'Rheumatology',
+    'Sports Medicine'
+  ];
+
   var selectedValuelocation = ''.obs;
   var selectedValueSpecialites = ''.obs;
   var filteredSpecialties = <String>[].obs;
@@ -74,6 +110,23 @@ class Doctorsearchcontroller extends GetxController {
 
   void setSelectedValueSpecialites(String? value) {
     selectedValueSpecialites.value = value!;
+  }
+
+  // ترجمة القيم المختارة إلى الإنجليزية
+  String translateCityToEnglish(String arabicValue) {
+    int index = city.indexOf(arabicValue);
+    if (index != -1) {
+      return cityEng[index];
+    }
+    return arabicValue;
+  }
+
+  String translateSpecialtyToEnglish(String arabicValue) {
+    int index = medicalSpecialties.indexOf(arabicValue);
+    if (index != -1) {
+      return medicalSpecialtiesEng[index];
+    }
+    return arabicValue;
   }
 
   fetchAllDoctor() async {
@@ -91,8 +144,15 @@ class Doctorsearchcontroller extends GetxController {
   fetchSearchDoctor() async {
     try {
       isLoading(true);
-      var fetchDoctor = await ApiService().searchDoctor(name.text,
-          selectedValueSpecialites.value, selectedValuelocation.value);
+
+      // ترجمة المدخلات إلى الإنجليزية قبل البحث
+      String translatedLocation =
+          translateCityToEnglish(selectedValuelocation.value);
+      String translatedSpecialty =
+          translateSpecialtyToEnglish(selectedValueSpecialites.value);
+
+      var fetchDoctor = await ApiService()
+          .searchDoctor(name.text, translatedSpecialty, translatedLocation);
       print(fetchDoctor);
       alldoctor.assignAll(fetchDoctor);
     } finally {

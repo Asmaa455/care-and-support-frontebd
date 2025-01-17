@@ -19,60 +19,63 @@ class Viewpostfordoctor extends StatelessWidget {
         },
         child: Icon(Icons.add),
       ),
-      body: Obx(
-        () {
-          if (controller.posts.isEmpty) {
-            return Center(
-              child: Text('loading'),
-            );
-          } else {
-            return ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: controller.posts.length,
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemBuilder: (context, index) {
-                // var consultation = controller.consultations[index];
-                return Container(
-                  margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: deepPurple),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                    child: Column(
-                      children: [
-                        Post(
-                            messege: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  controller.posts[index].title,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                                Text(
-                                  controller.posts[index].content,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ],
-                            ),
-                            firstName: 'Patient',
-                            lastName: '',
-                            time: DateTime.parse(controller
-                                .posts[index].createdAt
-                                .toIso8601String()),
-                            userImage: 'image/PI.jpeg'),
-                      ],
+      body: RefreshIndicator(
+        onRefresh: () async => controller.refresh(),
+        child: Obx(
+          () {
+            if (controller.posts.isEmpty) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: controller.posts.length,
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemBuilder: (context, index) {
+                  // var consultation = controller.consultations[index];
+                  return Container(
+                    margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: deepPurple),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: Column(
+                        children: [
+                          Post(
+                              messege: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller.posts[index].title,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text(
+                                    controller.posts[index].content,
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ],
+                              ),
+                              firstName: 'Patient',
+                              lastName: '',
+                              time: DateTime.parse(controller
+                                  .posts[index].createdAt
+                                  .toIso8601String()),
+                              userImage: 'image/PI.jpeg'),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            );
-          }
-        },
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

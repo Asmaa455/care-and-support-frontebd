@@ -80,12 +80,12 @@ class ReplayDone extends StatelessWidget {
                             userImage: 'image/PI.jpeg'),
                         controller.consultations[index].status == 1
                             ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                     child: Icon(
-                                      MyFlutterApp.reply,
+                                      MyFlutterApp.replyAll,
                                       color: deepPurple,
                                     ),
                                   ),

@@ -28,63 +28,75 @@ class AddMentalHealth extends StatelessWidget {
           Expanded(
             child: PageView.builder(
               controller: _controllerPage,
-              itemCount: controller.questions.length,
+              itemCount: controller.questions.length + 1,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Container(
-                      color: lightGreen,
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      child: Text(
-                        controller.questions[index],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                    Expanded(
-                      child: Obx(() => RadioListTile<String>(
-                            title: Text('7'.tr),
-                            value: 'Option 1',
-                            groupValue: controller.selectedAnswers[index],
-                            onChanged: (value) {
-                              controller.updateValue(value!, index, 0);
-                            },
-                          )),
-                    ),
-                    Expanded(
-                      child: Obx(() => RadioListTile<String>(
-                            title: Text('8'.tr),
-                            value: 'Option 2',
-                            groupValue: controller.selectedAnswers[index],
-                            onChanged: (value) {
-                              controller.updateValue(value!, index, 1);
-                            },
-                          )),
-                    ),
-                    Expanded(
-                      child: Obx(() => RadioListTile<String>(
-                            title: Text('9'.tr),
-                            value: 'Option 3',
-                            groupValue: controller.selectedAnswers[index],
-                            onChanged: (value) {
-                              controller.updateValue(value!, index, 2);
-                            },
-                          )),
-                    ),
-                    Expanded(
-                      child: Obx(() => RadioListTile<String>(
-                            title: Text('10'.tr),
-                            value: 'Option 4',
-                            groupValue: controller.selectedAnswers[index],
-                            onChanged: (value) {
-                              controller.updateValue(value!, index, 3);
-                            },
-                          )),
-                    ),
-                  ],
-                );
+                return controller.questions.length != index
+                    ? Column(
+                        children: [
+                          Container(
+                            color: lightGreen,
+                            margin: EdgeInsets.all(10),
+                            padding: EdgeInsets.all(5),
+                            alignment: Alignment.center,
+                            child: Text(
+                              controller.questions[index],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ),
+                          Expanded(
+                            child: Obx(() => RadioListTile<String>(
+                                  title: Text('7'.tr),
+                                  value: 'Option 1',
+                                  groupValue: controller.selectedAnswers[index],
+                                  onChanged: (value) {
+                                    controller.updateValue(value!, index, 0);
+                                  },
+                                )),
+                          ),
+                          Expanded(
+                            child: Obx(() => RadioListTile<String>(
+                                  title: Text('8'.tr),
+                                  value: 'Option 2',
+                                  groupValue: controller.selectedAnswers[index],
+                                  onChanged: (value) {
+                                    controller.updateValue(value!, index, 1);
+                                  },
+                                )),
+                          ),
+                          Expanded(
+                            child: Obx(() => RadioListTile<String>(
+                                  title: Text('9'.tr),
+                                  value: 'Option 3',
+                                  groupValue: controller.selectedAnswers[index],
+                                  onChanged: (value) {
+                                    controller.updateValue(value!, index, 2);
+                                  },
+                                )),
+                          ),
+                          Expanded(
+                            child: Obx(() => RadioListTile<String>(
+                                  title: Text('10'.tr),
+                                  value: 'Option 4',
+                                  groupValue: controller.selectedAnswers[index],
+                                  onChanged: (value) {
+                                    controller.updateValue(value!, index, 3);
+                                  },
+                                )),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Text('do you want to keep the score'),
+                          TextButton(
+                              onPressed: () {
+                                controller.addValue();
+                                Get.back();
+                              },
+                              child: Text('add'))
+                        ],
+                      );
               },
             ),
           ),

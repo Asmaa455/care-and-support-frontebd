@@ -65,20 +65,29 @@ class Bloodpressure extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '${controller.pressure[index].value}',
+                                '91'.tr +
+                                    ': ${controller.pressure[index].value}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                '${controller.pressure[index].status}',
+                                '92'.tr +
+                                    ': ${controller.pressure[index].status}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Time: ${DateFormat('HH:mm:ss').format(controller.pressure[index].createAt)}',
+                                '93'.tr +
+                                    ': ${DateFormat('HH:mm').format(controller.pressure[index].createAt)}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
+                              // Text(
+                              //   '97'.tr +
+                              //       ': ${DateFormat('M/d/y').format(controller.pressure[index].createAt)}',
+                              //   textAlign: TextAlign.center,
+                              //   style: TextStyle(fontWeight: FontWeight.bold),
+                              // ),
                             ],
                           ),
                         ],

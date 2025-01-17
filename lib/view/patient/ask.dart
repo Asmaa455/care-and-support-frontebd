@@ -32,7 +32,7 @@ class Ask extends StatelessWidget {
                         InputDecoration(hintText: 'Write Your Consultation'),
                     controller: controller.content,
                     validator: (val) {
-                      return vaidInput(val!, 5, 1000);
+                      return Valid().vaidInput(val!, 5, 1000);
                     },
                   ),
                   SizedBox(height: 20),

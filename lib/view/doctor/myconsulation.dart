@@ -14,17 +14,13 @@ class Myconsulation extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: deepPurple,
         title: Text(
-          'My consultations',
+          '113'.tr,
           style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        // decoration: BoxDecoration(
-        //     border: Border.all(color: Colors.deepPurple),
-        //     borderRadius: BorderRadius.circular(10)),
+        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
         child: Obx(() {
           if (controller.consultations.isEmpty) {
             return Center(
@@ -36,6 +32,7 @@ class Myconsulation extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(bottom: 10),
+                  padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                   decoration: BoxDecoration(
                       border: Border.all(color: lightPink),
                       borderRadius: BorderRadius.circular(10)),
@@ -55,7 +52,7 @@ class Myconsulation extends StatelessWidget {
                         alignment: Alignment.topRight,
                         margin: EdgeInsets.all(10),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Icon(
                               MyFlutterApp.replyAll,

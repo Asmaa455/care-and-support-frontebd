@@ -75,7 +75,7 @@ class Measure extends StatelessWidget {
                     borderColor: deepPurple,
                     iconColor: Colors.red,
                     icon: MyFlutterApp.nounBloodPressure,
-                    text: 'Blood Pressure',
+                    text: '86'.tr,
                   ),
                   CustomCard(
                     onTap: () {
@@ -85,7 +85,7 @@ class Measure extends StatelessWidget {
                     borderColor: deepPurple,
                     iconColor: Colors.blue,
                     icon: MyFlutterApp.nounDiabetesTest,
-                    text: 'Blood Sugar',
+                    text: '90'.tr,
                   ),
                 ],
               ),
@@ -99,7 +99,7 @@ class Measure extends StatelessWidget {
                     borderColor: deepPurple,
                     iconColor: Colors.green,
                     icon: MyFlutterApp.nounMentalHealth,
-                    text: 'Mental Health ',
+                    text: '89'.tr,
                   ),
                   CustomCard(
                     onTap: () {
@@ -107,9 +107,9 @@ class Measure extends StatelessWidget {
                     },
                     cardColor: lightYellow,
                     borderColor: deepPurple,
-                    iconColor: Colors.yellow,
+                    iconColor: const Color.fromARGB(255, 178, 166, 56),
                     icon: MyFlutterApp.nounWeight,
-                    text: 'Weight        ',
+                    text: '88'.tr + '     ',
                   ),
                 ],
               ),
@@ -152,7 +152,7 @@ class Measure extends StatelessWidget {
               controller: controller,
               color: lightYellow,
               borderColor: deepPurple,
-              iconColor: Colors.yellow,
+              iconColor: const Color.fromARGB(255, 178, 166, 56),
               itemCount: controller.filteredWeight.length,
               icon: MyFlutterApp.nounDiabetesTest,
               pressure: controller.filteredWeight)),

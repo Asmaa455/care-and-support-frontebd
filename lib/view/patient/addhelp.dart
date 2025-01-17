@@ -4,16 +4,18 @@ import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
 import 'package:supcar/controller/addhelpcontroller.dart';
+import 'package:supcar/controller/addpostcontroller.dart';
+import 'package:supcar/fonts/my_flutter_app_icons.dart';
 
 class Addhelp extends StatelessWidget {
-  final AddhelpController controller = Get.put(AddhelpController());
-
   @override
   Widget build(BuildContext context) {
+    final AddhelpController controller = Get.put(AddhelpController());
+
     return Scaffold(
       appBar: AppBar(
         title: Icon(
-          Icons.volunteer_activism,
+          Icons.post_add,
           color: lightPink,
         ),
         centerTitle: true,
@@ -22,40 +24,91 @@ class Addhelp extends StatelessWidget {
       body: Container(
         child: ListView(
           children: [
-            Form1(
-                hint1: 'Help Type',
-                mycontroller: controller.typeHelpController,
-                valid: (val) {
-                  return vaidInput(val!, 5, 1000);
-                },
-                max: 3),
-            Form1(
-                hint1: "location",
-                mycontroller: controller.locationController,
-                valid: (val) {
-                  return vaidInput(val!, 10, 30);
-                },
-                max: 2),
-            Form1(
-                hint1: 'Additional details',
-                mycontroller: controller.detailsController,
-                valid: (val) {
-                  return vaidInput(val!, 0, 200);
-                },
-                max: 2),
-            Container(
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: pink,
-                  border: Border.all(color: deepPurple),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    // Implement the function to handle form submission
-                  },
-                  child: Text('Send'),
-                )),
+            Form(
+              key: controller.formstate1,
+              child: Column(
+                children: [
+                  Form1(
+                    focusNode: controller.typeHelpFocusNode,
+                    hint1: ' Aid`s type',
+                    mycontroller: controller.typeHelpController,
+                    valid: (val) {
+                      return Valid().vaidInput(val!, 0, 200);
+                    },
+                    max: 3,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 20, top: 5),
+                        child: Text(
+                          ' Date',
+                          style: TextStyle(
+                              color: deepPurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.all(20)),
+                      Icon(MyFlutterApp.calendar),
+                      Padding(padding: EdgeInsets.all(20)),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: pink,
+                            border: Border.all(color: deepPurple),
+                            borderRadius: BorderRadius.circular(15)),
+                        child: TextButton(
+                            onPressed: () {
+                              controller.firstSelectDate(context);
+                            },
+                            child: Obx(() => Text(
+                                controller.clickedDateFirst.value == true
+                                    ? '${controller.dateFirst.value.toString()}'
+                                    : 'Select Date'))),
+                      ),
+                    ],
+                  ),
+                  Form1(
+                    focusNode: controller.locationFocusNode,
+                    hint1: ' Location',
+                    mycontroller: controller.locationController,
+                    valid: (val) {
+                      return Valid().vaidInput(val!, 10, 1000);
+                    },
+                    max: 1,
+                  ),
+                  Form1(
+                    focusNode: controller.detailsFocusNode,
+                    hint1: 'Details',
+                    mycontroller: controller.detailsController,
+                    valid: (val) {
+                      return Valid().vaidInput(val!, 0, 1000);
+                    },
+                    max: 1,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: deepPurple),
+                      borderRadius: BorderRadius.circular(15),
+                      color: pink,
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        if (controller.formstate1.currentState?.validate() ??
+                            false) {
+                          controller.createAid();
+                        } else {
+                          print('Form validation failed');
+                        }
+                      },
+                      child: Text("request aid"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 
@@ -29,6 +30,7 @@ class Addweightcontroller extends GetxController {
     if (response != null &&
         response['message'] == 'healthy value stored successfully') {
       Get.back();
+      Get.snackbar('88'.tr, '87'.tr, backgroundColor: pink);
     } else {
       print('Error: ${response['message']}');
     }

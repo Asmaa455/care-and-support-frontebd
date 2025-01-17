@@ -27,26 +27,26 @@ class Addpost extends StatelessWidget {
               child: Column(
                 children: [
                   Form1(
-                    hint1: ' Title',
+                    lebal: '104'.tr,
                     mycontroller: controller.titleController,
                     valid: (val) {
-                      return vaidInput(val!, 0, 200);
+                      return Valid().vaidInput(val!, 0, 200);
                     },
                     max: 1,
                   ),
                   Form1(
-                    hint1: ' Content',
+                    lebal: '105'.tr,
                     mycontroller: controller.contentController,
                     valid: (val) {
-                      return vaidInput(val!, 10, 1000);
+                      return Valid().vaidInput(val!, 10, 1000);
                     },
                     max: 10,
                   ),
                   Form1(
-                    hint1: 'category',
+                    lebal: '106'.tr,
                     mycontroller: controller.categoryController,
                     valid: (val) {
-                      return vaidInput(val!, 0, 1000);
+                      return Valid().vaidInput(val!, 0, 1000);
                     },
                     max: 1,
                   ),
@@ -66,7 +66,7 @@ class Addpost extends StatelessWidget {
                           print('Form validation failed');
                         }
                       },
-                      child: Text("create post"),
+                      child: Text("107".tr),
                     ),
                   ),
                 ],

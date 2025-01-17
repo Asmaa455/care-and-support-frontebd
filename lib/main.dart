@@ -5,8 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supcar/locale/locale.dart';
 import 'package:supcar/locale/localecontroller.dart';
 import 'package:supcar/stripe_payment/stripe_keys.dart';
+import 'package:supcar/view/auth/asdoctor.dart';
+import 'package:supcar/view/auth/aspatient.dart';
+import 'package:supcar/view/auth/asvolenteer.dart';
+import 'package:supcar/view/auth/login.dart';
+import 'package:supcar/view/auth/signup.dart';
 import 'package:supcar/view/doctor/consultation.dart';
-import 'package:supcar/content/loginas.dart';
+import 'package:supcar/view/auth/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
 import 'package:supcar/view/doctor/myconsulation.dart';
 import 'package:supcar/view/doctor/mypost.dart';
@@ -64,8 +69,8 @@ class MyApp extends StatelessWidget {
       locale: controller.initialLang,
       translations: Mylocale(),
       debugShowCheckedModeBanner: false,
-      home: Loginas(),
-      initialRoute: '/loginas',
+      home: Login(),
+      initialRoute: '/login',
       getPages: [
         GetPage(name: '/home', page: () => Home()),
         GetPage(name: '/ask', page: () => Ask()),
@@ -98,6 +103,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addweight', page: () => Addweight()),
         GetPage(name: '/addmentalhealth', page: () => AddMentalHealth()),
         GetPage(name: '/doctorsearch', page: () => Doctorsearch()),
+        GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/signup', page: () => Signup()),
+        GetPage(name: '/aspatient', page: () => AsPatient()),
+        GetPage(name: '/asdoctor', page: () => AsDoctor()),
+        GetPage(name: '/asvolunteer', page: () => AsVolunteer()),
       ],
     );
   }

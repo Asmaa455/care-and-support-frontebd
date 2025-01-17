@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:supcar/constent/color.dart';
 import 'dart:convert';
 
 import 'package:supcar/constent/link.dart';
@@ -97,7 +98,8 @@ class NotReplayController extends GetxController {
 
       if (response != null &&
           response['message'] == 'Answer stored successfully') {
-        Get.toNamed('consultation');
+        Get.back();
+        Get.snackbar('3'.tr, '100'.tr, backgroundColor: pink);
       } else {
         print('Error: ${response['message']}');
       }

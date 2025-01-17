@@ -25,9 +25,9 @@ class Addmedicine extends StatelessWidget {
         key: controller.formstate1,
         child: ListView(scrollDirection: Axis.vertical, children: [
           Container(
-            padding: EdgeInsets.only(left: 20, top: 5),
+            padding: EdgeInsets.only(left: 20, top: 5, right: 20),
             child: Text(
-              'Medicine Name',
+              '77'.tr,
               style: TextStyle(
                   color: deepPurple, fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
@@ -35,16 +35,16 @@ class Addmedicine extends StatelessWidget {
           ),
           Form1(
               // key: controller.formstate.value,
-              hint1: 'Medicine Name',
+              hint1: '77'.tr,
               mycontroller: controller.medicineName,
               valid: (val) {
-                return vaidInput(val!, 5, 20);
+                return Valid().vaidInput(val!, 5, 20);
               },
               max: 1),
           Container(
-            padding: EdgeInsets.only(left: 20, top: 5),
+            padding: EdgeInsets.only(left: 20, top: 5, right: 20),
             child: Text(
-              'Dosage amount',
+              '78'.tr,
               style: TextStyle(
                   color: deepPurple, fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
@@ -52,10 +52,10 @@ class Addmedicine extends StatelessWidget {
           ),
           Form1(
               // key: controller.formstate.value,
-              hint1: 'Dosage amount',
+              hint1: '78'.tr,
               mycontroller: controller.dosageAmount,
               valid: (val) {
-                return vaidInput(val!, 0, 20);
+                return Valid().vaidInput(val!, 0, 20);
               },
               max: 1),
           Container(
@@ -63,9 +63,9 @@ class Addmedicine extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 20, top: 5),
+                  padding: EdgeInsets.only(left: 20, top: 5, right: 20),
                   child: Text(
-                    'Daily repetition',
+                    '79'.tr,
                     style: TextStyle(
                         color: deepPurple,
                         fontSize: 20,
@@ -94,9 +94,9 @@ class Addmedicine extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.only(left: 20, top: 5),
+                padding: EdgeInsets.only(left: 20, top: 5, right: 20),
                 child: Text(
-                  'Starting Time',
+                  '80'.tr,
                   style: TextStyle(
                       color: deepPurple,
                       fontSize: 20,
@@ -118,16 +118,16 @@ class Addmedicine extends StatelessWidget {
                     },
                     child: Obx(() => Text(controller.clickedTime.value
                         ? '${convertTime(controller.time.value.hour.toString())}:${convertTime(controller.time.value.minute.toString())}'
-                        : 'Select Time'))),
+                        : '81'.tr))),
               ),
             ],
           ),
           Row(
             children: [
               Container(
-                padding: EdgeInsets.only(left: 20, top: 5),
+                padding: EdgeInsets.only(left: 20, top: 5, right: 20),
                 child: Text(
-                  'Starting Date',
+                  '82'.tr,
                   style: TextStyle(
                       color: deepPurple,
                       fontSize: 20,
@@ -150,7 +150,7 @@ class Addmedicine extends StatelessWidget {
                     child: Obx(() => Text(
                         controller.clickedDateFirst.value == true
                             ? '${controller.dateFirst.value.toString()}'
-                            : 'Select Date'))),
+                            : '83'.tr))),
               ),
             ],
           ),
@@ -158,9 +158,9 @@ class Addmedicine extends StatelessWidget {
             () => Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 20, top: 5),
+                  padding: EdgeInsets.only(left: 20, top: 5, right: 20),
                   child: Text(
-                    'Number of day',
+                    '84'.tr,
                     style: TextStyle(
                         color: deepPurple,
                         fontSize: 20,
@@ -198,7 +198,7 @@ class Addmedicine extends StatelessWidget {
                   print('Form validation failed');
                 }
               },
-              child: Text("Add"),
+              child: Text("85".tr),
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(pink),
               ),
