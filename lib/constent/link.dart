@@ -1,5 +1,5 @@
 // link servece
-const String serverLink = "http://192.168.210.187:9000/";
+const String serverLink = "http://192.168.79.1:9000/";
 const String createConsultationLink =
     "api/Medical_Consultation/patient_consultation_store/";
 const String consultationPatient =
@@ -21,9 +21,12 @@ const String deletePostLink = 'api/post/deleted_post/';
 const String createPostLink = 'api/post/store_post/';
 const String unacceptablePatientAid =
     'api/Patient_Aid/Unacceptable_Patient_Aid/';
-const String addMedicineLink = 'api/Medication_Time/store/';
+const String addMedicineLink = 'api/Medication_Time/store';
 
 const String healthyValueLink = 'api/Healthy_Value/show_value/';
 const String addHealthyValueLink = 'api/Healthy_Value/store_value/';
 const String doctorLink = 'api/Doctors_Directory/index';
 const String searchdoctorLink = 'api/Doctors_Directory/search';
+const String signUp = 'api/register';
+const String loginLink = 'api/login';
+const String asPatient = 'api/patient_data';

@@ -50,8 +50,13 @@ class Medicine extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed("medicinedetails",
-                          arguments: controller.medicines[index]);
+                      controller.saveMedication(controller.medicines[index]);
+
+                      sharedPref.setString('select_date',
+                          controller.selectedDate.value.toString());
+                      Get.toNamed(
+                        "medicinedetails",
+                      );
                     },
                     child: Card(
                       color: pink,

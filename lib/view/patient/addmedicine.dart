@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/constent/stringtodata.dart';
 import 'package:supcar/content/convert_time.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
@@ -147,10 +149,10 @@ class Addmedicine extends StatelessWidget {
                     onPressed: () {
                       controller.firstSelectDate(context);
                     },
-                    child: Obx(() => Text(
-                        controller.clickedDateFirst.value == true
-                            ? '${controller.dateFirst.value.toString()}'
-                            : '83'.tr))),
+                    child: Obx(() => Text(controller.clickedDateFirst.value ==
+                            true
+                        ? '${DateFormat('y/M/d').format(controller.dateFirst.value)}'
+                        : '83'.tr))),
               ),
             ],
           ),

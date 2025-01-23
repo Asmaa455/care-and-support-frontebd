@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:supcar/constent/link.dart';
+import 'package:supcar/main.dart';
 import 'package:supcar/model/conModel.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:cookie_jar/src/default_cookie_jar.dart';
@@ -10,6 +12,8 @@ import 'package:supcar/model/healthyValueModel.dart';
 import 'package:supcar/model/helpModel.dart';
 import 'package:supcar/model/medicineModel.dart';
 import 'package:supcar/model/postModel.dart';
+import 'package:http_parser/http_parser.dart'; // Required for MediaType
+import 'package:path/path.dart' as p;
 
 class ApiService {
   String _csrfToken = '';
@@ -17,27 +21,10 @@ class ApiService {
   Map<String, String> headers = {
     'Content-Type': 'application/json',
     'User-Agent': 'MyApplication',
+    'Authorization': 'Bearer ${sharedPref.getString('token')}'
   };
-  // String token = 'csrf-token';
-  // // دالة للحصول على رمز CSRF
-  // Future<void> fetchCsrfToken() async {
-  //   var url = Uri.parse('$serverLink$token');
-  //   var response = await http.get(url);
-  //   if (response.statusCode == 200) {
-  //     var data = jsonDecode(response.body);
-  //     print(data);
-  //     _csrfToken = data['csrf_token'];
-  //     headers['X-CSRF-TOKEN'] = _csrfToken; // تحديث الرؤوس هنا
-  //   } else {
-  //     throw Exception('Failed to fetch CSRF token');
-  //   }
-  // }
 
   Future<List<Consultations>> fetchConsultation(String url, int id) async {
-    // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
-    // if (_csrfToken.isEmpty) {
-    //   await fetchCsrfToken();
-    // }
     String url1 = '$url$id';
     final response = await http.get(Uri.parse(url1), headers: headers);
     print(url1);
@@ -68,7 +55,7 @@ class ApiService {
       print('Response statusCode: ${response.statusCode}');
 
       print('Response: ${response}');
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         var responsebody = json.decode(response.body);
         return responsebody;
       } else {
@@ -79,6 +66,123 @@ class ApiService {
       }
     } catch (e) {
       return {'status': 'error', 'message': e.toString()};
+    }
+  }
+
+  // postRequest1WithFile(
+  //     String url, Map<dynamic, dynamic> body, File file) async {
+  //   // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
+  //   print(url);
+  //   print(headers);
+  //   print(body);
+  //   print(json.encode(body));
+  //   var request = http.MultipartRequest('POST', Uri.parse(url));
+  //   var length = await file.length();
+  //   var stream = http.ByteStream(file.openRead());
+  //   var multipartFile = http.MultipartFile('image', stream, length,
+  //       filename: basename(file.path));
+  //   request.files.add(multipartFile);
+  //   body.forEach((key, value) {
+  //     request.fields[key] = value; // Add key-value pairs to the request
+  //   });
+  //   var myrequest = await request.send();
+  //   var response = await http.Response.fromStream(myrequest);
+
+  //   print('Response: ${response}');
+  //   if (response.statusCode == 200 || response.statusCode == 201) {
+  //     var responsebody = json.decode(response.body);
+  //     return responsebody;
+  //   } else {
+  //     return {
+  //       'status': 'error',
+  //       'message': 'Failed to post data. Status code: ${response.statusCode}'
+  //     };
+  //   }
+  // }
+
+  Future<dynamic> postRequest1WithFile(
+      String url, Map<String, dynamic> body, File file) async {
+    try {
+      print('URL: $url');
+      print('Body: $body');
+      print('File length: ${file.length} bytes');
+
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+
+      var length = await file.length();
+      var stream = http.ByteStream(file.openRead());
+      var multipartFile = http.MultipartFile('image', stream, length,
+          filename: p.basename(file.path));
+      request.files.add(multipartFile);
+
+      // Add form data
+      body.forEach((key, value) {
+        request.fields[key] = value.toString(); // Ensure all values are strings
+      });
+
+      // Send the request
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+
+      print('Response: ${response.body}');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return json.decode(response.body); // Return parsed JSON response
+      } else {
+        return {
+          'status': 'error',
+          'message': 'Failed to post data. Status code: ${response.statusCode}'
+        };
+      }
+    } catch (e) {
+      return {'status': 'error', 'message': 'Exception occurred: $e'};
+    }
+  }
+
+  Future sendPostFilesForPatient(
+      String url, File file1, File? file2, Map<String, String> data) async {
+    try {
+      // Create a multipart request
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+
+      // Add the first file
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image', // Name of the parameter for the first file
+          file1.path,
+          contentType: MediaType('application', 'octet-stream'), // File type
+        ),
+      );
+
+      // Add the second file
+      if (file2 != null) {
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'paper_to_prove_cancer', // Name of the parameter for the second file
+            file2.path,
+            contentType: MediaType('application', 'octet-stream'), // File type
+          ),
+        );
+      }
+
+      // Add additional data (fields)
+      data.forEach((key, value) {
+        request.fields[key] = value; // Add key-value pairs to the request
+      });
+
+      // Send the request
+      var response = await request.send();
+
+      // Handle the response
+      if (response.statusCode == 200) {
+        print('Files and data uploaded successfully!');
+        var responseBody = await response.stream.bytesToString();
+        print('Response: $responseBody');
+      } else {
+        print('Failed to upload files and data: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error uploading files and data: $e');
     }
   }
 
@@ -117,13 +221,13 @@ class ApiService {
     }
   }
 
-  Future<List<Medicinemodel>> fetchMedicine(int id) async {
+  Future<List<Medicinemodel>> fetchMedicine() async {
     // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
 
-    final response = await http.get(Uri.parse('$serverLink$medicShowLink$id'),
+    final response = await http.get(Uri.parse('$serverLink$medicShowLink'),
         headers: headers);
 
     if (response.statusCode == 200) {

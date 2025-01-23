@@ -99,7 +99,7 @@ class NotReplay1 extends StatelessWidget {
                     return Container(
                       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.deepPurple),
+                          border: Border.all(color: lightPink),
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:supcar/content/form.dart';
 import 'package:supcar/content/valid.dart';
 import 'package:supcar/controller/signupcontroller.dart';
+import 'package:supcar/main.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
@@ -11,61 +12,103 @@ class Signup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form1(
-                hint1: 'first name',
-                mycontroller: controller.firstName,
-                valid: (p0) {
-                  return Valid().vaidInput(p0!, 5, 20);
-                },
-                max: 1),
-            Form1(
-                hint1: 'second name',
-                mycontroller: controller.secondName,
-                valid: (p0) {
-                  return Valid().vaidInput(p0!, 5, 20);
-                },
-                max: 1),
-            Form1(
-                hint1: 'Email',
-                mycontroller: controller.email,
-                valid: (p0) {
-                  return Valid().vaidInput(p0!, 5, 20);
-                },
-                max: 1),
-            Form1(
-                hint1: 'Password',
-                mycontroller: controller.password,
-                valid: (p0) {
-                  return Valid().vaidInput(p0!, 5, 20);
-                },
-                max: 1),
-            Form1(
-                hint1: 'Password',
-                mycontroller: controller.password,
-                valid: (p0) {
-                  return Valid().vaidInput(p0!, 5, 20);
-                },
-                max: 1),
-            TextButton(
-                onPressed: () {
-                  Get.offAllNamed('loginas');
-                },
-                child: Text('signUp')),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('if you have accout'),
-                TextButton(
-                    onPressed: () {
-                      Get.toNamed('login');
+        child: Form(
+          key: controller.formstate1,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Form1(
+                  lebal: 'First Name',
+                  mycontroller: controller.firstName,
+                  valid: (p0) {
+                    return Valid().vaidInput(p0!, 2, 20);
+                  },
+                  max: 1),
+              Form1(
+                  lebal: 'Second Name',
+                  mycontroller: controller.secondName,
+                  valid: (p0) {
+                    return Valid().vaidInput(p0!, 2, 20);
+                  },
+                  max: 1),
+              Form1(
+                  lebal: 'Email',
+                  mycontroller: controller.email,
+                  valid: (p0) {
+                    return Valid().vaidInput(p0!, 5, 20);
+                  },
+                  max: 1),
+              Obx(
+                () => Form1(
+                    lebal: 'Password',
+                    mycontroller: controller.password,
+                    icon: Icon(
+                      controller.obscureText.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: controller
+                        .togglePasswordVisibility, // استدعاء الدالة مباشرة
+                    obscure: controller.obscureText.value,
+                    valid: (value) {
+                      String? result = Valid().validatePassword(value ?? '');
+                      if (result != null) {
+                        return result;
+                      }
+                      return null;
                     },
-                    child: Text('Login'))
-              ],
-            )
-          ],
+                    max: 1),
+              ),
+              Obx(
+                () => Form1(
+                    lebal: 'Confirm Password',
+                    mycontroller: controller.conformePassword,
+                    icon: Icon(
+                      controller.obscureText.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: controller
+                        .togglePasswordVisibility, // استدعاء الدالة مباشرة
+                    obscure: controller.obscureText.value,
+                    valid: (value) {
+                      if (value != controller.password.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                    max: 1),
+              ),
+              TextButton(
+                  onPressed: () {
+                    if (controller.formstate1.currentState?.validate() ??
+                        false) {
+                      controller.createAcount();
+                      print('Form validation successful');
+                    } else {
+                      print('Form validation failed');
+                    }
+                  },
+                  child: Text('Sign Up')),
+              TextButton(
+                  onPressed: () {
+                    print(sharedPref.getString('token'));
+                    Get.toNamed('loginas');
+                  },
+                  child: Text('Already have an account? Log in')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('If you have an account, '),
+                  TextButton(
+                      onPressed: () {
+                        Get.toNamed('login');
+                      },
+                      child: Text('Login'))
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

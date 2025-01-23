@@ -1,3 +1,5 @@
+import 'package:supcar/model/medication_time.dart';
+
 class Medicinemodel {
   final int id;
   final int patientId;
@@ -5,25 +7,25 @@ class Medicinemodel {
   final String amount;
   final String timeOfTakingTheDrug;
   final int dailyRepetition;
-  final String startDate;
+  final DateTime startDate;
   final int durationOfTakingTheDrug;
-  final int status;
-  final String createdAt;
-  final String updatedAt;
-  // Map<String dynamic> timeMedicine{};
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final List<Medication> medicationTime;
 
-  Medicinemodel(
-      {required this.id,
-      required this.patientId,
-      required this.medicationName,
-      required this.amount,
-      required this.timeOfTakingTheDrug,
-      required this.dailyRepetition,
-      required this.startDate,
-      required this.durationOfTakingTheDrug,
-      required this.status,
-      required this.createdAt,
-      required this.updatedAt});
+  Medicinemodel({
+    required this.id,
+    required this.patientId,
+    required this.medicationName,
+    required this.amount,
+    required this.timeOfTakingTheDrug,
+    required this.dailyRepetition,
+    required this.startDate,
+    required this.durationOfTakingTheDrug,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.medicationTime,
+  });
 
   factory Medicinemodel.fromJson(Map<String, dynamic> json) {
     return Medicinemodel(
@@ -35,13 +37,19 @@ class Medicinemodel {
           : int.tryParse(json['patient_id'].toString()) ?? 0,
       medicationName: json['medication_name'] ?? '',
       amount: json['amount'] ?? '',
-      timeOfTakingTheDrug: json['time_of_taking_the_drug'] ?? '',
-      dailyRepetition: json['daily_repetition'],
-      startDate: json['start_date'] ?? '',
-      durationOfTakingTheDrug: json['duration_of_taking_the_drug'] ?? '',
-      status: json['status'] ?? 0,
-      createdAt: json['created_at'] ?? '',
-      updatedAt: json['updated_at'] ?? '',
+      timeOfTakingTheDrug: json['first_dose_time'] ?? '',
+      dailyRepetition: json['times_per_day'] is int
+          ? json['times_per_day']
+          : int.tryParse(json['times_per_day'].toString()) ?? 0,
+      startDate: DateTime.parse(json['start_date']),
+      durationOfTakingTheDrug: json['duration_days'] is int
+          ? json['duration_days']
+          : int.tryParse(json['duration_days'].toString()) ?? 0,
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+      medicationTime: (json['reminder__times'] as List)
+          .map((i) => Medication.fromJson(i))
+          .toList(),
     );
   }
 
@@ -53,11 +61,11 @@ class Medicinemodel {
       'amount': amount,
       'time_of_taking_the_drug': timeOfTakingTheDrug,
       'daily_repetition': dailyRepetition,
-      'start_date': startDate,
+      'start_date': startDate.toIso8601String(),
       'duration_of_taking_the_drug': durationOfTakingTheDrug,
-      'status': status,
-      'created_at': createdAt,
-      'updated_at': updatedAt,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
+      'reminder__times': medicationTime.map((i) => i.toJson()).toList(),
     };
   }
 }

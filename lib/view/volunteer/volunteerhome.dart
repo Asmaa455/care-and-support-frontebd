@@ -56,7 +56,7 @@ class VolunteerHome extends StatelessWidget {
       ),
       appBar: AppBar(
         title: Text(
-          'Volunteer',
+          '119'.tr,
           style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
         ),
         backgroundColor: deepPurple,
@@ -71,12 +71,12 @@ class VolunteerHome extends StatelessWidget {
           unselectedItemColor: pink,
           onTap: controller.changeIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: '1'.tr),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.volunteer_activism,
                 ),
-                label: 'help')
+                label: '69'.tr)
           ],
         ),
       ),

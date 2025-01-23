@@ -38,10 +38,10 @@ class Viewpostfordoctor extends StatelessWidget {
                   return Container(
                     margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                     decoration: BoxDecoration(
-                        border: Border.all(color: deepPurple),
-                        borderRadius: BorderRadius.circular(15)),
+                        border: Border.all(color: lightPink),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Container(
-                      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      padding: EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Post(

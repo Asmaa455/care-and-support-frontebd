@@ -23,7 +23,6 @@ class AddMedicineController extends GetxController {
   var daliyrepetion = ['1', '2', '3', '4'];
   List<String> numbersDay = List.generate(30, (index) => "${index + 1}").obs;
   var number = Rx<String?>(null);
-  int patientId = 1;
 
   BuildContext? get context => null;
 
@@ -86,14 +85,14 @@ class AddMedicineController extends GetxController {
 
     if (formstate1.currentState != null &&
         formstate1.currentState!.validate()) {
-      String url = '$serverLink$addMedicineLink$patientId';
+      String url = '$serverLink$addMedicineLink';
       var response = await ApiService().postRequest1(url, {
         'medication_name': medicineName.text,
         'amount': dosageAmount.text,
-        'time_of_taking_the_drug': convertTimeOfDayToString(time.value),
-        'daily_repetition': amount.value,
         'start_date': getFormattedDate(dateFirst.value),
-        'duration_of_taking_the_drug': number.value,
+        'times_per_day': amount.value,
+        'first_dose_time': convertTimeOfDayToString(time.value),
+        'duration_days': number.value,
       });
       isLoading.value = false;
 

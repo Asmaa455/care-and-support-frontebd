@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileImage extends StatelessWidget {
-  final ImageProvider? profileImage;
+  var profileImage;
   final VoidCallback onEdit;
 
   ProfileImage({this.profileImage, required this.onEdit});

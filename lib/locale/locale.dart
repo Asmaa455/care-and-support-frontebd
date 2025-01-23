@@ -122,7 +122,10 @@ class Mylocale implements Translations {
           '115': 'اكتب',
           '116': 'من فضلك ادخل الرد',
           '117': 'اضف الرد',
-          '118': 'إلغاء'
+          '118': 'إلغاء',
+          '119': 'المتطوع',
+          '120': 'إنشاء حساب',
+          '121': 'تم إنشاء الحساب بنجاح'
         },
         'en': {
           '1': 'home',
@@ -245,7 +248,10 @@ class Mylocale implements Translations {
           '115': 'Write',
           '116': 'Please enter a reply',
           '117': 'Add Reply',
-          '118': 'Cancel'
+          '118': 'Cancel',
+          '119': 'Volunteer',
+          '120': 'Create acount',
+          '121': 'Account created successfully'
         },
       };
 }

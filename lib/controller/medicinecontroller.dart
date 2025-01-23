@@ -1,12 +1,14 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:supcar/constent/stringtodata.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
+import 'package:supcar/main.dart';
 import 'package:supcar/model/medicineModel.dart';
 
 class MedicineController extends GetxController {
   var medicines = <Medicinemodel>[].obs;
   var isLoading = true.obs;
-  int patientId = 1;
   var selectedDate = DateTime.now().obs;
   @override
   void onInit() {
@@ -16,11 +18,23 @@ class MedicineController extends GetxController {
     super.onInit();
   }
 
+  void saveMedication(Medicinemodel medication) {
+    String jsonString = jsonEncode(medication.toJson());
+    sharedPref.setString('medicine_time', jsonString);
+  }
+
+  List<Medicinemodel> filterMedicinesByDate(DateTime targetDate) {
+    return medicines.where((medicine) {
+      return medicine.medicationTime
+          .any((medTime) => medTime == selectedDate.value);
+    }).toList();
+  }
+
   // Observable loading state
   fetchMed() async {
     try {
       isLoading(true);
-      var fetchedMedicines = await ApiService().fetchMedicine(patientId);
+      var fetchedMedicines = await ApiService().fetchMedicine();
       print(fetchedMedicines);
       medicines.assignAll(fetchedMedicines);
     } finally {
@@ -30,7 +44,7 @@ class MedicineController extends GetxController {
 
   List<Medicinemodel> getTasksForSelectedDate() {
     return medicines.where((med) {
-      DateTime startDate = DateTime.parse(med.startDate);
+      DateTime startDate = med.startDate;
       DateTime endDate =
           startDate.add(Duration(days: med.durationOfTakingTheDrug));
       return selectedDate.value
