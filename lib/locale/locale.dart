@@ -125,7 +125,8 @@ class Mylocale implements Translations {
           '118': 'إلغاء',
           '119': 'المتطوع',
           '120': 'إنشاء حساب',
-          '121': 'تم إنشاء الحساب بنجاح'
+          '121': 'تم إنشاء الحساب بنجاح',
+          '122': 'تم طلب المساعدة بنجاح'
         },
         'en': {
           '1': 'home',
@@ -251,7 +252,8 @@ class Mylocale implements Translations {
           '118': 'Cancel',
           '119': 'Volunteer',
           '120': 'Create acount',
-          '121': 'Account created successfully'
+          '121': 'Account created successfully',
+          '122': 'The Aid was successfully requested '
         },
       };
 }

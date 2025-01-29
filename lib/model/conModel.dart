@@ -68,7 +68,7 @@ class Consultations {
               gender: '',
               diseases: '',
               paperToProveCancer: '',
-              profilePicture: '',
+              image: '',
               createdAt: DateTime.now(),
               updatedAt: DateTime.now(),
               user: User(

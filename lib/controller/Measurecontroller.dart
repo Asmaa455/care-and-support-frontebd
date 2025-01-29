@@ -10,7 +10,6 @@ class Measurecontroller extends GetxController {
   var weight = <Healthyvaluemodel>[].obs;
   var mentalHealth = <Healthyvaluemodel>[].obs;
 
-  int patientaid = 1;
   int diseaseId = 1;
   var isLoading = true.obs;
   var selectedDate = DateTime.now().obs;
@@ -29,11 +28,11 @@ class Measurecontroller extends GetxController {
     int diseaseId = 1;
     try {
       isLoading(true);
-      var fetchedvalue =
-          await ApiService().fetchHeathlyValue(patientaid, diseaseId);
+      var fetchedvalue = await ApiService().fetchHeathlyValue(diseaseId);
       print(fetchedvalue);
       pressure.assignAll(fetchedvalue);
     } finally {
+      print('object');
       isLoading(false);
     }
   }
@@ -42,8 +41,7 @@ class Measurecontroller extends GetxController {
     int diseaseId = 2;
     try {
       isLoading(true);
-      var fetchedvalue =
-          await ApiService().fetchHeathlyValue(patientaid, diseaseId);
+      var fetchedvalue = await ApiService().fetchHeathlyValue(diseaseId);
       print(fetchedvalue);
       sugar.assignAll(fetchedvalue);
     } finally {
@@ -55,8 +53,7 @@ class Measurecontroller extends GetxController {
     int diseaseId = 4;
     try {
       isLoading(true);
-      var fetchedvalue =
-          await ApiService().fetchHeathlyValue(patientaid, diseaseId);
+      var fetchedvalue = await ApiService().fetchHeathlyValue(diseaseId);
       print(fetchedvalue);
 
       weight.assignAll(fetchedvalue);
@@ -69,8 +66,7 @@ class Measurecontroller extends GetxController {
     int diseaseId = 3;
     try {
       isLoading(true);
-      var fetchedvalue =
-          await ApiService().fetchHeathlyValue(patientaid, diseaseId);
+      var fetchedvalue = await ApiService().fetchHeathlyValue(diseaseId);
       print(fetchedvalue);
       mentalHealth.assignAll(fetchedvalue);
     } finally {

@@ -74,7 +74,7 @@ class Addhelp extends StatelessWidget {
                     hint1: ' Location',
                     mycontroller: controller.locationController,
                     valid: (val) {
-                      return Valid().vaidInput(val!, 10, 1000);
+                      return Valid().vaidInput(val!, 3, 1000);
                     },
                     max: 1,
                   ),

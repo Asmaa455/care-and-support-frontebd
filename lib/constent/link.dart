@@ -6,8 +6,8 @@ const String consultationPatient =
     'api/Medical_Consultation/patient_consultation/';
 const String consultationForDoctorLink =
     "api/Medical_Consultation/Answered_Medical_Consultation";
-const String patientAidLink = 'api/Patient_Aid/';
-const String createAidLink = 'api/Patient_Aid/Patient_Aid_store/';
+const String patientAidLink = 'api/Patient_Aid';
+const String createAidLink = 'api/Patient_Aid/Patient_Aid_store';
 const String medicShowLink = 'api/Medication_Time/show/';
 const String unansweredMedicalConsultations =
     'api/Medical_Consultation/Unanswered_Medical_Consultations/';
@@ -30,3 +30,4 @@ const String searchdoctorLink = 'api/Doctors_Directory/search';
 const String signUp = 'api/register';
 const String loginLink = 'api/login';
 const String asPatient = 'api/patient_data';
+const String medStatus = 'api/Medication_Time/status/';

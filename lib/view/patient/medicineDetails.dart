@@ -17,6 +17,7 @@ class MedicineDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final MedicineDetailController controller =
         Get.put(MedicineDetailController());
+    final MedicineController controllerMed = Get.put(MedicineController());
     // تحديث جدول الأوقات عند إنشاء الصفحة
 
     return Scaffold(
@@ -43,7 +44,11 @@ class MedicineDetails extends StatelessWidget {
                       Text(
                           ' ${formatTimeOfDay(controller.filterMedicinesByDate[index].time)}'),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          controller.setStatus(1);
+                          controller.addStatus(
+                              controller.filterMedicinesByDate[index].id);
+                        },
                         child: controller.filterMedicinesByDate[index].status !=
                                 1
                             ? Container(

@@ -47,6 +47,11 @@ class Homepatient extends StatelessWidget {
                                   controller.posts[index].content,
                                   textAlign: TextAlign.justify,
                                 ),
+                                Text(
+                                  controller.posts[index].category,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(color: lightPink),
+                                ),
                               ],
                             ),
                           ),

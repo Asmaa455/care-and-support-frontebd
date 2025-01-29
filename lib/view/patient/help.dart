@@ -51,20 +51,51 @@ class Help extends StatelessWidget {
                           children: [
                             Post(
                                 messege: Card(
-                                  color: lightBlue,
+                                  color: pink,
                                   child: ListTile(
-                                    leading:
-                                        Icon(Icons.volunteer_activism_sharp),
-                                    title: Text(
-                                      ' ${controller.help[index].aidType}',
-                                      textAlign: TextAlign.start,
+                                    // leading:
+                                    //     Icon(Icons.volunteer_activism_sharp),
+                                    title: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.quiz_sharp,
+                                          color: lightPink,
+                                        ),
+                                        Text(
+                                          ' ${controller.help[index].aidType}',
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
                                     ),
-                                    subtitle: Text(
-                                      '70'.tr +
-                                          ':${controller.help[index].location}\n' +
-                                          '71'.tr +
-                                          ': ${controller.help[index].additionalDetails}',
-                                      textAlign: TextAlign.start,
+                                    subtitle: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.location_on,
+                                              color: lightPink,
+                                            ),
+                                            Text(
+                                              '${controller.help[index].location}',
+                                              textAlign: TextAlign.start,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '71'.tr,
+                                              style: TextStyle(
+                                                  color: lightPink,
+                                                  fontSize: 17),
+                                            ),
+                                            Text(
+                                              ': ${controller.help[index].additionalDetails}',
+                                              style: TextStyle(fontSize: 15),
+                                            )
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -101,11 +132,20 @@ class Help extends StatelessWidget {
                                             messege: Card(
                                               color: lightBlue,
                                               child: ListTile(
-                                                leading: Icon(Icons
-                                                    .volunteer_activism_sharp),
-                                                title: Text(
-                                                  '\n contact information: ${controller.help[index].volunteer?.contactInformation}',
-                                                  textAlign: TextAlign.start,
+                                                // leading: Icon(Icons
+                                                //     .volunteer_activism_sharp),
+                                                title: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.phone_in_talk_sharp,
+                                                      color: lightPink,
+                                                    ),
+                                                    Text(
+                                                      '\n contact information: ${controller.help[index].volunteer?.contactInformation}',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),

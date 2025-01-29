@@ -12,7 +12,6 @@ class AddhelpController extends GetxController {
   TextEditingController detailsController = TextEditingController();
   GlobalKey<FormState> formstate1 = GlobalKey();
   var isLoading = false.obs;
-  int patientId = 1;
   var dateFirst = DateTime.now().obs;
   var clickedDateFirst = false.obs;
 
@@ -34,7 +33,7 @@ class AddhelpController extends GetxController {
 
     if (formstate1.currentState != null &&
         formstate1.currentState!.validate()) {
-      String url = '$serverLink$createAidLink$patientId';
+      String url = '$serverLink$createAidLink';
 
       var response = await ApiService().postRequest1(url, {
         "aid_type": typeHelpController.text,

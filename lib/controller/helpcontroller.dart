@@ -18,7 +18,7 @@ class HelpController extends GetxController {
     print(url);
     try {
       isLoading(true);
-      var helps = await ApiService().fetchHelp(url, patientId);
+      var helps = await ApiService().fetchHelp(url);
       print(helps);
       help.assignAll(helps);
     } finally {

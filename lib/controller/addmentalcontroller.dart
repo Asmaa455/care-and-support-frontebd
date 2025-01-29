@@ -7,6 +7,7 @@ class Addmentalcontroller extends GetxController {
   int patientaid = 1;
   int diseaseId = 3;
   var isLoading = true.obs;
+  String status = '';
   List<String> values = [
     '1',
     '2',
@@ -77,21 +78,42 @@ class Addmentalcontroller extends GetxController {
     for (int score in questionScores) {
       totalScore += score;
     }
+    _checkDepressionStatus(totalScore);
     return totalScore;
+  }
+
+  String _checkDepressionStatus(totalScore) {
+    if (totalScore <= 10) {
+      status = "اكتئاب قليل أو عدم وجود اكتئاب";
+      return status;
+    } else if (11 <= totalScore && totalScore <= 16) {
+      status = "اكتئاب خفيف";
+      return status;
+    } else if (17 <= totalScore && totalScore <= 20) {
+      status = "اكتئاب متوسط إلى شديد";
+      return status;
+    } else if (21 <= totalScore && totalScore <= 30) {
+      status = "اكتئاب شديد";
+      return status;
+    } else {
+      status = "اكتئاب شديد جداً";
+      return status;
+    }
   }
 
   void addValue() async {
     isLoading.value = true;
 
-    String url = '$serverLink$addHealthyValueLink$patientaid/$diseaseId';
+    String url = '$serverLink$addHealthyValueLink$diseaseId';
     print(url);
-    var response = await ApiService().postRequest1(url, {'value': score.value});
+    var response = await ApiService()
+        .postRequest1(url, {'value': score.value, 'status': status});
     isLoading.value = false;
 
     if (response != null &&
         response['message'] == 'healthy value stored successfully') {
-      Get.back();
       Get.snackbar('89'.tr, '87'.tr, backgroundColor: pink);
+      Get.back();
     } else {
       print('Error: ${response['message']}');
     }

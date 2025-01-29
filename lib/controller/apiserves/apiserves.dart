@@ -186,18 +186,21 @@ class ApiService {
     }
   }
 
-  Future<List<HelpModel>> fetchHelp(String url, int id) async {
+  Future<List<HelpModel>> fetchHelp(String url) async {
     // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
-    print('$url$id');
-    final response = await http.get(Uri.parse('$url$id'), headers: headers);
+    final response = await http.get(Uri.parse('$url'), headers: headers);
     print(response.statusCode);
     print(response.body);
+    print(headers);
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
+      print(responseBody);
       var data = responseBody['Patient_Aid'] as List;
+      print(data);
+
       return data.map((help) => HelpModel.fromJson(help)).toList();
     } else {
       throw Exception('Failed to load help: ${response.statusCode}');
@@ -272,9 +275,8 @@ class ApiService {
     }
   }
 
-  Future<List<Healthyvaluemodel>> fetchHeathlyValue(
-      int id, int diseaseId) async {
-    String url = '$serverLink$healthyValueLink$id/$diseaseId';
+  Future<List<Healthyvaluemodel>> fetchHeathlyValue(int diseaseId) async {
+    String url = '$serverLink$healthyValueLink$diseaseId';
     print(url);
     final response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
@@ -284,7 +286,9 @@ class ApiService {
       var data = responseBody as List;
       return data.map((value) => Healthyvaluemodel.fromJson(value)).toList();
     } else {
-      throw Exception('Failed to load consultations');
+      print(headers);
+      print(response.statusCode);
+      throw Exception('Failed to load Health Value');
     }
   }
 
