@@ -10,7 +10,6 @@ class Measurecontroller extends GetxController {
   var weight = <Healthyvaluemodel>[].obs;
   var mentalHealth = <Healthyvaluemodel>[].obs;
 
-  int diseaseId = 1;
   var isLoading = true.obs;
   var selectedDate = DateTime.now().obs;
 
@@ -22,6 +21,13 @@ class Measurecontroller extends GetxController {
     fetchValueForMentalHealth();
 
     super.onInit();
+  }
+
+  Future<void> reFresh() async {
+    fetchValueForPressure();
+    fetchValueForSugar();
+    fetchValueForWeight();
+    fetchValueForMentalHealth();
   }
 
   fetchValueForPressure() async {

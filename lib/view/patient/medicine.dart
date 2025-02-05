@@ -14,6 +14,7 @@ class Medicine extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: lightPink,
         onPressed: () {
           Get.toNamed('addmedicine');
         },
@@ -50,10 +51,17 @@ class Medicine extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      controller.saveMedication(controller.medicines[index]);
+                      sharedPref.setString(
+                          'med_id', controller.medicines[index].id.toString());
 
-                      sharedPref.setString('select_date',
-                          controller.selectedDate.value.toString());
+                      sharedPref.setString(
+                          'select_date',
+                          DateTime(
+                                  controller.selectedDate.value.year,
+                                  controller.selectedDate.value.month,
+                                  controller.selectedDate.value.day)
+                              .toIso8601String());
+
                       Get.toNamed(
                         "medicinedetails",
                       );

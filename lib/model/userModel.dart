@@ -3,6 +3,7 @@ class User {
   String firstName;
   String secondName;
   String email;
+  String type;
   DateTime? emailVerifiedAt;
   DateTime createdAt;
   DateTime? updatedAt;
@@ -12,6 +13,7 @@ class User {
     required this.firstName,
     required this.secondName,
     required this.email,
+    required this.type,
     this.emailVerifiedAt,
     required this.createdAt,
     this.updatedAt,
@@ -23,6 +25,7 @@ class User {
       firstName: json['first_name'] ?? '',
       secondName: json['second_name'] ?? '',
       email: json['email'] ?? '',
+      type: json['type'] ?? '',
       emailVerifiedAt: json['email_verified_at'] != null
           ? DateTime.parse(json['email_verified_at'])
           : null,
@@ -41,6 +44,7 @@ class User {
       'first_name': firstName,
       'second_name': secondName,
       'email': email,
+      'type': type,
       'email_verified_at': emailVerifiedAt?.toIso8601String(),
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),

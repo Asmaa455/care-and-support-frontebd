@@ -22,6 +22,7 @@ class Volunteersmodel {
   });
 
   factory Volunteersmodel.fromJson(Map<String, dynamic> json) {
+    print('Parsing Volunteersmodel from JSON: $json'); // إضافة طباعة هنا
     return Volunteersmodel(
       id: json['id'] ?? 0,
       userId: json['user_id'] ?? 0,
@@ -40,6 +41,7 @@ class Volunteersmodel {
               firstName: '',
               secondName: '',
               email: '',
+              type: '',
               createdAt: DateTime.now()),
     );
   }

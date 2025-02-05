@@ -4,6 +4,7 @@ import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/Myconsultationcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/main.dart';
 
 class Myconsulation extends StatelessWidget {
   Myconsulation({super.key});
@@ -43,8 +44,10 @@ class Myconsulation extends StatelessWidget {
                             controller.consultations[index].consultationText,
                             textAlign: TextAlign.justify,
                           ),
-                          firstName: 'username',
-                          lastName: '',
+                          firstName: controller
+                              .consultations[index].patient.user.firstName,
+                          lastName: controller
+                              .consultations[index].patient.user.secondName,
                           time: DateTime.parse(
                               controller.consultations[index].createdAt),
                           userImage: 'image/PI.jpeg'),
@@ -52,7 +55,10 @@ class Myconsulation extends StatelessWidget {
                         alignment: Alignment.topRight,
                         margin: EdgeInsets.all(10),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment:
+                              sharedPref.getString('lang') == 'en'
+                                  ? CrossAxisAlignment.end
+                                  : CrossAxisAlignment.start,
                           children: [
                             Icon(
                               MyFlutterApp.replyAll,
@@ -62,9 +68,12 @@ class Myconsulation extends StatelessWidget {
                                 messege: Text(
                                   controller.consultations[index].answerText,
                                 ),
-                                firstName: 'username',
-                                lastName: '',
-                                time: DateTime.now(),
+                                firstName:
+                                    ' ${sharedPref.getString('first_name')}',
+                                lastName:
+                                    ' ${sharedPref.getString('second_name')}',
+                                time: DateTime.parse(
+                                    controller.consultations[index].updatedAt),
                                 userImage: 'image/PI.jpeg'),
                           ],
                         ),

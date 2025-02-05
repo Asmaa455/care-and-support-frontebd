@@ -11,6 +11,7 @@ class Addhelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AddhelpController controller = Get.put(AddhelpController());
+    final GlobalKey<FormState> formstate1 = GlobalKey();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,19 +25,70 @@ class Addhelp extends StatelessWidget {
       body: Container(
         child: ListView(
           children: [
-            Form(
-              key: controller.formstate1,
-              child: Column(
-                children: [
-                  Form1(
+            SizedBox(height: 16.0),
+            // Obx(() {
+            //   if (controller.isOtherSelected.value) {
+            //     return TextField(
+            //       decoration: InputDecoration(
+            //         labelText: 'Enter custom option',
+            //         border: OutlineInputBorder(),
+            //       ),
+            //       onChanged: (String newValue) {
+            //         controller.selectedValue.value = newValue;
+            //       },
+            //     );
+            //   } else {
+            //     return Container();
+            //   }
+            // }),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 20, top: 5, right: 20),
+                  child: Text(
+                    '136'.tr,
+                    style: TextStyle(
+                        color: deepPurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                DropdownButton(
+                  items: [
+                    '141'.tr,
+                    '142'.tr,
+                    '143'.tr,
+                    '144'.tr,
+                    '145'.tr,
+                    '146'.tr
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    controller.setAidType(value!);
+                  },
+                ),
+              ],
+            ),
+            controller.typeHelp.value == '146'.tr
+                ? Form1(
                     focusNode: controller.typeHelpFocusNode,
-                    hint1: ' Aid`s type',
+                    hint1: 'Aid`s Type',
                     mycontroller: controller.typeHelpController,
                     valid: (val) {
-                      return Valid().vaidInput(val!, 0, 200);
+                      return Valid().vaidInput(val!, 3, 1000);
                     },
-                    max: 3,
-                  ),
+                    max: 1,
+                  )
+                : Container(),
+            Form(
+              key: formstate1,
+              child: Column(
+                children: [
                   Row(
                     children: [
                       Container(
@@ -96,8 +148,7 @@ class Addhelp extends StatelessWidget {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        if (controller.formstate1.currentState?.validate() ??
-                            false) {
+                        if (formstate1.currentState?.validate() ?? false) {
                           controller.createAid();
                         } else {
                           print('Form validation failed');

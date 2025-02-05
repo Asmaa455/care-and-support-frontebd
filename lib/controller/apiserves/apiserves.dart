@@ -10,10 +10,12 @@ import 'package:cookie_jar/src/default_cookie_jar.dart';
 import 'package:supcar/model/doctorModel.dart';
 import 'package:supcar/model/healthyValueModel.dart';
 import 'package:supcar/model/helpModel.dart';
+import 'package:supcar/model/medication_time.dart';
 import 'package:supcar/model/medicineModel.dart';
 import 'package:supcar/model/postModel.dart';
 import 'package:http_parser/http_parser.dart'; // Required for MediaType
 import 'package:path/path.dart' as p;
+import 'package:supcar/model/volunteersModel.dart';
 
 class ApiService {
   String _csrfToken = '';
@@ -24,10 +26,9 @@ class ApiService {
     'Authorization': 'Bearer ${sharedPref.getString('token')}'
   };
 
-  Future<List<Consultations>> fetchConsultation(String url, int id) async {
-    String url1 = '$url$id';
-    final response = await http.get(Uri.parse(url1), headers: headers);
-    print(url1);
+  Future<List<Consultations>> fetchConsultation(String url) async {
+    final response = await http.get(Uri.parse(url), headers: headers);
+    print(url);
     print(response);
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
@@ -207,14 +208,13 @@ class ApiService {
     }
   }
 
-  Future<List<HelpModel>> fetchhelpForVolunteer(int id) async {
+  Future<List<HelpModel>> fetchhelpForVolunteer(String url) async {
     // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
 
-    final response = await http.get(Uri.parse('$serverLink$patientAidLink$id'),
-        headers: headers);
+    final response = await http.get(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
@@ -235,7 +235,7 @@ class ApiService {
 
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
-      print(responseBody);
+      print("Medication_Time $responseBody");
       var data = responseBody["Medication_Time"] as List;
       return data
           .map((medicine1) => Medicinemodel.fromJson(medicine1))
@@ -253,6 +253,7 @@ class ApiService {
     final response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
+      print(responseBody);
       var data = responseBody as List;
       return data.map((post) => Postmodel.fromJson(post)).toList();
     } else {
@@ -260,18 +261,21 @@ class ApiService {
     }
   }
 
-  Future<List<Postmodel>> fetchPostDoc(String url, int id) async {
+  Future<List<Postmodel>> fetchPostDoc(String url) async {
     // تأكد من جلب رمز CSRF إذا لم يكن موجودًا
     // if (_csrfToken.isEmpty) {
     //   await fetchCsrfToken();
     // }
-    final response = await http.get(Uri.parse('$url$id'), headers: headers);
+    print(url);
+    final response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
+      print(response.body);
       var responseBody = json.decode(response.body);
+
       var data = responseBody as List;
       return data.map((post) => Postmodel.fromJson(post)).toList();
     } else {
-      throw Exception('Failed to load consultations');
+      throw Exception('Failed to load doctor post');
     }
   }
 
@@ -304,6 +308,31 @@ class ApiService {
       return data.map((value) => Doctor.fromJson(value)).toList();
     } else {
       throw Exception('Failed to load consultations');
+    }
+  }
+
+  Future<List<Medication>> fetchReminderTimes(int id) async {
+    final response = await http.get(Uri.parse('$serverLink$showSingalMed$id'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body);
+      print("___________________-- $responseBody");
+      var data = responseBody["Medication_Time"] as List;
+
+      // Extract reminder__times from each medication model
+      List<Medication> reminderTimesList = [];
+      for (var medicine1 in data) {
+        var medicationModel = Medicinemodel.fromJson(medicine1);
+        reminderTimesList.addAll(medicationModel.extractReminderTimes());
+      }
+
+      print(
+          "Reminder Times List: $reminderTimesList"); // Print the reminder__times list for verification
+
+      return reminderTimesList;
+    } else {
+      throw Exception('Failed to load help: ${response.statusCode}');
     }
   }
 
@@ -351,6 +380,57 @@ class ApiService {
       return data.map((value) => Doctor.fromJson(value)).toList();
     } else {
       throw Exception('Failed to load consultations');
+    }
+  }
+
+  storeAccepteAis(int id) async {
+    String url = '$serverLink$creatAccepteForAid$id';
+    print(url);
+    var response = await http.get(Uri.parse(url), headers: headers);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body);
+      print(responseBody);
+      return responseBody;
+    } else {
+      throw Exception('Failed to accepte Aid');
+    }
+  }
+
+  Future<Volunteersmodel> fetchVolunteerData() async {
+    String url = '$serverLink$showVolunteerData';
+    var response = await http.get(Uri.parse(url), headers: headers);
+
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body) as Map<String, dynamic>;
+      print(responseBody);
+      var data = responseBody['volunteer'] as List<dynamic>;
+
+      // استخراج أول عنصر من القائمة
+      Volunteersmodel vol = Volunteersmodel.fromJson(data[0]);
+      print(vol.nationalNumber);
+      return vol;
+    } else {
+      throw Exception('Failed to fetch volunteer data');
+    }
+  }
+
+  Future<Doctor> fetchDoctorData() async {
+    String url = '$serverLink$showDoctorDataLink';
+    var response = await http.get(Uri.parse(url), headers: headers);
+
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body) as Map<String, dynamic>;
+      print(responseBody);
+      var data = responseBody['doctor'] as List<dynamic>;
+
+      // استخراج أول عنصر من القائمة
+      Doctor doctor = Doctor.fromJson(data[0]);
+      print(doctor.user.firstName);
+      return doctor;
+    } else {
+      print(response.statusCode);
+      throw Exception('Failed to fetch doctor data');
     }
   }
 }

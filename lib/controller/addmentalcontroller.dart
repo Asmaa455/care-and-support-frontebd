@@ -8,6 +8,13 @@ class Addmentalcontroller extends GetxController {
   int diseaseId = 3;
   var isLoading = true.obs;
   String status = '';
+  @override
+  void onInit() {
+    status = '';
+    score.value = 0;
+    super.onInit();
+  }
+
   List<String> values = [
     '1',
     '2',

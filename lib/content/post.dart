@@ -20,7 +20,7 @@ class Post extends StatelessWidget {
   final String userImage;
   int? iddoctor;
   Widget? leading;
-
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     buildPostHeader() {
@@ -30,9 +30,12 @@ class Post extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              trailing: CircleAvatar(
-                backgroundImage: AssetImage(userImage),
-                backgroundColor: Colors.grey,
+              trailing: InkWell(
+                onTap: onTap,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(userImage),
+                  backgroundColor: Colors.grey,
+                ),
               ),
               title: GestureDetector(
                 onTap: () {},

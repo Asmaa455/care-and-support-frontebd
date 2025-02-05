@@ -58,6 +58,7 @@ class Consultations {
                   firstName: '',
                   secondName: '',
                   email: '',
+                  type: '',
                   createdAt: DateTime.now())),
       patient: json['patient'] != null
           ? Patient.fromJson(json['patient'])
@@ -76,6 +77,7 @@ class Consultations {
                   firstName: '',
                   secondName: '',
                   email: '',
+                  type: '',
                   createdAt: DateTime.now())),
     );
   }

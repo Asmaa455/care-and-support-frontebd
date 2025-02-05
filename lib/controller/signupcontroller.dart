@@ -15,6 +15,8 @@ class Signupcontroller extends GetxController {
   TextEditingController conformePassword = TextEditingController();
   var obscureText = true.obs;
   var isLoading = false.obs;
+  var useratype = ['doctor', 'patient', 'volunteer'];
+  var type = Rx<String?>(null);
 
   void togglePasswordVisibility() {
     obscureText.value = !obscureText.value;
@@ -32,15 +34,18 @@ class Signupcontroller extends GetxController {
         "second_name": secondName.text,
         "email": email.text,
         "password": password.text,
-        "password_confirmation": conformePassword.text
+        "password_confirmation": conformePassword.text,
+        'type': type.value
       });
       isLoading.value = false;
       User user;
       if (response != null &&
           response['message'] == 'User registered successfully') {
         print(response['message']);
+        var responseuser = response['user'];
+        user = User.fromJson(responseuser);
 
-        Get.offNamed('login');
+        Get.offNamed('loginas');
         Get.snackbar('120'.tr, '121'.tr, backgroundColor: pink);
       } else {
         print('Error: ${response['message']}');

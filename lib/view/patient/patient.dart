@@ -50,13 +50,18 @@ class Homepatient extends StatelessWidget {
                                 Text(
                                   controller.posts[index].category,
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(color: lightPink),
+                                  style: TextStyle(
+                                      color: deepPurple,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.italic),
                                 ),
                               ],
                             ),
                           ),
-                          firstName: 'Doctor',
-                          lastName: '',
+                          firstName:
+                              controller.posts[index].doctor!.user.firstName,
+                          lastName:
+                              controller.posts[index].doctor!.user.secondName,
                           time: DateTime.parse(controller.posts[index].createdAt
                               .toIso8601String()),
                           userImage: 'image/PI.jpeg'),

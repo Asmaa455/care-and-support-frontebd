@@ -69,11 +69,13 @@ class CustomGrid extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      '92'.tr + ': ${pressure[index].status}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    pressure[index].status != 'null'
+                        ? Text(
+                            '92'.tr + ': ${pressure[index].status}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        : Container(),
                     Text(
                       '93'.tr +
                           ': ${DateFormat('HH:mm').format(pressure[index].createAt)}',

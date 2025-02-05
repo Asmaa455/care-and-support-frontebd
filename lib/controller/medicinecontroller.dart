@@ -46,7 +46,7 @@ class MedicineController extends GetxController {
     return medicines.where((med) {
       DateTime startDate = med.startDate;
       DateTime endDate =
-          startDate.add(Duration(days: med.durationOfTakingTheDrug));
+          startDate.add(Duration(days: med.durationOfTakingTheDrug - 1));
       return selectedDate.value
               .isAfter(startDate.subtract(Duration(days: 1))) &&
           selectedDate.value.isBefore(endDate.add(Duration(days: 1)));

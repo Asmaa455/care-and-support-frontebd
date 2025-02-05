@@ -21,6 +21,7 @@ class HomePatientController extends GetxController {
     try {
       isLoading(true);
       var fetchedUsers = await ApiService().fetchPost(url);
+      print(fetchedUsers);
       posts.assignAll(fetchedUsers); // Update the observable list
     } finally {
       isLoading(false);

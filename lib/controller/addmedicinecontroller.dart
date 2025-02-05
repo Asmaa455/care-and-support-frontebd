@@ -20,7 +20,7 @@ class AddMedicineController extends GetxController {
   var clickedTime = false.obs;
   var clickedDateFirst = false.obs;
   var clickedDateLast = false.obs;
-  var daliyrepetion = ['1', '2', '3', '4'];
+  var daliyrepetion = ['1', '2', '3', '4', '5'];
   List<String> numbersDay = List.generate(30, (index) => "${index + 1}").obs;
   var number = Rx<String?>(null);
 

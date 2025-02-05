@@ -8,8 +8,6 @@ import 'package:supcar/controller/showhelpcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 
 class Showhelp extends StatelessWidget {
-  final ShowhelpController controller = Get.put(ShowhelpController());
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -20,6 +18,7 @@ class Showhelp extends StatelessWidget {
             toolbarHeight: 0,
             bottom: TabBar(
                 labelColor: deepPurple,
+                labelPadding: EdgeInsets.all(10),
                 labelStyle:
                     TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 unselectedLabelStyle:
@@ -28,9 +27,9 @@ class Showhelp extends StatelessWidget {
                 unselectedLabelColor: Colors.black,
                 tabs: [
                   Text(
-                    'مقبولة',
+                    '123'.tr,
                   ),
-                  Text('غير مقبولة')
+                  Text('124'.tr)
                 ]),
           ),
           body: TabBarView(children: [Acceptable(), Unacceptable()])),
@@ -44,7 +43,98 @@ class Acceptable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Obx(() {
+        // Debugging: Print the help list
+        print('Helps List: ${controller.help.length}');
+
+        // Fallback UI if the list is empty
+        if (controller.help.isEmpty) {
+          return Center(
+            child: Text(
+              'No data available',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+          );
+        }
+
+        return ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: controller.help.length,
+          itemBuilder: (context, index) {
+            // Debugging: Print each item
+            print('Help Item: ${controller.help[index]}');
+
+            return Container(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(color: lightPink),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Post(
+                    messege: Card(
+                      color: pink,
+                      child: ListTile(
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.quiz_sharp,
+                              color: lightPink,
+                            ),
+                            Text(
+                              ' ${controller.help[index].aidType}',
+                              textAlign: TextAlign.start,
+                            ),
+                          ],
+                        ),
+                        subtitle: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: lightPink,
+                                ),
+                                Text(
+                                  '${controller.help[index].location}',
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '71'.tr,
+                                  style: TextStyle(
+                                    color: lightPink,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                Text(
+                                  ': ${controller.help[index].additionalDetails}',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    firstName: controller.help[index].patient.user.firstName,
+                    lastName: controller.help[index].patient.user.secondName,
+                    time: DateTime.now(),
+                    userImage: 'image/PI.jpeg',
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      }),
+    );
   }
 }
 
@@ -54,7 +144,99 @@ class Unacceptable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Obx(() {
+        // Debugging: Print the help list
+        print('Helps List: ${controller.help}');
+
+        // Fallback UI if the list is empty
+        if (controller.help.isEmpty) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        return ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: controller.help.length,
+          itemBuilder: (context, index) {
+            // Debugging: Print each item
+            print('Help Item: ${controller.help[index]}');
+
+            return Container(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(color: lightPink),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Post(
+                    messege: Card(
+                      color: pink,
+                      child: ListTile(
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.quiz_sharp,
+                              color: lightPink,
+                            ),
+                            Text(
+                              ' ${controller.help[index].aidType}',
+                              textAlign: TextAlign.start,
+                            ),
+                          ],
+                        ),
+                        subtitle: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: lightPink,
+                                ),
+                                Text(
+                                  '${controller.help[index].location}',
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '71'.tr,
+                                  style: TextStyle(
+                                    color: lightPink,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                Text(
+                                  ': ${controller.help[index].additionalDetails}',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    firstName: controller.help[index].patient.user.firstName,
+                    lastName: controller.help[index].patient.user.secondName,
+                    time: DateTime.now(),
+                    userImage: 'image/PI.jpeg',
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.accepte(controller.help[index].id);
+                    },
+                    icon: Icon(MyFlutterApp.commentEmpty),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      }),
+    );
   }
 }
 // Container(

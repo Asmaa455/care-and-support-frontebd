@@ -2,12 +2,13 @@ import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
+import 'package:supcar/main.dart';
 
 class Addbloodprecontroller extends GetxController {
-  var currentValue = 120.0.obs;
-  var currentValue2 = 90.0.obs;
+  late RxDouble currentValue = 120.0.obs;
+  late RxDouble currentValue2 = 90.0.obs;
   int diseaseId = 1;
-  var isLoading = true.obs;
+  late RxBool isLoading = true.obs;
   String status = '';
   void updateValue(double value) {
     currentValue.value = value;
@@ -25,7 +26,7 @@ class Addbloodprecontroller extends GetxController {
   }
 
   void updateHumidity(double value) {
-    humidity.value = value;
+    humidity.value = value.round() as double;
   }
 
   void updatePressure(double value) {
@@ -39,9 +40,9 @@ class Addbloodprecontroller extends GetxController {
       return 'Elevated';
     } else if (130 <= systolic && systolic < 140 ||
         80 <= diastolic && diastolic < 90) {
-      return 'High blood pressure (Hypertension Stage 1)';
+      return 'High blood pressure \n(Hypertension Stage 1)';
     } else if (systolic >= 140 || diastolic >= 90) {
-      return 'High blood pressure (Hypertension Stage 2)';
+      return 'High blood pressure \n(Hypertension Stage 2)';
     } else {
       return 'Consult your doctor';
     }
@@ -54,13 +55,14 @@ class Addbloodprecontroller extends GetxController {
     String url = '$serverLink$addHealthyValueLink$diseaseId';
     print(url);
     var response = await ApiService().postRequest1(url, {
-      'value': currentValue.value,
-      'valuee': currentValue2.value,
+      'value': currentValue.value.round(),
+      'valuee': currentValue2.value.round(),
       'status': status
     });
+    print(sharedPref.getString('token'));
     print('status: $status');
     isLoading.value = false;
-
+    print(response);
     if (response != null &&
         response['message'] == 'healthy value stored successfully') {
       Get.back();

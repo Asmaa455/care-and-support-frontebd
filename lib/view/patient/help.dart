@@ -45,7 +45,7 @@ class Help extends StatelessWidget {
                         border: Border.all(color: lightPink),
                         borderRadius: BorderRadius.circular(15)),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
                           children: [
@@ -55,47 +55,66 @@ class Help extends StatelessWidget {
                                   child: ListTile(
                                     // leading:
                                     //     Icon(Icons.volunteer_activism_sharp),
-                                    title: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.quiz_sharp,
-                                          color: lightPink,
-                                        ),
-                                        Text(
-                                          ' ${controller.help[index].aidType}',
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ],
+                                    title: Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.quiz_sharp,
+                                            color: lightPink,
+                                          ),
+                                          Container(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            ' ${controller.help[index].aidType}',
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    subtitle: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Icons.location_on,
-                                              color: lightPink,
+                                    subtitle: Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.location_on,
+                                                color: lightPink,
+                                              ),
+                                              Container(
+                                                width: 20,
+                                              ),
+                                              Text(
+                                                '${controller.help[index].location}',
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  '71'.tr,
+                                                  style: TextStyle(
+                                                      color: lightPink,
+                                                      fontSize: 17),
+                                                ),
+                                                Container(
+                                                  width: 20,
+                                                ),
+                                                Text(
+                                                  ': ${controller.help[index].additionalDetails}',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                )
+                                              ],
                                             ),
-                                            Text(
-                                              '${controller.help[index].location}',
-                                              textAlign: TextAlign.start,
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '71'.tr,
-                                              style: TextStyle(
-                                                  color: lightPink,
-                                                  fontSize: 17),
-                                            ),
-                                            Text(
-                                              ': ${controller.help[index].additionalDetails}',
-                                              style: TextStyle(fontSize: 15),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -108,21 +127,21 @@ class Help extends StatelessWidget {
                           ],
                         ),
                         Container(
-                            margin: EdgeInsets.all(10),
                             child: controller.help[index].status != 1
-                                ? Icon(
-                                    MyFlutterApp.commentEmpty,
-                                    color: deepPurple,
+                                ? Container(
+                                    margin: EdgeInsets.all(20),
+                                    child: Icon(
+                                      MyFlutterApp.commentEmpty,
+                                      color: deepPurple,
+                                    ),
                                   )
                                 : Container(
-                                    margin: EdgeInsets.only(
-                                        right: 10, left: 10, bottom: 10),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(20),
                                           child: Icon(
                                             MyFlutterApp.replyAll,
                                             color: lightPink,
@@ -130,7 +149,7 @@ class Help extends StatelessWidget {
                                         ),
                                         Post(
                                             messege: Card(
-                                              color: lightBlue,
+                                              color: pink,
                                               child: ListTile(
                                                 // leading: Icon(Icons
                                                 //     .volunteer_activism_sharp),
@@ -140,8 +159,11 @@ class Help extends StatelessWidget {
                                                       Icons.phone_in_talk_sharp,
                                                       color: lightPink,
                                                     ),
+                                                    Container(
+                                                      width: 20,
+                                                    ),
                                                     Text(
-                                                      '\n contact information: ${controller.help[index].volunteer?.contactInformation}',
+                                                      '${controller.help[index].volunteer?.contactInformation}',
                                                       textAlign:
                                                           TextAlign.start,
                                                     ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -87,14 +89,40 @@ class AddMentalHealth extends StatelessWidget {
                         ],
                       )
                     : Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('do you want to keep the score'),
-                          TextButton(
-                              onPressed: () {
-                                controller.addValue();
-                                Get.back();
-                              },
-                              child: Text('add'))
+                          Text(
+                            '${controller.status}',
+                            style: TextStyle(
+                                color: lightPink,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'do you want to keep the score',
+                            style: TextStyle(
+                                color: deepPurple,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: deepPurple),
+                                borderRadius: BorderRadius.circular(15),
+                                color: pink),
+                            child: TextButton(
+                                onPressed: () {
+                                  controller.addValue();
+                                  Get.back();
+                                },
+                                child: Text(
+                                  'add',
+                                  style: TextStyle(
+                                      color: lightPink,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                          )
                         ],
                       );
               },

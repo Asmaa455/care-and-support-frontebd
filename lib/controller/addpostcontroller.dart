@@ -13,7 +13,6 @@ class AddPostController extends GetxController {
   TextEditingController categoryController = TextEditingController();
   var isLoading = false.obs;
   GlobalKey<FormState> formstate1 = GlobalKey();
-  int doctorId = 1;
 
   void createPost() async {
     // Logic to create a post
@@ -21,10 +20,9 @@ class AddPostController extends GetxController {
 
     if (formstate1.currentState != null &&
         formstate1.currentState!.validate()) {
-      String url = '$serverLink$createPostLink$doctorId';
+      String url = '$serverLink$createPostLink';
 
       var response = await ApiService().postRequest1(url, {
-        "doctor_id": doctorId.toString(),
         "category": categoryController.text,
         "title": titleController.text,
         "content": contentController.text,

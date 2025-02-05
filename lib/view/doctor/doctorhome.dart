@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/locale/localecontroller.dart';
+import 'package:supcar/main.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/doctorhomecontroller.dart';
@@ -47,28 +48,33 @@ class DoctorHome extends StatelessWidget {
       endDrawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('image/PI.jpeg'),
-                    backgroundColor: Colors.grey,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      style: ListTileStyle.drawer,
-                      title: Text(
-                        'username',
-                        style: TextStyle(fontSize: 20, color: deepPurple),
-                      ),
-                      subtitle: Text(
-                        'username@gmail.com',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+            InkWell(
+              onTap: () {
+                Get.toNamed('doctorprofile');
+              },
+              child: DrawerHeader(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('image/PI.jpeg'),
+                      backgroundColor: Colors.grey,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        style: ListTileStyle.drawer,
+                        title: Text(
+                          '${sharedPref.getString('first_name')} ${sharedPref.getString('second_name')}',
+                          style: TextStyle(fontSize: 20, color: deepPurple),
+                        ),
+                        subtitle: Text(
+                          '${sharedPref.getString('email')}',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             InkWell(
@@ -90,7 +96,7 @@ class DoctorHome extends StatelessWidget {
                 weight: 2,
               ),
               title: Text(
-                'My Paid',
+                '137'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -107,21 +113,25 @@ class DoctorHome extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              children: [
-                Icon(Icons.language),
-                TextButton(
-                    onPressed: () {
-                      controllerLan.changeLang('ar');
-                    },
-                    child: Text('arabic')),
-                TextButton(
-                    onPressed: () {
-                      controllerLan.changeLang('en');
-                    },
-                    child: Text('english'))
-              ],
-            )
+            ListTile(
+                leading: Icon(
+                  Icons.language,
+                  weight: 2,
+                ),
+                title: Row(
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          controllerLan.changeLang('ar');
+                        },
+                        child: Text('138'.tr)),
+                    TextButton(
+                        onPressed: () {
+                          controllerLan.changeLang('en');
+                        },
+                        child: Text('139'.tr))
+                  ],
+                )),
           ],
         ),
       ),

@@ -66,6 +66,7 @@ class HelpModel {
                 firstName: '',
                 secondName: '',
                 email: '',
+                type: '',
                 createdAt: DateTime.now(),
               ),
             ),

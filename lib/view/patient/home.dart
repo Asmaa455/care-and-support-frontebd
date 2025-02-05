@@ -105,28 +105,31 @@ class Home extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('image/PI.jpeg'),
-                    backgroundColor: Colors.grey,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      style: ListTileStyle.drawer,
-                      title: Text(
-                        'username',
-                        style: TextStyle(fontSize: 20, color: deepPurple),
-                      ),
-                      subtitle: Text(
-                        'username@gmail.com',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+            InkWell(
+              onTap: () {},
+              child: DrawerHeader(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('image/PI.jpeg'),
+                      backgroundColor: Colors.grey,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        style: ListTileStyle.drawer,
+                        title: Text(
+                          '${sharedPref.getString('first_name')} ${sharedPref.getString('second_name')}',
+                          style: TextStyle(fontSize: 20, color: deepPurple),
+                        ),
+                        subtitle: Text(
+                          '${sharedPref.getString('email')}',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             ListTile(
@@ -155,21 +158,25 @@ class Home extends StatelessWidget {
                 Get.toNamed('/mypaid');
               },
             ),
-            Row(
-              children: [
-                Icon(Icons.language),
-                TextButton(
-                    onPressed: () {
-                      controllerLan.changeLang('ar');
-                    },
-                    child: Text('arabic')),
-                TextButton(
-                    onPressed: () {
-                      controllerLan.changeLang('en');
-                    },
-                    child: Text('english'))
-              ],
-            )
+            ListTile(
+                leading: Icon(
+                  Icons.language,
+                  weight: 2,
+                ),
+                title: Row(
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          controllerLan.changeLang('ar');
+                        },
+                        child: Text('138'.tr)),
+                    TextButton(
+                        onPressed: () {
+                          controllerLan.changeLang('en');
+                        },
+                        child: Text('139'.tr))
+                  ],
+                )),
           ],
         ),
       ),

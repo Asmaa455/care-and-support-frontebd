@@ -4,6 +4,7 @@ import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/consultationcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/main.dart';
 
 class Consultation extends StatelessWidget {
   @override
@@ -107,8 +108,10 @@ class NotReplay1 extends StatelessWidget {
                           Post(
                               messege: Text(controller
                                   .consultations[index].consultationText),
-                              firstName: 'username',
-                              lastName: '',
+                              firstName: controller
+                                  .consultations[index].patient.user.firstName,
+                              lastName: controller
+                                  .consultations[index].patient.user.secondName,
                               time: DateTime.parse(
                                   controller.consultations[index].createdAt),
                               userImage: 'image/PI.jpeg'),
@@ -178,8 +181,10 @@ class Answered extends StatelessWidget {
                               controller.consultations[index].consultationText,
                               textAlign: TextAlign.justify,
                             ),
-                            firstName: 'username',
-                            lastName: '',
+                            firstName: controller
+                                .consultations[index].patient.user.firstName,
+                            lastName: controller
+                                .consultations[index].patient.user.secondName,
                             time: DateTime.parse(
                                 controller.consultations[index].createdAt),
                             userImage: 'image/PI.jpeg'),
@@ -192,7 +197,10 @@ class Answered extends StatelessWidget {
                                   color: Colors.deepPurple,
                                   onPressed: () {})
                               : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      sharedPref.getString('lang') == 'en'
+                                          ? CrossAxisAlignment.end
+                                          : CrossAxisAlignment.start,
                                   children: [
                                     Icon(
                                       MyFlutterApp.replyAll,
@@ -203,9 +211,18 @@ class Answered extends StatelessWidget {
                                           controller
                                               .consultations[index].answerText,
                                         ),
-                                        firstName: 'username',
-                                        lastName: '',
-                                        time: DateTime.now(),
+                                        firstName: controller
+                                            .consultations[index]
+                                            .patient
+                                            .user
+                                            .firstName,
+                                        lastName: controller
+                                            .consultations[index]
+                                            .patient
+                                            .user
+                                            .secondName,
+                                        time: DateTime.parse(controller
+                                            .consultations[index].updatedAt),
                                         userImage: 'image/PI.jpeg'),
                                   ],
                                 ),

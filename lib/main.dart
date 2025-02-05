@@ -13,8 +13,10 @@ import 'package:supcar/view/auth/signup.dart';
 import 'package:supcar/view/doctor/consultation.dart';
 import 'package:supcar/view/auth/loginas.dart';
 import 'package:supcar/controller/doctorask/doctoraskbinding.dart';
+import 'package:supcar/view/doctor/doctor_profile.dart';
 import 'package:supcar/view/doctor/myconsulation.dart';
 import 'package:supcar/view/doctor/mypost.dart';
+import 'package:supcar/view/doctor/update_profile.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 import 'package:supcar/view/patient/BloodPressure.dart';
 import 'package:supcar/view/patient/addbloodpre.dart';
@@ -38,7 +40,9 @@ import 'package:supcar/view/patient/mentalhealth.dart';
 import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/view/patient/sugar.dart';
 import 'package:supcar/view/patient/weight.dart';
+import 'package:supcar/view/volunteer/edit_profile.dart';
 import 'package:supcar/view/volunteer/replayhelp.dart';
+import 'package:supcar/view/volunteer/volunteer_profile.dart';
 import 'package:supcar/view/volunteer/volunteerhome.dart';
 import 'dart:io' if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
@@ -47,6 +51,7 @@ late SharedPreferences sharedPref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref = await SharedPreferences.getInstance();
+  // Stripe.publishableKey = ApiKeys.publishableKeys;
   if (kIsWeb) {
     // Some web specific code there
   } else if (defaultTargetPlatform == TargetPlatform.iOS ||
@@ -58,6 +63,7 @@ void main() async {
       defaultTargetPlatform == TargetPlatform.fuchsia) {
     // Some desktop specific code there
   }
+
   runApp(MyApp());
 }
 
@@ -108,6 +114,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/aspatient', page: () => AsPatient()),
         GetPage(name: '/asdoctor', page: () => AsDoctor()),
         GetPage(name: '/asvolunteer', page: () => AsVolunteer()),
+        GetPage(name: '/doctorprofile', page: () => DoctorProfile()),
+        GetPage(name: '/volunteerprofile', page: () => VolunteerProfile()),
+        GetPage(name: '/editprofile', page: () => EditProfile()),
+        GetPage(name: '/uodateprofiledoctor', page: () => UpdateProfile()),
       ],
     );
   }

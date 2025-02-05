@@ -68,4 +68,9 @@ class Medicinemodel {
       'reminder__times': medicationTime.map((i) => i.toJson()).toList(),
     };
   }
+
+  // New method to extract all reminder__times
+  List<Medication> extractReminderTimes() {
+    return medicationTime;
+  }
 }

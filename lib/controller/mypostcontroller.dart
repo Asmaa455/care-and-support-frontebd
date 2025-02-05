@@ -8,7 +8,6 @@ import 'package:supcar/model/postModel.dart';
 class Mypostcontroller extends GetxController {
   var posts = <Postmodel>[].obs; // List of posts, observable
   var isLoading = false.obs;
-  int doctorId = 1;
   // Example data for initial post
 
   @override
@@ -21,7 +20,7 @@ class Mypostcontroller extends GetxController {
     String url = '$serverLink$doctorPostLink';
     try {
       isLoading(true);
-      var fetchedUsers = await ApiService().fetchPostDoc(url, doctorId);
+      var fetchedUsers = await ApiService().fetchPostDoc(url);
       posts.assignAll(fetchedUsers); // Update the observable list
     } finally {
       isLoading(false);

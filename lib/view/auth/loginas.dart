@@ -50,6 +50,11 @@ class _LoginasState extends State<Loginas> {
                     Get.offAllNamed('asvolunteer');
                   },
                   title: 'SignUp As volunteer'),
+              loginAsContainar(
+                  onPressed: () {
+                    Get.offAllNamed('login');
+                  },
+                  title: 'login'),
             ],
           ),
         ),

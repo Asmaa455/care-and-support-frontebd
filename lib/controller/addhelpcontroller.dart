@@ -10,15 +10,17 @@ class AddhelpController extends GetxController {
   TextEditingController typeHelpController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController detailsController = TextEditingController();
-  GlobalKey<FormState> formstate1 = GlobalKey();
   var isLoading = false.obs;
   var dateFirst = DateTime.now().obs;
   var clickedDateFirst = false.obs;
-
+  var typeHelp = ''.obs;
   final FocusNode typeHelpFocusNode = FocusNode();
   final FocusNode locationFocusNode = FocusNode();
   final FocusNode detailsFocusNode = FocusNode();
 
+  var selectedValue = ''.obs;
+  var isOtherSelected = false.obs;
+  var dropdownItems = ['Option 1', 'Option 2', 'Option 3', 'Other'].obs;
   @override
   void dispose() {
     typeHelpFocusNode.dispose();
@@ -27,36 +29,37 @@ class AddhelpController extends GetxController {
     super.dispose();
   }
 
+  setAidType(String value) {
+    typeHelp.value = value;
+  }
+
   void createAid() async {
     // Logic to create a post
     isLoading.value = true;
+    if (typeHelp.value == '146'.tr) {
+      typeHelp.value = typeHelpController.text;
+    }
 
-    if (formstate1.currentState != null &&
-        formstate1.currentState!.validate()) {
-      String url = '$serverLink$createAidLink';
+    String url = '$serverLink$createAidLink';
 
-      var response = await ApiService().postRequest1(url, {
-        "aid_type": typeHelpController.text,
-        "aid_date": getFormattedDate(dateFirst.value),
-        "location": locationController.text,
-        'additional_details': detailsController.text
-      });
-      isLoading.value = false;
+    var response = await ApiService().postRequest1(url, {
+      "aid_type": typeHelp.value,
+      "aid_date": getFormattedDate(dateFirst.value),
+      "location": locationController.text,
+      'additional_details': detailsController.text
+    });
+    isLoading.value = false;
 
-      if (response != null &&
-          response['message'] == 'Ask for help created successfully') {
-        // categoryController.text = '';
-        // titleController.text = '';
-        // contentController.text = '';
+    if (response != null &&
+        response['message'] == 'Ask for help created successfully') {
+      // categoryController.text = '';
+      // titleController.text = '';
+      // contentController.text = '';
 
-        Get.back();
-        Get.snackbar('69'.tr, '87'.tr, backgroundColor: pink);
-      } else {
-        print('Error: ${response['message']}');
-      }
+      Get.back();
+      Get.snackbar('69'.tr, '87'.tr, backgroundColor: pink);
     } else {
-      isLoading.value = false;
-      print('Form validation failed');
+      print('Error: ${response['message']}');
     }
   }
 

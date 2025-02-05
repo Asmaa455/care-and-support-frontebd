@@ -15,26 +15,31 @@ class VolunteerHome extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.white),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage(controller.userImage),
-                    backgroundColor: Colors.grey,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      style: ListTileStyle.drawer,
-                      title: Text(
-                        controller.username,
-                        style: TextStyle(fontSize: 20, color: deepPurple),
-                      ),
-                      subtitle: Text(
-                        controller.email,
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed('volunteerprofile');
+                },
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(controller.userImage),
+                      backgroundColor: Colors.grey,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        style: ListTileStyle.drawer,
+                        title: Text(
+                          controller.username,
+                          style: TextStyle(fontSize: 20, color: deepPurple),
+                        ),
+                        subtitle: Text(
+                          controller.email,
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             ListTile(

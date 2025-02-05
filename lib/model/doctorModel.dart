@@ -54,6 +54,7 @@ class Doctor {
               firstName: '',
               secondName: '',
               email: '',
+              type: '',
               createdAt: DateTime.now(),
             ),
     );
