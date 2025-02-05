@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/constent/stringtodata.dart';
 import 'package:supcar/content/convert_time.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:intl/intl.dart';
+import 'package:supcar/main.dart';
 
 class AddMedicineController extends GetxController {
   var isLoading = false.obs;
@@ -18,9 +20,9 @@ class AddMedicineController extends GetxController {
   var clickedTime = false.obs;
   var clickedDateFirst = false.obs;
   var clickedDateLast = false.obs;
+  var daliyrepetion = ['1', '2', '3', '4', '5'];
   List<String> numbersDay = List.generate(30, (index) => "${index + 1}").obs;
   var number = Rx<String?>(null);
-  int patientId = 1;
 
   BuildContext? get context => null;
 
@@ -31,8 +33,10 @@ class AddMedicineController extends GetxController {
   }
 
   Future<TimeOfDay?> selectedTime(BuildContext context) async {
-    final TimeOfDay? picked =
-        await showTimePicker(context: context, initialTime: time.value);
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: time.value,
+    );
 
     if (picked != null && picked != time.value) {
       time.value = picked;
@@ -42,14 +46,9 @@ class AddMedicineController extends GetxController {
     return picked;
   }
 
-  String getFormattedDate(DateTime dateTime) {
-    // تنسيق التاريخ
-    return DateFormat('yyyy-MM-dd').format(dateTime);
-  }
-
   Future<DateTime?> firstSelectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      context: context,
+      context: context, // تحديد اللغة العربية      context: context,
       initialDate: dateFirst.value,
       firstDate: DateTime(1999),
       lastDate: DateTime(2101),
@@ -65,6 +64,8 @@ class AddMedicineController extends GetxController {
 
   Future<DateTime?> lastSelectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
+      locale:
+          sharedPref.getString('lang') == 'en' ? Locale('en') : Locale('ar'),
       context: context,
       initialDate: dateLast.value,
       firstDate: DateTime.now(),
@@ -84,20 +85,21 @@ class AddMedicineController extends GetxController {
 
     if (formstate1.currentState != null &&
         formstate1.currentState!.validate()) {
-      String url = '$serverLink$addMedicineLink$patientId';
+      String url = '$serverLink$addMedicineLink';
       var response = await ApiService().postRequest1(url, {
         'medication_name': medicineName.text,
         'amount': dosageAmount.text,
-        'time_of_taking_the_drug': convertTimeOfDayToString(time.value),
-        'daily_repetition': amount.value,
         'start_date': getFormattedDate(dateFirst.value),
-        'duration_of_taking_the_drug': number.value,
+        'times_per_day': amount.value,
+        'first_dose_time': convertTimeOfDayToString(time.value),
+        'duration_days': number.value,
       });
       isLoading.value = false;
 
       if (response != null &&
           response['message'] == 'Medication Time stored successfully') {
-        Get.offNamed('medicine');
+        Get.back();
+        Get.snackbar('2'.tr, '99'.tr, backgroundColor: pink);
       } else {
         print('Error: ${response['message']}');
       }

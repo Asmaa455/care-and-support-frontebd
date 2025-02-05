@@ -30,7 +30,7 @@ class Replayhelp extends StatelessWidget {
                     hint1: 'Repaly To Help',
                     mycontroller: controller.help.value,
                     valid: (val) {
-                      return vaidInput(val!, 5, 1000);
+                      return Valid().vaidInput(val!, 5, 1000);
                     },
                     max: 15,
                   ),

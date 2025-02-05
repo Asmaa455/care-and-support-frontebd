@@ -14,6 +14,7 @@ class Medicine extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: lightPink,
         onPressed: () {
           Get.toNamed('addmedicine');
         },
@@ -35,8 +36,8 @@ class Medicine extends StatelessWidget {
               activeDayColor: Colors.white,
               activeBackgroundDayColor: lightPink,
               dotColor: Color(0xFF333A47),
-              selectableDayPredicate: (date) => date.day != 23,
-              locale: sharedPref.getString('lang') == 'en' ? 'en_ISO' : 'ar',
+              selectableDayPredicate: (date) => date.day != 0,
+              locale: sharedPref.getString('lang') == 'en' ? 'en' : 'ar',
             ),
             Expanded(
               child: GridView.builder(
@@ -50,8 +51,20 @@ class Medicine extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed("medicinedetails",
-                          arguments: controller.medicines[index]);
+                      sharedPref.setString(
+                          'med_id', controller.medicines[index].id.toString());
+
+                      sharedPref.setString(
+                          'select_date',
+                          DateTime(
+                                  controller.selectedDate.value.year,
+                                  controller.selectedDate.value.month,
+                                  controller.selectedDate.value.day)
+                              .toIso8601String());
+
+                      Get.toNamed(
+                        "medicinedetails",
+                      );
                     },
                     child: Card(
                       color: pink,

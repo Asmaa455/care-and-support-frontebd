@@ -26,7 +26,7 @@ class ReplayDoneController extends GetxController {
     String url = '$serverLink$consultationPatient';
     try {
       isLoading(true);
-      var fetchedUsers = await ApiService().fetchConsultation(url, id);
+      var fetchedUsers = await ApiService().fetchConsultation(url);
       consultations.assignAll(fetchedUsers); // Update the observable list
     } finally {
       isLoading(false);

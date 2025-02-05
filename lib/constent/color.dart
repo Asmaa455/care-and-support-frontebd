@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color pink = Color(0xffFFE1FF);
+const Color pink = Color.fromARGB(255, 245, 224, 245);
 const Color lightPink = Color(0xffE4B1F0);
 const Color deepPurple = Color(0Xff433878);
 const Color lightRed = Color.fromARGB(255, 239, 154, 154);

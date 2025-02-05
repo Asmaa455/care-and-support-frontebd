@@ -38,10 +38,10 @@ class Addweight extends StatelessWidget {
                     )),
               ),
             ]),
-        body: Column(children: [
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Obx(
             () => Text(
-              'The wieght value is ${controller.sliderValue.value.round()} Kg',
+              '${'140'.tr} ${controller.sliderValue.value.round()} Kg',
               style: TextStyle(
                   color: deepPurple, fontSize: 25, fontWeight: FontWeight.bold),
             ),
@@ -51,14 +51,14 @@ class Addweight extends StatelessWidget {
               axes: <RadialAxis>[
                 RadialAxis(
                   radiusFactor: 0.8, // تصغير حجم المحور
-                  minimum: 90,
+                  minimum: 0,
                   maximum: 140,
                   startAngle: 130,
                   endAngle: 45,
                   showLabels: true,
                   labelsPosition: ElementsPosition.inside,
                   showTicks: true,
-                  interval: 5,
+                  interval: 10,
                   showFirstLabel: false,
                   axisLineStyle:
                       const AxisLineStyle(cornerStyle: CornerStyle.bothCurve),
@@ -69,7 +69,7 @@ class Addweight extends StatelessWidget {
                       cornerStyle: CornerStyle.bothCurve,
                       width: 12,
                       sizeUnit: GaugeSizeUnit.logicalPixel,
-                      color: Colors.white54,
+                      color: Colors.yellow[100],
                     ),
                     MarkerPointer(
                       value: controller.sliderValue.value,
@@ -98,7 +98,23 @@ class Addweight extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          Container(
+            height: 40,
+            decoration: BoxDecoration(
+                color: lightYellow,
+                border: Border.all(color: Colors.yellow),
+                borderRadius: BorderRadius.circular(25)),
+            child: TextButton(
+                onPressed: () {
+                  controller.addValue;
+                },
+                child: Text(
+                  '85'.tr,
+                  style:
+                      TextStyle(color: deepPurple, fontWeight: FontWeight.bold),
+                )),
+          ),
         ]));
   }
 }

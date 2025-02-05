@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:supcar/constent/color.dart';
 import 'dart:convert';
 
 import 'package:supcar/constent/link.dart';
@@ -63,8 +64,6 @@ class NotReplayController extends GetxController {
   GlobalKey<FormState> formstate1 = GlobalKey();
   var isLoading = false.obs;
   var consultations = <Consultations>[].obs;
-  int id = 1;
-  int doctorId = 1;
   @override
   void onInit() {
     super.onInit();
@@ -75,7 +74,7 @@ class NotReplayController extends GetxController {
     String url = '$serverLink$unansweredMedicalConsultations';
     try {
       isLoading(true);
-      var fetchedUsers = await ApiService().fetchConsultation(url, id);
+      var fetchedUsers = await ApiService().fetchConsultation(url);
       consultations.assignAll(fetchedUsers); // Update the observable list
     } finally {
       isLoading(false);
@@ -87,17 +86,17 @@ class NotReplayController extends GetxController {
 
     if (formstate1.currentState != null &&
         formstate1.currentState!.validate()) {
-      String url = '$serverLink$createAnswered$doctorId/$idConsul';
+      String url = '$serverLink$createAnswered$idConsul';
 
       var response = await ApiService().postRequest1(url, {
-        "doctor_id": doctorId.toString(),
         "answer_text": replay.text.toString(),
       });
       isLoading.value = false;
 
       if (response != null &&
           response['message'] == 'Answer stored successfully') {
-        Get.toNamed('consultation');
+        Get.back();
+        Get.snackbar('3'.tr, '100'.tr, backgroundColor: pink);
       } else {
         print('Error: ${response['message']}');
       }

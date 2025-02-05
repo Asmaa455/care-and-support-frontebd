@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
+import 'package:supcar/constent/color.dart';
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 
 class Addweightcontroller extends GetxController {
   var sliderValue = 0.0.obs;
   var status = false.obs;
-  int patientaid = 1;
   int diseaseId = 4;
   var isLoading = true.obs;
 
@@ -20,15 +20,16 @@ class Addweightcontroller extends GetxController {
   void addValue() async {
     isLoading.value = true;
 
-    String url = '$serverLink$addHealthyValueLink$patientaid/$diseaseId';
+    String url = '$serverLink$addHealthyValueLink$diseaseId';
     print(url);
-    var response = await ApiService()
-        .postRequest1(url, {'value': sliderValue.value.round()});
+    var response = await ApiService().postRequest1(url,
+        {'value': sliderValue.value.round(), 'valuee': 0, 'status': 'null'});
     isLoading.value = false;
 
     if (response != null &&
         response['message'] == 'healthy value stored successfully') {
       Get.back();
+      Get.snackbar('88'.tr, '87'.tr, backgroundColor: pink);
     } else {
       print('Error: ${response['message']}');
     }

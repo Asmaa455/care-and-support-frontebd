@@ -5,6 +5,7 @@ import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/Myconsultationcontroller.dart';
 import 'package:supcar/controller/mypostcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/main.dart';
 
 class Mypost extends StatelessWidget {
   Mypost({super.key});
@@ -21,11 +22,6 @@ class Mypost extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(5),
-        margin: EdgeInsets.all(5),
-        // decoration: BoxDecoration(
-        //     border: Border.all(color: Colors.deepPurple),
-        //     borderRadius: BorderRadius.circular(10)),
         child: Obx(() {
           if (controller.posts.isEmpty) {
             return Center(
@@ -34,53 +30,44 @@ class Mypost extends StatelessWidget {
           } else {
             return ListView.builder(
               itemCount: controller.posts.length,
+              scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(bottom: 10),
+                  margin: EdgeInsets.only(top: 10, right: 10, left: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: lightPink),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Column(
-                    children: [
-                      Post(
-                          messege: Container(
-                            margin: EdgeInsets.all(5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  controller.posts[index].title,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                                Text(
-                                  controller.posts[index].content,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ],
-                            ),
-                          ),
-                          firstName: 'username',
-                          lastName: '',
-                          time: DateTime.parse(controller.posts[index].createdAt
-                              .toIso8601String()),
-                          userImage: 'image/PI.jpeg',
-                          leading: controller.posts[index].doctorId ==
-                                  controller.doctorId
-                              ? PopupMenuButton(
-                                  itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                            child: TextButton(
-                                          child: Text('delete'),
-                                          onPressed: () {},
-                                        )),
-                                        PopupMenuItem(child: Container())
-                                      ])
-                              : Container()),
-                    ],
+                    border: Border.all(color: lightPink),
+                    borderRadius: BorderRadius.circular(10),
                   ),
+                  child: Post(
+                      messege: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              controller.posts[index].title,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                            Text(
+                              controller.posts[index].content,
+                              textAlign: TextAlign.justify,
+                            ),
+                            Text(
+                              controller.posts[index].category,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(color: deepPurple),
+                            ),
+                          ],
+                        ),
+                      ),
+                      firstName: ' ${sharedPref.getString('first_name')}',
+                      lastName: ' ${sharedPref.getString('second_name')}',
+                      time: DateTime.parse(
+                          controller.posts[index].createdAt.toIso8601String()),
+                      userImage: 'image/PI.jpeg'),
                 );
               },
             );
@@ -90,3 +77,15 @@ class Mypost extends StatelessWidget {
     );
   }
 }
+// leading: controller.posts[index].doctorId ==
+
+                        //     ? PopupMenuButton(
+                        //         itemBuilder: (context) => [
+                        //               PopupMenuItem(
+                        //                   child: TextButton(
+                        //                 child: Text('delete'),
+                        //                 onPressed: () {},
+                        //               )),
+                        //               PopupMenuItem(child: Container())
+                        //             ])
+                        //     : Container()

@@ -10,3 +10,8 @@ String convertTimeOfDayToString(TimeOfDay time) {
   final minutes = time.minute.toString().padLeft(2, '0');
   return '$hours:$minutes';
 }
+
+// String getFormattedDate(DateTime dateTime) {
+//   // تنسيق التاريخ
+//   return DateFormat('yyyy-MM-dd').format(dateTime);
+// }

@@ -16,6 +16,10 @@ class ViewPostForDoctorController extends GetxController {
     postForDoctor();
   }
 
+  void refresh() {
+    postForDoctor();
+  }
+
   void postForDoctor() async {
     String url = '$serverLink$postLink';
     try {

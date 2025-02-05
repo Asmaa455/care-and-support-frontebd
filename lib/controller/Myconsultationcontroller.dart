@@ -5,7 +5,6 @@ import 'package:supcar/model/conModel.dart';
 
 class Myconsultationcontroller extends GetxController {
   var consultations = <Consultations>[].obs;
-  int doctorId = 1;
   var isLoading = false.obs;
 
   @override
@@ -18,7 +17,7 @@ class Myconsultationcontroller extends GetxController {
     String url = '$serverLink$doctorAnswered';
     try {
       isLoading(true);
-      var fetchedUsers = await ApiService().fetchConsultation(url, doctorId);
+      var fetchedUsers = await ApiService().fetchConsultation(url);
       consultations.assignAll(fetchedUsers); // Update the observable list
     } finally {
       isLoading(false);

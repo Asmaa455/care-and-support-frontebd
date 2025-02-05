@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:supcar/controller/Measurecontroller.dart';
 import 'package:supcar/model/healthyValueModel.dart';
@@ -64,17 +65,20 @@ class CustomGrid extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '${pressure[index].value}',
+                      '91'.tr + ': ${pressure[index].value}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
+                    pressure[index].status != 'null'
+                        ? Text(
+                            '92'.tr + ': ${pressure[index].status}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        : Container(),
                     Text(
-                      pressure[index].status,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Time: ${DateFormat('HH:mm:ss').format(pressure[index].createAt)}',
+                      '93'.tr +
+                          ': ${DateFormat('HH:mm').format(pressure[index].createAt)}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),

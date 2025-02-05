@@ -4,6 +4,7 @@ import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/post.dart';
 import 'package:supcar/controller/doctorask/Doctoraskcontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
+import 'package:supcar/main.dart';
 import 'package:supcar/model/conModel.dart';
 
 class Doctorask extends StatelessWidget {
@@ -19,13 +20,21 @@ class Doctorask extends StatelessWidget {
             child: Icon(Icons.add),
           ),
           appBar: AppBar(
-            backgroundColor: pink,
+            backgroundColor: lightPink,
             toolbarHeight: 0,
-            bottom: TabBar(tabs: [
-              Tab(
-                child: Text('5'.tr),
-              ),
-            ]),
+            bottom: TabBar(
+                labelColor: deepPurple,
+                labelStyle:
+                    TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                indicatorColor: deepPurple,
+                unselectedLabelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    child: Text('5'.tr),
+                  ),
+                ]),
           ),
           body: Container(
             child: TabBarView(
@@ -47,9 +56,9 @@ class ReplayDone extends StatelessWidget {
       body: Container(
         child: Obx(
           () {
-            if (controller.consultations.isEmpty) {
+            if (controller.isLoading.value) {
               return Center(
-                child: Text('loading'),
+                child: CircularProgressIndicator(),
               );
             } else {
               return ListView.builder(
@@ -61,10 +70,10 @@ class ReplayDone extends StatelessWidget {
                   // var consultation = controller.consultations[index];
                   return Container(
                     padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.only(right: 10, left: 10, top: 10),
                     decoration: BoxDecoration(
                         border: Border.all(color: lightPink),
-                        borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
                         Post(
@@ -80,12 +89,15 @@ class ReplayDone extends StatelessWidget {
                             userImage: 'image/PI.jpeg'),
                         controller.consultations[index].status == 1
                             ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment:
+                                    sharedPref.getString('lan') == 'en'
+                                        ? CrossAxisAlignment.start
+                                        : CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                     child: Icon(
-                                      MyFlutterApp.reply,
+                                      MyFlutterApp.replyAll,
                                       color: deepPurple,
                                     ),
                                   ),

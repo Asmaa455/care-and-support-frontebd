@@ -20,7 +20,7 @@ class Post extends StatelessWidget {
   final String userImage;
   int? iddoctor;
   Widget? leading;
-
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     buildPostHeader() {
@@ -30,38 +30,40 @@ class Post extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-                trailing: CircleAvatar(
+              trailing: InkWell(
+                onTap: onTap,
+                child: CircleAvatar(
                   backgroundImage: AssetImage(userImage),
                   backgroundColor: Colors.grey,
                 ),
-                title: GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    '$firstName $lastName',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: sharedPref.getString('lang') == 'en'
-                        ? TextAlign.right
-                        : TextAlign.left,
+              ),
+              title: GestureDetector(
+                onTap: () {},
+                child: Text(
+                  '$firstName $lastName',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.end,
                 ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      time.toString(),
-                      textAlign: TextAlign.right,
-                    ),
-                    Container(padding: EdgeInsets.all(5)),
-                    Icon(
-                      Icons.watch_later_outlined,
-                      size: 15,
-                    ),
-                  ],
-                ),
-                leading: leading),
+              ),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    time.toString(),
+                    textAlign: TextAlign.right,
+                  ),
+                  Container(padding: EdgeInsets.all(5)),
+                  Icon(
+                    Icons.watch_later_outlined,
+                    size: 15,
+                  ),
+                ],
+              ),
+              leading: leading,
+            ),
           ],
         ),
       );

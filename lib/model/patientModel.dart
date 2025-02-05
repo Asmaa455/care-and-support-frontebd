@@ -1,16 +1,16 @@
 import 'package:supcar/model/userModel.dart';
 
 class Patient {
-  int id;
-  int userId;
-  int age;
-  String gender;
-  String diseases;
-  String paperToProveCancer;
-  String profilePicture;
-  DateTime createdAt;
-  DateTime updatedAt;
-  User user;
+  final int id;
+  final int userId;
+  final int age;
+  final String gender;
+  final String diseases;
+  final String? paperToProveCancer;
+  final String? image;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final User user;
 
   Patient({
     required this.id,
@@ -18,8 +18,8 @@ class Patient {
     required this.age,
     required this.gender,
     required this.diseases,
-    required this.paperToProveCancer,
-    required this.profilePicture,
+    this.paperToProveCancer,
+    this.image,
     required this.createdAt,
     required this.updatedAt,
     required this.user,
@@ -32,8 +32,8 @@ class Patient {
       age: json['age'] ?? 0,
       gender: json['gender'] ?? '',
       diseases: json['diseases'] ?? '',
-      paperToProveCancer: json['paper_to_prove_cancer'] ?? '',
-      profilePicture: json['profile_picture'] ?? '',
+      paperToProveCancer: json['paper_to_prove_cancer'] as String?,
+      image: json['image'] as String?,
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       user: User.fromJson(json['user'] ?? {}),
@@ -48,7 +48,7 @@ class Patient {
       'gender': gender,
       'diseases': diseases,
       'paper_to_prove_cancer': paperToProveCancer,
-      'profile_picture': profilePicture,
+      'image': image,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
       'user': user.toJson(),

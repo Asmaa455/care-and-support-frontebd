@@ -50,7 +50,7 @@ class CustomCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black),
                 ),
               ],

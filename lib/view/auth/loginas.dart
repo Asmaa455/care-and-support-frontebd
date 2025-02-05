@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 
 class Loginas extends StatefulWidget {
@@ -12,7 +13,6 @@ class _LoginasState extends State<Loginas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: deepPurple,
       body: Container(
         child: Center(
           child: Column(
@@ -20,20 +20,41 @@ class _LoginasState extends State<Loginas> {
             children: [
               loginAsContainar(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('doctorhome');
+                  Get.toNamed('doctorhome');
                 },
                 title: 'SignUp As Doctor',
               ),
               loginAsContainar(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('home');
+                    Get.toNamed('home');
                   },
                   title: 'SignUp As Patient'),
               loginAsContainar(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('volunteerhome');
+                    Get.toNamed('volunteerhome');
                   },
                   title: 'SignUp As volunteer'),
+              loginAsContainar(
+                onPressed: () {
+                  Get.offAllNamed('aspatient');
+                },
+                title: 'SignUp As Patient',
+              ),
+              loginAsContainar(
+                  onPressed: () {
+                    Get.offAllNamed('asdoctor');
+                  },
+                  title: ' SignUp As Doctor'),
+              loginAsContainar(
+                  onPressed: () {
+                    Get.offAllNamed('asvolunteer');
+                  },
+                  title: 'SignUp As volunteer'),
+              loginAsContainar(
+                  onPressed: () {
+                    Get.offAllNamed('login');
+                  },
+                  title: 'login'),
             ],
           ),
         ),

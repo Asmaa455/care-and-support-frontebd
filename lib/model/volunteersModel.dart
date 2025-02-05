@@ -5,7 +5,7 @@ class Volunteersmodel {
   int userId;
   int nationalNumber;
   int contactInformation;
-  String profilePicture;
+  String? profilePicture;
   DateTime createdAt;
   DateTime? updatedAt;
   User user;
@@ -15,19 +15,20 @@ class Volunteersmodel {
     required this.userId,
     required this.nationalNumber,
     required this.contactInformation,
-    required this.profilePicture,
+    this.profilePicture,
     required this.createdAt,
     this.updatedAt,
     required this.user,
   });
 
   factory Volunteersmodel.fromJson(Map<String, dynamic> json) {
+    print('Parsing Volunteersmodel from JSON: $json'); // إضافة طباعة هنا
     return Volunteersmodel(
       id: json['id'] ?? 0,
       userId: json['user_id'] ?? 0,
       nationalNumber: json['national_number'] ?? 0,
       contactInformation: json['contact_information'] ?? 0,
-      profilePicture: json['profile_picture'] ?? '',
+      profilePicture: json['image'] ?? '',
       createdAt: DateTime.parse(
           json['created_at'] ?? DateTime.now().toIso8601String()),
       updatedAt: json['updated_at'] != null
@@ -40,6 +41,7 @@ class Volunteersmodel {
               firstName: '',
               secondName: '',
               email: '',
+              type: '',
               createdAt: DateTime.now()),
     );
   }
@@ -50,7 +52,7 @@ class Volunteersmodel {
       'user_id': userId,
       'national_number': nationalNumber,
       'contact_information': contactInformation,
-      'profile_picture': profilePicture,
+      'image': profilePicture,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
       'user': user.toJson(),

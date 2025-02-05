@@ -15,7 +15,7 @@ class Help extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Help',
+          '69'.tr,
           style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -30,9 +30,9 @@ class Help extends StatelessWidget {
       ),
       body: Container(
         child: Obx(() {
-          if (controller.help.isEmpty) {
+          if (controller.isLoading.value) {
             return Center(
-              child: Text('loading'),
+              child: CircularProgressIndicator(),
             );
           } else {
             return ListView.builder(
@@ -45,24 +45,76 @@ class Help extends StatelessWidget {
                         border: Border.all(color: lightPink),
                         borderRadius: BorderRadius.circular(15)),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
                           children: [
                             Post(
                                 messege: Card(
-                                  color:
-                                      const Color.fromARGB(255, 176, 211, 241),
+                                  color: pink,
                                   child: ListTile(
-                                    leading:
-                                        Icon(Icons.volunteer_activism_sharp),
-                                    title: Text(
-                                      ' ${controller.help[index].aidType}',
-                                      textAlign: TextAlign.end,
+                                    // leading:
+                                    //     Icon(Icons.volunteer_activism_sharp),
+                                    title: Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.quiz_sharp,
+                                            color: lightPink,
+                                          ),
+                                          Container(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            ' ${controller.help[index].aidType}',
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    subtitle: Text(
-                                      'المكان:${controller.help[index].location}\n التفاصيل: ${controller.help[index].additionalDetails}',
-                                      textAlign: TextAlign.end,
+                                    subtitle: Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.location_on,
+                                                color: lightPink,
+                                              ),
+                                              Container(
+                                                width: 20,
+                                              ),
+                                              Text(
+                                                '${controller.help[index].location}',
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  '71'.tr,
+                                                  style: TextStyle(
+                                                      color: lightPink,
+                                                      fontSize: 17),
+                                                ),
+                                                Container(
+                                                  width: 20,
+                                                ),
+                                                Text(
+                                                  ': ${controller.help[index].additionalDetails}',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -75,56 +127,59 @@ class Help extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          margin: EdgeInsets.all(10),
-                          child: controller.help[index].status != 1
-                              ? Icon(
-                                  MyFlutterApp.commentEmpty,
-                                  color: deepPurple,
-                                )
-                              : Icon(
-                                  MyFlutterApp.comment,
-                                  color: deepPurple,
-                                ),
-                        ),
-                        controller.help[index].status == 1
-                            ? Container(
-                                margin: EdgeInsets.only(
-                                    right: 10, left: 10, bottom: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Icon(
-                                        MyFlutterApp.replyAll,
-                                        color: lightPink,
-                                      ),
+                            child: controller.help[index].status != 1
+                                ? Container(
+                                    margin: EdgeInsets.all(20),
+                                    child: Icon(
+                                      MyFlutterApp.commentEmpty,
+                                      color: deepPurple,
                                     ),
-                                    Post(
-                                        messege: Card(
-                                          color: const Color.fromARGB(
-                                              255, 176, 211, 241),
-                                          child: ListTile(
-                                            leading: Icon(
-                                                Icons.volunteer_activism_sharp),
-                                            title: Text(
-                                                'national number:${controller.help[index].volunteer?.nationalNumber.toString()}'),
-                                            subtitle: Text(
-                                              '\n contact information: ${controller.help[index].volunteer?.contactInformation}',
-                                              textAlign: TextAlign.start,
-                                            ),
+                                  )
+                                : Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(20),
+                                          child: Icon(
+                                            MyFlutterApp.replyAll,
+                                            color: lightPink,
                                           ),
                                         ),
-                                        firstName: controller.help[index]
-                                            .volunteer!.user.firstName,
-                                        lastName: controller.help[index]
-                                            .volunteer!.user.secondName,
-                                        time: DateTime.now(),
-                                        userImage: 'image/PI.jpeg'),
-                                  ],
-                                ),
-                              )
-                            : Container()
+                                        Post(
+                                            messege: Card(
+                                              color: pink,
+                                              child: ListTile(
+                                                // leading: Icon(Icons
+                                                //     .volunteer_activism_sharp),
+                                                title: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.phone_in_talk_sharp,
+                                                      color: lightPink,
+                                                    ),
+                                                    Container(
+                                                      width: 20,
+                                                    ),
+                                                    Text(
+                                                      '${controller.help[index].volunteer?.contactInformation}',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            firstName: controller.help[index]
+                                                .volunteer!.user.firstName,
+                                            lastName: controller.help[index]
+                                                .volunteer!.user.secondName,
+                                            time: DateTime.now(),
+                                            userImage: 'image/PI.jpeg'),
+                                      ],
+                                    ),
+                                  ))
                       ],
                     ),
                   );
