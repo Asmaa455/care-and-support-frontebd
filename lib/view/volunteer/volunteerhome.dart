@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/controller/doctorask/volunteercontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 
@@ -55,6 +56,19 @@ class VolunteerHome extends StatelessWidget {
                 'My Paid',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+                weight: 2,
+              ),
+              title: Text(
+                'log out',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                ApiService().logOut();
+              },
             ),
           ],
         ),

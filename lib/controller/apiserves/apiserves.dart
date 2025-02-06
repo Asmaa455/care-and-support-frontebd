@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:supcar/constent/link.dart';
 import 'package:supcar/main.dart';
@@ -12,6 +13,7 @@ import 'package:supcar/model/healthyValueModel.dart';
 import 'package:supcar/model/helpModel.dart';
 import 'package:supcar/model/medication_time.dart';
 import 'package:supcar/model/medicineModel.dart';
+import 'package:supcar/model/patientModel.dart';
 import 'package:supcar/model/postModel.dart';
 import 'package:http_parser/http_parser.dart'; // Required for MediaType
 import 'package:path/path.dart' as p;
@@ -431,6 +433,42 @@ class ApiService {
     } else {
       print(response.statusCode);
       throw Exception('Failed to fetch doctor data');
+    }
+  }
+
+  Future<Patient> fetchPatientData() async {
+    String url = '$serverLink$showPatientDataLink';
+    var response = await http.get(Uri.parse(url), headers: headers);
+
+    if (response.statusCode == 200) {
+      var responseBody = json.decode(response.body) as Map<String, dynamic>;
+      print(responseBody);
+      var data = responseBody['patient'] as List<dynamic>;
+
+      // استخراج أول عنصر من القائمة
+      Patient patient = Patient.fromJson(data[0]);
+      print(patient.diseases);
+      return patient;
+    } else {
+      throw Exception('Failed to fetch patient data');
+    }
+  }
+
+  Future<void> logOut() async {
+    String url = '$serverLink$logoutLink';
+    var response = await http.get(Uri.parse(url), headers: headers);
+
+    if (response.statusCode == 200) {
+      sharedPref.remove('first_name');
+      sharedPref.remove('second_name');
+      sharedPref.remove('email');
+      sharedPref.remove('id');
+      sharedPref.remove('token');
+      Get.offAllNamed('login');
+
+      return;
+    } else {
+      throw Exception('Failed to fetch patient data');
     }
   }
 }

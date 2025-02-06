@@ -54,37 +54,42 @@ class Addhelp extends StatelessWidget {
                     textAlign: TextAlign.start,
                   ),
                 ),
-                DropdownButton(
-                  items: [
-                    '141'.tr,
-                    '142'.tr,
-                    '143'.tr,
-                    '144'.tr,
-                    '145'.tr,
-                    '146'.tr
-                  ].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    controller.setAidType(value!);
-                  },
-                ),
+                Obx(
+                  () => DropdownButton(
+                    items: [
+                      '141'.tr,
+                      '142'.tr,
+                      '143'.tr,
+                      '144'.tr,
+                      '145'.tr,
+                      '146'.tr
+                    ].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      controller.setAidType(value!);
+                    },
+                    value: controller.typeHelp.value,
+                  ),
+                )
               ],
             ),
-            controller.typeHelp.value == '146'.tr
-                ? Form1(
-                    focusNode: controller.typeHelpFocusNode,
-                    hint1: 'Aid`s Type',
-                    mycontroller: controller.typeHelpController,
-                    valid: (val) {
-                      return Valid().vaidInput(val!, 3, 1000);
-                    },
-                    max: 1,
-                  )
-                : Container(),
+            Obx(
+              () => controller.typeHelp.value == '146'.tr
+                  ? Form1(
+                      focusNode: controller.typeHelpFocusNode,
+                      hint1: '136'.tr,
+                      mycontroller: controller.typeHelpController,
+                      valid: (val) {
+                        return Valid().vaidInput(val!, 3, 1000);
+                      },
+                      max: 1,
+                    )
+                  : Container(),
+            ),
             Form(
               key: formstate1,
               child: Column(
@@ -92,9 +97,9 @@ class Addhelp extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 5),
+                        padding: EdgeInsets.only(left: 20, top: 5, right: 20),
                         child: Text(
-                          ' Date',
+                          '82'.tr,
                           style: TextStyle(
                               color: deepPurple,
                               fontSize: 20,
@@ -117,13 +122,13 @@ class Addhelp extends StatelessWidget {
                             child: Obx(() => Text(
                                 controller.clickedDateFirst.value == true
                                     ? '${controller.dateFirst.value.toString()}'
-                                    : 'Select Date'))),
+                                    : '83'.tr))),
                       ),
                     ],
                   ),
                   Form1(
                     focusNode: controller.locationFocusNode,
-                    hint1: ' Location',
+                    hint1: '70'.tr,
                     mycontroller: controller.locationController,
                     valid: (val) {
                       return Valid().vaidInput(val!, 3, 1000);
@@ -132,7 +137,7 @@ class Addhelp extends StatelessWidget {
                   ),
                   Form1(
                     focusNode: controller.detailsFocusNode,
-                    hint1: 'Details',
+                    hint1: '71'.tr,
                     mycontroller: controller.detailsController,
                     valid: (val) {
                       return Valid().vaidInput(val!, 0, 1000);
@@ -154,7 +159,7 @@ class Addhelp extends StatelessWidget {
                           print('Form validation failed');
                         }
                       },
-                      child: Text("request aid"),
+                      child: Text('147'.tr),
                     ),
                   ),
                 ],

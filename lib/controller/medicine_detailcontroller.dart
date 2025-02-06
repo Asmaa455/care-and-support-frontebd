@@ -4,7 +4,6 @@ import 'package:supcar/constent/link.dart';
 import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/main.dart';
 import 'package:supcar/model/medication_time.dart';
-import 'package:supcar/model/medicineModel.dart';
 
 class MedicineDetailController extends GetxController {
   var medication = <Medication>[].obs;
@@ -12,7 +11,7 @@ class MedicineDetailController extends GetxController {
   var isLoading = true.obs;
   String? medIdString = sharedPref.getString('med_id');
   var selectedDateString = sharedPref.getString('select_date');
-
+  String? medName = sharedPref.getString('med_name');
   @override
   void onInit() {
     super.onInit();
@@ -27,6 +26,7 @@ class MedicineDetailController extends GetxController {
   void onClose() async {
     await sharedPref.remove('med_id');
     await sharedPref.remove('select_date');
+    await sharedPref.remove('med_name');
 
     String? medId = sharedPref.getString('med_id');
     String? selectDate = sharedPref.getString('select_date');
@@ -98,10 +98,12 @@ class MedicineDetailController extends GetxController {
     if (selectedDateString != null) {
       selectedDate = DateTime.parse(selectedDateString);
     }
+    print("selectedDateString $selectedDateString");
 
     if (selectedDate != null) {
       return medication.isNotEmpty
           ? medication.where((medTime) {
+              print(medTime.date.toIso8601String());
               DateTime medDateOnly = DateTime(
                   medTime.date.year, medTime.date.month, medTime.date.day);
               return isSameDay(medDateOnly, selectedDate!);

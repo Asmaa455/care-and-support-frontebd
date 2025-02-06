@@ -25,7 +25,8 @@ class Doctorsearch extends StatelessWidget {
         backgroundColor: deepPurple,
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
+        scrollDirection: Axis.vertical,
         children: [
           Container(
             height: 10,
@@ -66,6 +67,34 @@ class Doctorsearch extends StatelessWidget {
               ),
             ],
           ),
+          // Container(
+          //   margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+          //   child: TextFormField(
+          //       decoration: InputDecoration(
+          //           hintText: '70'.tr,
+          //           label: Text('70'.tr),
+          //           border: OutlineInputBorder(
+          //               borderSide: BorderSide(color: deepPurple))),
+          //       controller: controller.location,
+          //       validator: (p0) {
+          //         return Valid().vaidInput(p0!, 3, 25);
+          //       },
+          //       maxLines: 1),
+          // ),
+          // Container(
+          //   margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+          //   child: TextFormField(
+          //       decoration: InputDecoration(
+          //           hintText: '73'.tr,
+          //           label: Text('73'.tr),
+          //           border: OutlineInputBorder(
+          //               borderSide: BorderSide(color: deepPurple))),
+          //       controller: controller.specialty,
+          //       validator: (p0) {
+          //         return Valid().vaidInput(p0!, 3, 25);
+          //       },
+          //       maxLines: 1),
+          // ),
           Container(
             margin: EdgeInsets.only(left: 20, right: 20, top: 10),
             child: InlineChoice<String>.single(

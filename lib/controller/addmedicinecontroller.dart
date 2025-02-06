@@ -98,7 +98,7 @@ class AddMedicineController extends GetxController {
 
       if (response != null &&
           response['message'] == 'Medication Time stored successfully') {
-        Get.back();
+        Get.offNamed('home');
         Get.snackbar('2'.tr, '99'.tr, backgroundColor: pink);
       } else {
         print('Error: ${response['message']}');

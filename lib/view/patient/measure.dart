@@ -156,7 +156,7 @@ class Measure extends StatelessWidget {
                 borderColor: deepPurple,
                 iconColor: const Color.fromARGB(255, 178, 166, 56),
                 itemCount: controller.filteredWeight.length,
-                icon: MyFlutterApp.nounDiabetesTest,
+                icon: MyFlutterApp.nounWeight,
                 pressure: controller.filteredWeight)),
             Obx(() => CustomGrid(
                 controller: controller,

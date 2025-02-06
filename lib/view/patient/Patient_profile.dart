@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
 import 'package:supcar/content/custome_profile.dart';
-import 'package:supcar/controller/volunteer_profile_controller.dart';
+import 'package:supcar/controller/patient_profile_controller.dart';
 
-class VolunteerProfile extends StatelessWidget {
-  VolunteerProfile({super.key});
-  VolunteerProfileController controller = Get.put(VolunteerProfileController());
+class PatientProfile extends StatelessWidget {
+  PatientProfile({super.key});
+  PatientProfileController controller = Get.put(PatientProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +25,23 @@ class VolunteerProfile extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      Get.toNamed('editprofile');
+                      Get.toNamed('updatepatentprofile');
                     },
                     icon: Icon(Icons.edit)),
                 CustomeProfile(
                   image: 'image/PI.jpeg',
-                  fristName: controller.volunteerData.value.user.firstName,
-                  secondName: controller.volunteerData.value.user.secondName,
+                  fristName: controller.patientData.value.user.firstName,
+                  secondName: controller.patientData.value.user.secondName,
                   speciality: Row(
                     children: [
                       Text(
-                        '${'130'.tr}: ',
+                        '${'148'.tr}: ',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: lightPink, fontWeight: FontWeight.bold),
+                            color: deepPurple, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${controller.volunteerData.value.nationalNumber}',
+                        '${controller.patientData.value.age}',
                         textAlign: TextAlign.start,
                       ),
                       // Center(
@@ -53,18 +52,31 @@ class VolunteerProfile extends StatelessWidget {
                   contactInformation: Row(
                     children: [
                       Text(
-                        '${'128'.tr}: ',
+                        '${'149'.tr}: ',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: lightPink, fontWeight: FontWeight.bold),
+                            color: deepPurple, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${controller.volunteerData.value.contactInformation}',
+                        '${controller.patientData.value.gender}',
                         textAlign: TextAlign.start,
                       ),
                     ],
                   ),
-                  clinicLocation: null,
+                  clinicLocation: Row(
+                    children: [
+                      Text(
+                        '${'150'.tr}: ',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: deepPurple, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '${controller.patientData.value.diseases}',
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

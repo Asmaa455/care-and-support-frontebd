@@ -19,6 +19,7 @@ import 'package:supcar/view/doctor/mypost.dart';
 import 'package:supcar/view/doctor/update_profile.dart';
 import 'package:supcar/view/doctor/viewpostfordoctor.dart';
 import 'package:supcar/view/patient/BloodPressure.dart';
+import 'package:supcar/view/patient/Patient_profile.dart';
 import 'package:supcar/view/patient/addbloodpre.dart';
 import 'package:supcar/view/patient/addhelp.dart';
 import 'package:supcar/view/patient/addmedicine.dart';
@@ -39,6 +40,7 @@ import 'package:supcar/view/patient/medicineDetails.dart';
 import 'package:supcar/view/patient/mentalhealth.dart';
 import 'package:supcar/view/patient/patient.dart';
 import 'package:supcar/view/patient/sugar.dart';
+import 'package:supcar/view/patient/update_patent_profile.dart';
 import 'package:supcar/view/patient/weight.dart';
 import 'package:supcar/view/volunteer/edit_profile.dart';
 import 'package:supcar/view/volunteer/replayhelp.dart';
@@ -118,6 +120,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/volunteerprofile', page: () => VolunteerProfile()),
         GetPage(name: '/editprofile', page: () => EditProfile()),
         GetPage(name: '/uodateprofiledoctor', page: () => UpdateProfile()),
+        GetPage(name: '/patentprofile', page: () => PatientProfile()),
+        GetPage(
+            name: '/updatepatentprofile', page: () => UpdatePatentProfile()),
       ],
     );
   }

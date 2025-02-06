@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/locale/localecontroller.dart';
 import 'package:supcar/main.dart';
 import 'package:supcar/view/doctor/consultation.dart';
@@ -132,6 +133,19 @@ class DoctorHome extends StatelessWidget {
                         child: Text('139'.tr))
                   ],
                 )),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+                weight: 2,
+              ),
+              title: Text(
+                'log out',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                ApiService().logOut();
+              },
+            ),
           ],
         ),
       ),

@@ -17,7 +17,10 @@ class MedicineDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Icon(MyFlutterApp.pills, color: lightPink),
+        title: Text(
+          '${controller.medName}',
+          style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: deepPurple,
         centerTitle: true,
       ),
@@ -77,7 +80,15 @@ class MedicineDetails extends StatelessWidget {
                       },
                     )
                   else
-                    Icon(Icons.check_box, color: Colors.green),
+                    IconButton(
+                        onPressed: () {
+                          controller.setStatus(0);
+                          controller.addStatus(controller
+                              .getMedicationsForSelectedDate()[index]
+                              .id);
+                          controller.medicationwithId();
+                        },
+                        icon: Icon(Icons.check_box, color: deepPurple)),
                 ],
               ),
             );

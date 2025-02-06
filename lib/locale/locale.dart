@@ -150,7 +150,17 @@ class Mylocale implements Translations {
           '143': 'دعم مالي',
           '144': 'دعم نفسي',
           '145': 'رعاية الأطفال',
-          '146': 'غير ذلك'
+          '146': 'غير ذلك',
+          '147': 'ارسل الطلب',
+          '148': 'العمر',
+          '149': 'الجنس',
+          '150': 'المرض',
+          '151': 'ملفي الشخصي',
+          "152": "مرض السكري",
+          "153": "ضغط الدم",
+          "154": "السمنة",
+          "155": "الاكتئاب",
+          "156": "السرطان"
         },
         'en': {
           '1': 'home',
@@ -301,7 +311,17 @@ class Mylocale implements Translations {
           '143': 'Subsidization',
           '144': 'Psychological',
           '145': 'Take care of children',
-          '146': 'Beside'
+          '146': 'Beside',
+          '147': 'Request Aid',
+          '148': 'Age',
+          '149': 'Gender',
+          '150': 'Disease',
+          '151': 'My Profile',
+          '152': "Diabetes",
+          '153': "Pressure",
+          '154': "Obesity",
+          '155': "Depression",
+          '156': "Cancer"
         },
       };
 }

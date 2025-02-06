@@ -1,5 +1,5 @@
 // link servece
-const String serverLink = "http://192.168.125.187:9000/";
+const String serverLink = "http://192.168.213.187:9000/";
 const String createConsultationLink =
     "api/Medical_Consultation/patient_consultation_store";
 const String consultationPatient =
@@ -40,3 +40,6 @@ const String showVolunteerData = 'api/view_volunteer_data';
 const String updateVolunteerDataLink = 'api/update_volunteer_data';
 const String showDoctorDataLink = 'api/view_doctor_data';
 const String updateDoctorDataLink = 'api/update_doctor_data';
+const String showPatientDataLink = 'api/view_patient_data';
+const String updatePatientDataLink = 'api/update_patient_data';
+const String logoutLink = 'api/logout';

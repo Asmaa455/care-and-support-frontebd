@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supcar/constent/color.dart';
+import 'package:supcar/controller/apiserves/apiserves.dart';
 import 'package:supcar/controller/patienthomecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 import 'package:supcar/locale/localecontroller.dart';
@@ -106,7 +107,9 @@ class Home extends StatelessWidget {
         child: ListView(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed('patentprofile');
+              },
               child: DrawerHeader(
                 decoration: BoxDecoration(color: Colors.white),
                 child: Row(
@@ -138,7 +141,7 @@ class Home extends StatelessWidget {
                 weight: 2,
               ),
               title: Text(
-                'My Consultation',
+                '5'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               onTap: () {
@@ -177,6 +180,19 @@ class Home extends StatelessWidget {
                         child: Text('139'.tr))
                   ],
                 )),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+                weight: 2,
+              ),
+              title: Text(
+                'log out',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                ApiService().logOut();
+              },
+            ),
           ],
         ),
       ),

@@ -42,7 +42,8 @@ class Volunteersmodel {
               secondName: '',
               email: '',
               type: '',
-              createdAt: DateTime.now()),
+              createdAt: DateTime.now(),
+            ),
     );
   }
 

@@ -14,7 +14,7 @@ class DoctorProfile extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'My Profile',
+            '151'.tr,
             style: TextStyle(color: lightPink, fontWeight: FontWeight.bold),
           ),
           backgroundColor: deepPurple,

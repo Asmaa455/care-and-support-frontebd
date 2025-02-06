@@ -13,7 +13,8 @@ class AddhelpController extends GetxController {
   var isLoading = false.obs;
   var dateFirst = DateTime.now().obs;
   var clickedDateFirst = false.obs;
-  var typeHelp = ''.obs;
+  var typeHelp = Rx<String?>(null);
+
   final FocusNode typeHelpFocusNode = FocusNode();
   final FocusNode locationFocusNode = FocusNode();
   final FocusNode detailsFocusNode = FocusNode();

@@ -5,7 +5,6 @@ import 'package:supcar/constent/color.dart';
 import 'package:supcar/controller/medicinecontroller.dart';
 import 'package:supcar/fonts/my_flutter_app_icons.dart';
 import 'package:supcar/main.dart';
-import 'package:supcar/view/patient/medicineDetails.dart';
 
 class Medicine extends StatelessWidget {
   @override
@@ -21,99 +20,111 @@ class Medicine extends StatelessWidget {
         child: Icon(Icons.add),
       ),
       body: Obx(
-        () => Column(
-          children: [
-            CalendarTimeline(
-              initialDate: controller.selectedDate.value,
-              firstDate: DateTime(2020, 1, 1),
-              lastDate: DateTime(9999, 12, 31),
-              onDateSelected: (date) {
-                controller.selectedDate.value = date;
-              },
-              leftMargin: 20,
-              monthColor: Colors.blueGrey,
-              dayColor: deepPurple,
-              activeDayColor: Colors.white,
-              activeBackgroundDayColor: lightPink,
-              dotColor: Color(0xFF333A47),
-              selectableDayPredicate: (date) => date.day != 0,
-              locale: sharedPref.getString('lang') == 'en' ? 'en' : 'ar',
-            ),
-            Expanded(
-              child: GridView.builder(
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: 200,
-                ),
-                itemCount: controller.getTasksForSelectedDate().length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      sharedPref.setString(
-                          'med_id', controller.medicines[index].id.toString());
+        () => RefreshIndicator(
+          onRefresh: () => controller.refresh(),
+          child: Column(
+            children: [
+              CalendarTimeline(
+                initialDate: controller.selectedDate.value,
+                firstDate: DateTime(2020, 1, 1),
+                lastDate: DateTime(9999, 12, 31),
+                onDateSelected: (date) {
+                  controller.selectedDate.value = date;
+                },
+                leftMargin: 20,
+                monthColor: Colors.blueGrey,
+                dayColor: deepPurple,
+                activeDayColor: Colors.white,
+                activeBackgroundDayColor: lightPink,
+                dotColor: Color(0xFF333A47),
+                selectableDayPredicate: (date) => date.day != 0,
+                locale: sharedPref.getString('lang') == 'en' ? 'en' : 'ar',
+              ),
+              Expanded(
+                child: GridView.builder(
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisExtent: 200,
+                  ),
+                  itemCount: controller.getTasksForSelectedDate().length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        sharedPref.setString(
+                            'med_id',
+                            controller
+                                .getTasksForSelectedDate()[index]
+                                .id
+                                .toString());
+                        sharedPref.setString(
+                            'med_name',
+                            controller
+                                .getTasksForSelectedDate()[index]
+                                .medicationName
+                                .toString());
+                        sharedPref.setString(
+                            'select_date',
+                            DateTime(
+                                    controller.selectedDate.value.year,
+                                    controller.selectedDate.value.month,
+                                    controller.selectedDate.value.day)
+                                .toIso8601String());
 
-                      sharedPref.setString(
-                          'select_date',
-                          DateTime(
-                                  controller.selectedDate.value.year,
-                                  controller.selectedDate.value.month,
-                                  controller.selectedDate.value.day)
-                              .toIso8601String());
-
-                      Get.toNamed(
-                        "medicinedetails",
-                      );
-                    },
-                    child: Card(
-                      color: pink,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
+                        Get.toNamed(
+                          "medicinedetails",
+                        );
+                      },
+                      child: Card(
+                        color: pink,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: deepPurple,
+                                  ),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                margin: EdgeInsets.only(top: 20),
+                                padding: EdgeInsets.only(left: 20, right: 20),
+                                child: Icon(
+                                  MyFlutterApp.pills,
+                                  size: 50,
                                   color: deepPurple,
                                 ),
-                                borderRadius: BorderRadius.circular(100),
                               ),
-                              margin: EdgeInsets.only(top: 20),
-                              padding: EdgeInsets.only(left: 20, right: 20),
-                              child: Icon(
-                                MyFlutterApp.pills,
-                                size: 50,
-                                color: deepPurple,
+                              ListTile(
+                                title: Text(
+                                  controller
+                                      .getTasksForSelectedDate()[index]
+                                      .medicationName,
+                                  textAlign: TextAlign.center,
+                                ),
+                                subtitle: Text(
+                                  controller
+                                      .getTasksForSelectedDate()[index]
+                                      .amount,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                            ),
-                            ListTile(
-                              title: Text(
-                                controller
-                                    .getTasksForSelectedDate()[index]
-                                    .medicationName,
-                                textAlign: TextAlign.center,
-                              ),
-                              subtitle: Text(
-                                controller
-                                    .getTasksForSelectedDate()[index]
-                                    .amount,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

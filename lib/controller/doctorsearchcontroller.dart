@@ -6,6 +6,9 @@ import 'package:supcar/model/doctorModel.dart';
 
 class Doctorsearchcontroller extends GetxController {
   TextEditingController name = TextEditingController();
+  TextEditingController location = TextEditingController();
+  TextEditingController specialty = TextEditingController();
+
   var alldoctor = <Doctor>[].obs;
 
   // قائمة المدن بالإنجليزية والعربية
@@ -152,7 +155,7 @@ class Doctorsearchcontroller extends GetxController {
           translateSpecialtyToEnglish(selectedValueSpecialites.value);
 
       var fetchDoctor = await ApiService()
-          .searchDoctor(name.text, translatedSpecialty, translatedLocation);
+          .searchDoctor(name.text, translatedLocation, translatedSpecialty);
       print(fetchDoctor);
       alldoctor.assignAll(fetchDoctor);
     } finally {

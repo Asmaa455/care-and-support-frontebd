@@ -15,6 +15,10 @@ class HomePatientController extends GetxController {
     // Initial data
   }
 
+  Future<void> reFresh() async {
+    postForDoctor();
+  }
+
   void postForDoctor() async {
     String url = '$serverLink$postLink';
     print(url);

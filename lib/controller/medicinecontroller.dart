@@ -18,6 +18,11 @@ class MedicineController extends GetxController {
     super.onInit();
   }
 
+  Future<void> refresh() async {
+    fetchMed();
+    getTasksForSelectedDate();
+  }
+
   void saveMedication(Medicinemodel medication) {
     String jsonString = jsonEncode(medication.toJson());
     sharedPref.setString('medicine_time', jsonString);
@@ -46,10 +51,10 @@ class MedicineController extends GetxController {
     return medicines.where((med) {
       DateTime startDate = med.startDate;
       DateTime endDate =
-          startDate.add(Duration(days: med.durationOfTakingTheDrug - 1));
+          startDate.add(Duration(days: med.durationOfTakingTheDrug));
       return selectedDate.value
               .isAfter(startDate.subtract(Duration(days: 1))) &&
-          selectedDate.value.isBefore(endDate.add(Duration(days: 1)));
+          selectedDate.value.isBefore(endDate);
     }).toList();
   }
 
